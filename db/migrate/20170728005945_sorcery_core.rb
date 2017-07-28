@@ -11,7 +11,7 @@ class SorceryCore < ActiveRecord::Migration[5.1]
       t.string :phone
       t.string :website
       t.text   :description
-      t.string :type,             :null => false
+      t.string :user_type,             :null => false
       t.string :email,            :null => false
       t.string :crypted_password, :null => false
       t.string :salt
