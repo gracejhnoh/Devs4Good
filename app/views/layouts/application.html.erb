@@ -15,9 +15,14 @@
           <%= link_to('Home', root_path) %>
           <%= link_to('About') %>
           <%= link_to('Projects', projects_path) %>
-          <%= link_to('Log Out') %>
-          <%= link_to('Log In') %>
-          <%= link_to('Sign Out') %>
+
+          <% if current_user %>
+            <%= link_to('Log Out', :logout, method: :post) %>
+
+          <% else %>
+            <%= link_to('Log In', :login) %>
+            <%= link_to('Sign Up') %>
+          <% end %>
         </nav>
       </header>
     </header>

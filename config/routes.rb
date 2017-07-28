@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :sessions, only: [:new, :create, :destroy]
 
+  get 'login' => 'sessions#new', :as => :login
+  post 'logout' => 'sessions#destroy', :as => :logout
   get "home/index"
   root :to => 'home#index'
 end

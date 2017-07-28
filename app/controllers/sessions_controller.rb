@@ -6,10 +6,15 @@ class SessionsController < ApplicationController
 
   def create
     if @user = login(user_params[:email], user_params[:password])
-      redirect_back_or_to(root_path)
+      redirect_back_or_to(:root)
     else
       render :new
     end
+  end
+
+  def destroy
+    logout
+    redirect_to(:root)
   end
 
   private
