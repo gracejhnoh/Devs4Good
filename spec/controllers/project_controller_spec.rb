@@ -70,4 +70,34 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
+  describe 'GET#edit' do
+    let!(:edit_project) { FactoryGirl.create(:project) }
+
+    it 'responds with status code 200' do
+      get :edit, params: { id: edit_project.id }
+      expect(response).to have_http_status 200
+    end
+
+    it 'renders an edit view' do
+      get :edit, params: { id: edit_project.id }
+      expect(response).to render_template('edit')
+    end
+  end
+
+  describe 'PUT#update' do
+    let!(:update_project) { Project.create(title: '123', description: 'blah', time_frame:"2017-08-03") }
+
+    it "updates an item with valid params" do
+      patch :update, params: { id: update_project.id, project: {title: 'Updated title', description: 'blah', time_frame:"2017-08-03" } }
+      update_project.reload
+      expect(update_project.title).to eq('Updated title')
+    end
+
+    it "does not update an item with invalid params(blanks)" do
+      patch :update, params: { id: update_project.id, project: {title: 'Updated title', description: nil, time_frame:"2017-08-03" } }
+      update_project.reload
+      expect(response).to render_template('edit')
+    end
+  end
+
 end
