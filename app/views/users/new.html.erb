@@ -1,5 +1,20 @@
 <h1>Create new user</h1>
 
+<% if @user.errors.any? %>
+  <div id="error-explanation">
+    <div id="error-intro">
+      <%= "#{pluralize(@user.errors.count, "error")} prohibited this post from being saved:" %>
+    </div>
+    <ul class='errors-list'>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div>
   <h3>New Developer</h3>
   <%= form_for @user, url: developers_path do |f| %>
@@ -10,7 +25,7 @@
     Website: <%= f.text_field :website %><br />
     Description: <%= f.text_area :description %><br /><br />
     Password: <%= f.password_field :password %><br />
-    <%= f.hidden_field :type, { :value => 'dev' } %>
+    <%= f.hidden_field :user_type, { :value => 'dev' } %>
     <%= f.submit 'Create account' %>
   <% end %>
 </div>
@@ -28,7 +43,7 @@
     Website: <%= f.text_field :website %><br />
     Description: <%= f.text_area :description %><br /><br />
     Password: <%= f.password_field :password %><br />
-    <%= f.hidden_field :type, { :value => 'org' } %>
+    <%= f.hidden_field :user_type, { :value => 'org' } %>
     <%= f.submit 'Create account' %>
   <% end %>
 </div>
