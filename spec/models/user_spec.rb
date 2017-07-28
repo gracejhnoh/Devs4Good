@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe User do
   let(:developer) { FactoryGirl.create(:developer) }
+  let(:organization) { FactoryGirl.create(:organization) }
 
   context "developer" do
     describe "attributes" do
@@ -55,6 +56,62 @@ describe User do
 
       it "does not have a zip code" do
         expect(developer.zip).to be_nil
+      end
+    end
+  end
+
+  context "organization" do
+    describe "attributes" do
+      it "has an org name" do
+        expect(organization.org_name).not_to be_nil
+      end
+
+      it "has a street address" do
+        expect(organization.street_address).not_to be_nil
+      end
+
+      it "has a city" do
+        expect(organization.city).not_to be_nil
+      end
+
+      it "has a state" do
+        expect(organization.state).not_to be_nil
+      end
+
+      it "has a zip" do
+        expect(organization.zip).not_to be_nil
+      end
+
+      it "has a user type of org" do
+        expect(organization.user_type).to eq 'org'
+      end
+
+      it "has an email" do
+        expect(organization.email).not_to be_nil
+      end
+
+      it "has an encripted password" do
+        expect(organization.crypted_password).not_to be_nil
+      end
+
+      it "has a website" do
+        expect(organization.website).not_to be_nil
+      end
+
+      it "has a description" do
+        expect(organization.website).not_to be_nil
+      end
+
+      it "has a phone" do
+        expect(organization.phone).not_to be_nil
+      end
+
+      it "does not have a first name" do
+        expect(organization.first_name).to be_nil
+      end
+
+      it "does not have a last name" do
+        expect(organization.last_name).to be_nil
       end
     end
   end
