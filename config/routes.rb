@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, path: :organizations, only: [:show, :new, :create, :edit], as: 'organizations'
   resources :users, path: :developers, only: [:show, :new, :create, :edit], as: 'developers'
-  resources :projects, :only => [:index, :show]
+  resources :projects
 
   get "home/index"
   root :to => 'home#index'
