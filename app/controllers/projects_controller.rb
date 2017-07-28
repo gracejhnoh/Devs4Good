@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
     @project.destroy
   end
 
-  
+
 
 
 private
