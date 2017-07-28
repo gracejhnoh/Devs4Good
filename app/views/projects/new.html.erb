@@ -1,0 +1,14 @@
+<h2>Submit Your Project Here:</h2>
+
+<%= form_for @project do |f| %>
+  <%= f.label :title, 'Project Title' %>
+  <%= f.text_field :title, placeholder: 'Cat Adoption Emporium' %>
+
+  <%= f.label :description, 'Project Specs' %>
+  <%= f.text_area :description, placeholder: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
+
+  <%= f.label :time_frame, 'Project Needed By' %>
+  <%= f.date_field :time_frame %>
+
+  <%= f.submit 'Submit Project' %>
+<% end %>
