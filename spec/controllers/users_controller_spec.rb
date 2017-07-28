@@ -165,8 +165,8 @@ describe UsersController do
         expect(response).to have_http_status(422)
       end
 
-      it "does not create a new developer in database" do
-        expect{post :create, params: { user: {org_name: Faker::Company.name,
+      it "does not create a new organization in database" do
+        expect{post :create, params: { user: {org_name: '',
           street_address: Faker::Address.street_address,
           city: Faker::Address.city,
           state: Faker::Address.state,
@@ -182,7 +182,7 @@ describe UsersController do
        }.not_to change{User.where(user_type:'org').count}
       end
 
-      it "assigns the unsaved developer as @user" do
+      it "assigns the unsaved organization as @user" do
         expect(assigns[:user]).to be_a_new(User)
       end
 

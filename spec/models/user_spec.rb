@@ -58,6 +58,30 @@ describe User do
         expect(developer.zip).to be_nil
       end
     end
+
+    describe 'validations' do
+      let(:invalid_developer) { FactoryGirl.build(:developer) }
+
+      it 'is invalid without first name' do
+        invalid_developer.first_name = ''
+        expect(invalid_developer).not_to be_valid
+      end
+
+      it 'is invalid without last name' do
+        invalid_developer.last_name = ''
+        expect(invalid_developer).not_to be_valid
+      end
+
+      it 'is invalid without email' do
+        invalid_developer.email = ''
+        expect(invalid_developer).not_to be_valid
+      end
+
+      it 'is invalid without password' do
+        invalid_developer.password = ''
+        expect(invalid_developer).not_to be_valid
+      end
+    end
   end
 
   context "organization" do
@@ -112,6 +136,45 @@ describe User do
 
       it "does not have a last name" do
         expect(organization.last_name).to be_nil
+      end
+    end
+
+    describe 'validations' do
+      let(:invalid_organization) { FactoryGirl.build(:organization) }
+
+      it 'is invalid without org name' do
+        invalid_organization.org_name = ''
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid without street address' do
+        invalid_organization.street_address = ''
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid without city' do
+        invalid_organization.city = ''
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid without state' do
+        invalid_organization.state = ''
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid without zip' do
+        invalid_organization.zip = ''
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid without email' do
+        invalid_organization.email = ''
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid without password' do
+        invalid_organization.password = ''
+        expect(invalid_organization).not_to be_valid
       end
     end
   end

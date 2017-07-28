@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @user.save!
       redirect_to :root
     else
-      render :new
+      render :new, status: 422
     end
   end
 
