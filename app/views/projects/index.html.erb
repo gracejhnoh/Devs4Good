@@ -2,7 +2,7 @@
 <ol>
   <% @projects.each do |project| %>
     <li>
-      <div> <%= project.title %> </div>
+      <div> <%= link_to(project.title, project_path(project))  %> </div>
       <div> <%= project.description %> </div>
     </li>
   <% end %>
