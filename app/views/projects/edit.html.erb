@@ -1,0 +1,14 @@
+<h2>Edit Your Project Here:</h2>
+
+<%= form_for @project do |f| %>
+  <%= f.label :title, 'Project Title' %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description, 'Project Specs' %>
+  <%= f.text_area :description %>
+
+  <%= f.label :time_frame, 'Project Needed By' %>
+  <%= f.date_field :time_frame %>
+
+  <%= f.submit 'Edit Project' %>
+<% end %>
