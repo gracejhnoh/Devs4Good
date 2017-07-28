@@ -13,8 +13,16 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(params[:project])
-    redirect_to new_project_path(@project)
+    @project = Project.create(project_params)
+    if @project.save
+      redirect_to project_path(@project)
+    else
+      render new_project_path
+    end
   end
 
+private
+  def project_params
+    params.require(:project).permit(:title, :description, :time_frame)
+  end
 end
