@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user = login(user_params[:email], user_params[:password])
       redirect_back_or_to(:root)
     else
-      render :new
+      render :new, status: 401
     end
   end
 
