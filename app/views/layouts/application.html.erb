@@ -12,12 +12,12 @@
     <div class="container">
       <header>
         <nav>
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Projects</a>
-          <a href="#">Logout</a>
-          <a href="#">Login</a>
-          <a href="#">Sign Up</a>
+          <%= link_to('Home', root_path) %>
+          <%= link_to('About') %>
+          <%= link_to('Projects', projects_path) %>
+          <%= link_to('Log Out') %>
+          <%= link_to('Log In') %>
+          <%= link_to('Sign Out') %>
         </nav>
       </header>
     </header>
