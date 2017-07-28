@@ -1,4 +1,4 @@
 class Proposal < ApplicationRecord
   belongs_to :project
-  belongs_to :developer
+  belongs_to :user
 end
