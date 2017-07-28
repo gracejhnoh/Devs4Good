@@ -51,4 +51,23 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
   end
+
+  describe 'DELETE#destroy' do
+    let!(:test_project) { FactoryGirl.create(:project) }
+
+    it 'responds with status code 302' do
+      delete :destroy, params: { id: test_project.id }
+      expect(response).to have_http_status 302
+    end
+
+    it 'destroys the requested project' do
+      expect{ delete :destroy, params: { id: test_project.id } }.to change(Project, :count).by(-1)
+    end
+
+    it 'redirects to the projects list' do
+      delete :destroy, params: { id: test_project.id }
+      expect(response).to redirect_to projects_path
+    end
+  end
+
 end
