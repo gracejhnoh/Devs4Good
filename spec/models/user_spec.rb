@@ -36,6 +36,26 @@ describe User do
       it "has a phone" do
         expect(developer.phone).not_to be_nil
       end
+
+      it "does not have an org name" do
+        expect(developer.org_name).to be_nil
+      end
+
+      it "does not have an street address" do
+        expect(developer.street_address).to be_nil
+      end
+
+      it "does not have a city" do
+        expect(developer.city).to be_nil
+      end
+
+      it "does not have a state" do
+        expect(developer.state).to be_nil
+      end
+
+      it "does not have a zip code" do
+        expect(developer.zip).to be_nil
+      end
     end
   end
 end
