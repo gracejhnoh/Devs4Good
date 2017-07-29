@@ -5,10 +5,10 @@ class ProposalsController < ApplicationController
   end
 
   def create
-    @proposal = Proposal.create(project_id: params[:project_id], user_id: current_user.id, description: params[:description], selected?: params[:selected?])
+    @proposal = Proposal.create(project_id: params[:project_id], user_id: current_user.id, description: proposal_params[:description], selected?: proposal_params[:selected])
     @project = Project.find(params[:project_id])
     if @proposal.save!
-      redirect_to project_proposals_path
+      redirect_to project_path(@project)
     else
       render :new
     end
@@ -21,6 +21,11 @@ class ProposalsController < ApplicationController
   end
 
   def destroy
+  end
+
+private
+  def proposal_params
+    params.require(:proposal).permit(:description, :selected)
   end
 
 end
