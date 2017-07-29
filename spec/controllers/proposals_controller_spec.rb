@@ -4,6 +4,7 @@ RSpec.describe ProposalsController, type: :controller do
 
   describe 'POST #create' do
     let!(:user) { FactoryGirl.create(:developer) }
+    let!(:new_organization) { FactoryGirl.create(:organization) }
     let!(:test_project) { FactoryGirl.create(:project) }
     before(:each) do
       @user = user
