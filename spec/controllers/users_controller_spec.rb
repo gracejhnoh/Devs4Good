@@ -191,4 +191,17 @@ describe UsersController do
       end
     end
   end
+
+  context 'get #show' do
+    let(:user) { FactoryGirl.create(:organization)}
+    it 'responds 200' do
+      get :show, params: { id: user.id }
+      expect(response).to have_http_status 200
+    end
+
+    it 'renders show page' do
+      get :show, params: { id: user.id }
+      expect(response).to render_template :show
+    end
+  end
 end
