@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ProjectsController, type: :controller do
 
   context 'GET#index' do
+    let!(:organization) { FactoryGirl.create(:organization) }
+
     it 'returns a status code of 200' do
       expect(response.status).to eq 200
     end
@@ -73,8 +75,8 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'GET#edit' do
-    let!(:edit_project) { FactoryGirl.create(:project) }
     let!(:organization) { FactoryGirl.create(:organization) }
+    let!(:edit_project) { FactoryGirl.create(:project) }
 
     it 'responds with status code 200' do
       get :edit, params: { id: edit_project.id, organization_id: organization.id }
@@ -88,8 +90,8 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'PUT#update' do
-    let!(:update_project) { FactoryGirl.create(:project) }
     let!(:organization) { FactoryGirl.create(:organization) }
+    let!(:update_project) { FactoryGirl.create(:project) }
 
     it "updates an item with valid params" do
       patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: 'blah', time_frame:"2017-08-03" } }
