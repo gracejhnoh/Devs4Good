@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_many :proposals
+
   authenticates_with_sorcery!
   validates :password, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :email, presence: true, uniqueness: true

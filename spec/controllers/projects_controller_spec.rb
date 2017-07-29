@@ -35,19 +35,19 @@ RSpec.describe ProjectsController, type: :controller do
         } }.to change(Project, :count).by 1
       end
 
-      it 'redirects to the new project' do
+      it 'returns a status code of 302' do
         post :create,  params: { organization_id: organization.id, project: FactoryGirl.attributes_for(:project) }
         expect(response).to have_http_status 302
       end
     end
 
     context 'with invalid attributes' do
-      it 'does not a new project' do
+      it 'does not create a new project' do
         expect {
           post :create, params: { organization_id: organization.id, project: { description: nil } } }.not_to change{ Project.all.count }
       end
 
-      it 'rerenders the new method' do
+      it 'renders the new projects view' do
         post :create, params: { organization_id: organization.id, project: { description: nil } }
         expect(response).to render_template(:new)
       end
