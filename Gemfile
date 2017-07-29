@@ -54,3 +54,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sorcery'
+
+group :test do
+  gem 'database_cleaner'
+end
+
+gem 'simplecov', :require => false, :group => :test
