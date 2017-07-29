@@ -29,6 +29,12 @@
     <% @project.proposals.each do |proposal| %>
       <li>
         <%= proposal.developer.full_name %>
+        <% if !@project.selected_proposal %>
+          <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
+            <%= f.hidden_field :selected, :value => 'true' %>
+            <%= f.submit "Select" %>
+          <% end %>
+        <% end %>
       </li>
     <% end %>
   </ul>
