@@ -4,4 +4,7 @@ class Project < ApplicationRecord
   has_many :proposals
   belongs_to :organization, class_name: 'User', foreign_key: 'organization_id'
 
+  def selected_proposal
+    self.proposals.find_by(selected: true)
+  end
 end
