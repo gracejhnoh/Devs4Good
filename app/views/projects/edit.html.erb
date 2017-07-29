@@ -1,6 +1,6 @@
 <h2>Edit Your Project Here:</h2>
 
-<%= form_for @project do |f| %>
+<%= form_for @project, url: organization_project_path do |f| %>
   <%= f.label :title, 'Project Title' %>
   <%= f.text_field :title %>
 

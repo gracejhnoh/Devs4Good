@@ -1,11 +1,11 @@
 <h2>All Projects</h2>
 <% if logged_in? && current_user.user_type == 'org' %>
-  <%= link_to('Create a New Project', new_project_path) %>
+  <%= link_to('Create a New Project', new_organization_project_path(current_user.id)) %>
 <% end %>
 <ol>
   <% @projects.each do |project| %>
     <li>
-      <div> <%= link_to(project.title, project_path(project))  %> </div>
+      <div> <%= link_to(project.title, organization_project_path(project.organization, project))  %> </div>
       <div> <%= project.description %> </div>
     </li>
   <% end %>

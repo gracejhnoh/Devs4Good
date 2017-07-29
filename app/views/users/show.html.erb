@@ -14,7 +14,7 @@
   <ul>
     <% @user.projects.each do |project| %>
       <li>
-        <%= link_to(project.title, project_path(project)) %>
+        <%= link_to(project.title, organization_project_path(project.organization, project)) %>
       </li>
     <% end %>
   </ul>

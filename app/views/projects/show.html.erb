@@ -5,5 +5,5 @@
   Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %>
 </div>
 <div>Time frame: <%= @project.time_frame %></div>
-<%= link_to('Edit', edit_project_path(@project)) %>
-<%= link_to('Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }) %>
+<%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
+<%= link_to('Destroy', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %>

@@ -20,6 +20,7 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'POST #create' do
+    let!(:organization) { FactoryGirl.create(:organization) }
 
     it 'returns a status code of 200' do
       expect(response.status).to eq 200
@@ -27,8 +28,10 @@ RSpec.describe ProjectsController, type: :controller do
 
     context 'with valid attributes' do
       it 'creates a new project' do
+        p '**************************'
+        p FactoryGirl.attributes_for(:project)
         expect {
-          post :create, params: { project: FactoryGirl.attributes_for(:project)
+          post :create, params: { organization_id: organization.id, project: FactoryGirl.attributes_for(:project)
         } }.to change(Project, :count).by 1
       end
 
