@@ -5,8 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
+Proposal.delete_all
 Project.delete_all
+User.destroy_all
 
 10.times do
   User.create(
@@ -14,7 +15,7 @@ Project.delete_all
     last_name: Faker::Name.last_name,
     user_type: 'dev',
     email: Faker::Internet.safe_email,
-    password: Faker::Internet.password,
+    password: 'password',
     website: Faker::Internet.url,
     description: Faker::StarWars.quote,
     phone: Faker::PhoneNumber.cell_phone
@@ -30,7 +31,7 @@ end
     zip: Faker::Address.zip,
     user_type: 'org',
     email: Faker::Internet.safe_email,
-    password: Faker::Internet.password,
+    password: 'password',
     website: Faker::Internet.url,
     description: Faker::StarWars.quote,
     phone: Faker::PhoneNumber.cell_phone
@@ -39,4 +40,8 @@ end
 
 10.times do
   Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote)
+end
+
+40.times do
+  Proposal.create(project_id: Project.all.sample.id, user_id: User.where(user_type: 'dev').sample.id, description: Faker::Hipster.paragraph, selected: false)
 end
