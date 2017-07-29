@@ -4,6 +4,10 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
+  def show
+    @proposal = Proposal.find(params[:id])
+  end
+
   def create
     @proposal = Proposal.create(project_id: params[:project_id], user_id: current_user.id, description: proposal_params[:description], selected: proposal_params[:selected])
     @project = Project.find(params[:project_id])
