@@ -43,7 +43,7 @@ class ProposalsController < ApplicationController
   def destroy
     @proposal = Proposal.find(params[:id])
     @proposal.destroy
-    redirect_to organization_project_path(@proposal.project.organization_id)
+    redirect_to organization_project_path(@proposal.project.organization_id, @proposal.project_id)
   end
 
 private
