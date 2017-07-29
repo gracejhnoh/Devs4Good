@@ -10,7 +10,6 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    p current_user
     if current_user.user_type == 'dev'
       redirect_to :root
     end
