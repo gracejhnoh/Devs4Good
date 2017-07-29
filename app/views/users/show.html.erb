@@ -1,0 +1,19 @@
+<h2><%= @user.org_name %></h2>
+<div>
+  <%= @user.street_address %><br/>
+  <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
+  Phone: <%= @user.phone %><br />
+  Website: <%= @user.website %>
+</div>
+<h3>About Us</h3>
+<div>
+  <%= @user.description %>
+</div>
+<h3>Our Current Projects</h3>
+<ul>
+  <% @user.projects.each do |project| %>
+    <li>
+      <%= link_to(project.title, project_path(project)) %>
+    </li>
+  <% end %>
+</ul>

@@ -6,4 +6,6 @@ class User < ApplicationRecord
                           if: Proc.new { |u| u.user_type === 'dev'}
   validates :org_name, :street_address, :city, :state, :zip, presence: true,
                           if: Proc.new { |u| u.user_type === 'org'}
+
+  has_many :projects, foreign_key: :organization_id
 end
