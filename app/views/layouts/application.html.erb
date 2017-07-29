@@ -18,7 +18,11 @@
 
           <% if current_user %>
             <%= link_to('Log Out', :logout, method: :post) %>
-
+            <% if current_user.user_type == 'org' %>
+              <%= link_to('My organization', organization_path(current_user.id)) %>
+            <% else %>
+              <%= link_to('My account', developer_path(current_user.id)) %>
+            <% end %>
           <% else %>
             <%= link_to('Log In', :login) %>
             <%= link_to('Sign Up', new_user_path) %>

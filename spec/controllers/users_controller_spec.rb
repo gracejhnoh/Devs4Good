@@ -22,7 +22,7 @@ describe UsersController do
         user_type: 'dev',
         email: Faker::Internet.safe_email,
         password: Faker::Internet.password,
-        website: Faker::Internet.domain_name,
+        website: Faker::Internet.url,
         description: Faker::StarWars.quote,
         phone: Faker::PhoneNumber.cell_phone
         }
@@ -38,7 +38,7 @@ describe UsersController do
           user_type: 'dev',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
-          website: Faker::Internet.domain_name,
+          website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
           }
@@ -61,7 +61,7 @@ describe UsersController do
           user_type: 'dev',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
-          website: Faker::Internet.domain_name,
+          website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
           }
@@ -78,7 +78,7 @@ describe UsersController do
           user_type: 'dev',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
-          website: Faker::Internet.domain_name,
+          website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
           }
@@ -107,7 +107,7 @@ describe UsersController do
         user_type: 'org',
         email: Faker::Internet.safe_email,
         password: Faker::Internet.password,
-        website: Faker::Internet.domain_name,
+        website: Faker::Internet.url,
         description: Faker::StarWars.quote,
         phone: Faker::PhoneNumber.cell_phone
         }
@@ -127,7 +127,7 @@ describe UsersController do
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
-          website: Faker::Internet.domain_name,
+          website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
           }
@@ -154,7 +154,7 @@ describe UsersController do
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
-          website: Faker::Internet.domain_name,
+          website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
           }
@@ -174,7 +174,7 @@ describe UsersController do
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
-          website: Faker::Internet.domain_name,
+          website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
           }
@@ -189,6 +189,19 @@ describe UsersController do
       it "renders the new template" do
         expect(response).to render_template :new
       end
+    end
+  end
+
+  context 'get #show' do
+    let(:user) { FactoryGirl.create(:organization)}
+    it 'responds 200' do
+      get :show, params: { id: user.id }
+      expect(response).to have_http_status 200
+    end
+
+    it 'renders show page' do
+      get :show, params: { id: user.id }
+      expect(response).to render_template :show
     end
   end
 end
