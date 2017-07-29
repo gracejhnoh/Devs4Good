@@ -3,6 +3,6 @@ FactoryGirl.define do
     project Faker::Number.digit
     developer Faker::Number.digit
     description Faker::Hipster.paragraph
-    selected? false
+    selected false
   end
 end
