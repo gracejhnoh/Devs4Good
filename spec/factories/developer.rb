@@ -6,7 +6,7 @@ FactoryGirl.define do
     last_name { Faker::Name.last_name }
     user_type { 'dev' }
     email { Faker::Internet.safe_email }
-    password { Faker::Internet.password }
+    password { 'password123' }
     website { Faker::Internet.domain_name }
     description { Faker::StarWars.quote }
     phone { Faker::PhoneNumber.cell_phone }
