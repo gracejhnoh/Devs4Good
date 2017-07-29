@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :proposal do
-    project Faker::Number.digit
-    developer Faker::Number.digit
+    project_id { Project.all.sample.id }
+    user_id { User.where(user_type: 'dev').sample.id }
     description Faker::Hipster.paragraph
     selected false
   end

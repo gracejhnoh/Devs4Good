@@ -39,6 +39,17 @@ RSpec.describe ProposalsController, type: :controller do
         expect(response).to render_template(:new)
       end
     end
+
+
+    describe 'GET#show' do
+      let(:test_project) { FactoryGirl.create(:project) }
+      let(:new_proposal) { FactoryGirl.create(:proposal) }
+
+      it "returns a status of 200" do
+        get :show, params: { project_id: test_project.id, id: new_proposal.id }
+        expect(response).to have_http_status 200
+      end
+    end
   end
 
 end
