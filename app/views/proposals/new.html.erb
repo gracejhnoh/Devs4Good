@@ -1,1 +1,8 @@
-<h1>add new proposals</h1>
+<h2>Submit Your Proposal Here:</h2>
+
+<%= form_for [@project, @proposal] do |f| %>
+  <%= f.label :description, 'Proposal for Project' %>
+  <%= f.text_area :description, placeholder: 'Example: We can help you fulfill your vision by ...' %>
+  <%= f.hidden_field :selected?, { :value => 'false' } %>
+  <%= f.submit 'Submit Proposal' %>
+<% end %>

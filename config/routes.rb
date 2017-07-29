@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   resources :users, path: :organizations, only: [:show, :new, :create, :edit], as: 'organizations'
   resources :users, path: :developers, only: [:show, :new, :create, :edit], as: 'developers'
-  resources :projects
-  resources :proposals, except: [:index, :show]
+  resources :projects do
+    resources :proposals, except: [:index, :show]
+  end 
 
   get "home/index"
   root :to => 'home#index'

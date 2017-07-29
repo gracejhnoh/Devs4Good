@@ -1,6 +1,7 @@
 class ProposalsController < ApplicationController
   def new
     @proposal = Proposal.new
+    @project = Project.find(params[:project_id])
   end
 
   def create
@@ -13,6 +14,6 @@ class ProposalsController < ApplicationController
   end
 
   def destroy
-  end 
+  end
 
 end
