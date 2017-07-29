@@ -3,7 +3,7 @@
 <% if @user.errors.any? %>
   <div id="error-explanation">
     <div id="error-intro">
-      <%= "#{pluralize(@user.errors.count, "error")} prohibited this post from being saved:" %>
+      <%= "Something went wrong!" %>
     </div>
     <ul class='errors-list'>
       <% @user.errors.full_messages.each do |msg| %>

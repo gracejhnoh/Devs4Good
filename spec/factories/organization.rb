@@ -9,7 +9,7 @@ FactoryGirl.define do
     zip { Faker::Address.zip }
     user_type { 'org' }
     email { Faker::Internet.safe_email }
-    password { Faker::Internet.password }
+    password { 'password123' }
     website { Faker::Internet.domain_name }
     description { Faker::StarWars.quote }
     phone { Faker::PhoneNumber.cell_phone }
