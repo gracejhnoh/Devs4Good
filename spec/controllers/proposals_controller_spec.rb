@@ -49,7 +49,22 @@ RSpec.describe ProposalsController, type: :controller do
         get :show, params: { project_id: test_project.id, id: new_proposal.id }
         expect(response).to have_http_status 200
       end
-    end
-  end
 
+      it "renders a show page" do
+        get :show, params: { project_id: test_project.id, id: new_proposal.id }
+        expect(response).to render_template :show
+      end
+    end
+
+    describe 'Delete #destroy' do
+      let(:test_project) { FactoryGirl.create(:project) }
+      let(:new_proposal) { FactoryGirl.create(:proposal) }
+
+      it 'responds with a status code 302' do
+        delete :destroy, params: { project_id: test_project.id, id: new_proposal.id}
+        expect(response).to have_http_status 302
+      end
+    end
+
+  end
 end

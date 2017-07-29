@@ -1,0 +1,8 @@
+<h2>Edit Your Proposal</h2>
+
+<%= form_for @proposal, url: project_proposal_path do |f| %>
+  <%= f.label :description, 'Proposal description' %>
+  <%= f.text_area :description %>
+
+  <%= f.submit 'Edit Proposal' %>
+<% end %>
