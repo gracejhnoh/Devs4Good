@@ -16,6 +16,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
+    if request.path.include?("organizations") && @user.user_type == 'dev'
+      redirect_to developer_path(@user.id)
+    elsif request.path.include?('developers') && @user.user_type == 'org'
+      redirect_to organization_path(@user.id)
+    end
   end
 
   private
@@ -27,7 +33,7 @@ class UsersController < ApplicationController
     :org_name,
     :street_address,
     :city,
-    :state, 
+    :state,
     :zip,
     :phone,
     :website,
