@@ -1,6 +1,6 @@
 <h2>Submit Your Project Here:</h2>
 
-<%= form_for @project do |f| %>
+<%= form_for @project, url: organization_projects_path(current_user.id) do |f| %>
   <%= f.label :title, 'Project Title' %>
   <%= f.text_field :title, placeholder: 'Cat Adoption Emporium' %>
 

@@ -1,11 +1,15 @@
 <h2><%= @project.title %></h2>
 
 <div>Project Details: <%= @project.description %></div>
-<div>Requested By: <%= @project.time_frame %></div>
+
+<div>
+  Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %>
+</div>
+<div>Time frame: <%= @project.time_frame %></div>
 
 <% if logged_in? && current_user.user_type == 'org' %>
-  <%= link_to('Edit', edit_project_path(@project)) %>
-  <%= link_to('Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }) %>
+  <%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
+  <%= link_to('Destroy', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>

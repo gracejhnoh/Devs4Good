@@ -15,7 +15,7 @@ Project.delete_all
     user_type: 'dev',
     email: Faker::Internet.safe_email,
     password: Faker::Internet.password,
-    website: Faker::Internet.domain_name,
+    website: Faker::Internet.url,
     description: Faker::StarWars.quote,
     phone: Faker::PhoneNumber.cell_phone
     )
@@ -31,12 +31,12 @@ end
     user_type: 'org',
     email: Faker::Internet.safe_email,
     password: Faker::Internet.password,
-    website: Faker::Internet.domain_name,
+    website: Faker::Internet.url,
     description: Faker::StarWars.quote,
     phone: Faker::PhoneNumber.cell_phone
   )
 end
 
 10.times do
-  Project.create(organization_id: Faker::Number.digit, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote)
+  Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote)
 end

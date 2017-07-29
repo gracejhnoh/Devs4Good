@@ -17,11 +17,16 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(project_params)
-    if @project.save
-      redirect_to project_path(@project)
+    @project = Project.create(
+      organization_id: params[:organization_id],
+      description: project_params[:description],
+      title: project_params[:title],
+      time_frame: project_params[:time_frame]
+      )
+    if @project.valid?
+      redirect_to organization_project_path(@project, @project.organization)
     else
-      render new_project_path
+      render :new
     end
   end
 
@@ -31,11 +36,16 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    if @project.update(project_params)
-      redirect_to @project
+    if @project.update(
+      organization_id: params[:organization_id],
+      description: project_params[:description],
+      title: project_params[:title],
+      time_frame: project_params[:time_frame]
+      )
+      redirect_to organization_project_path(@project, @project.organization)
     else
       render :edit
-    end 
+    end
   end
 
   def destroy
