@@ -75,5 +75,44 @@ RSpec.describe ProposalsController, type: :controller do
       end
     end
 
+    describe 'PATCH#update' do
+
+    context 'Editing proposal' do
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
+      before(:each) do
+        patch :update, params: { project_id: project.id, id: proposal.id, proposal: { description: 'New awesome description'} }
+      end
+
+      it 'returns 302' do
+        expect(response).to have_http_status 302
+      end
+
+      it 'changes description of proposal' do
+        expect(Proposal.find(proposal.id).description).to eq 'New awesome description'
+      end
+
+      it 'assigns the proposal to @proposal' do
+        expect(assigns[:proposal]).to eq proposal
+      end
+    end
+
+    context 'Editing proposal with invalid params' do
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
+      before(:each) do
+        patch :update, params: { project_id: project.id, id: proposal.id, proposal: { description: ''} }
+      end
+
+      it 'does not change proposal description' do
+        expect(Proposal.find(proposal.id).description).not_to eq('')
+      end
+    end
+  end
+
   end
 end
