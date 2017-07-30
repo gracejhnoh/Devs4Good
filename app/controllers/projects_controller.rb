@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
       time_frame: project_params[:time_frame]
       )
     if @project.valid?
-      redirect_to organization_project_path(@project, @project.organization)
+      redirect_to organization_project_path(@project.organization, @project)
     else
       render :new
     end
