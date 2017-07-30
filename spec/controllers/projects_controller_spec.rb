@@ -23,6 +23,12 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe 'POST #create' do
     let!(:organization) { FactoryGirl.create(:organization) }
+    before(:each) do
+      login_user(organization)
+    end
+    after(:each) do
+      logout_user
+    end
 
     it 'returns a status code of 200' do
       expect(response.status).to eq 200
@@ -58,6 +64,12 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'DELETE#destroy' do
     let!(:organization) { FactoryGirl.create(:organization) }
     let!(:test_project) { FactoryGirl.create(:project) }
+    before(:each) do
+      login_user(organization)
+    end
+    after(:each) do
+      logout_user
+    end
 
     it 'responds with status code 302' do
       delete :destroy, params: { id: test_project.id, organization_id: organization.id }
@@ -77,6 +89,12 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'GET#edit' do
     let!(:organization) { FactoryGirl.create(:organization) }
     let!(:edit_project) { FactoryGirl.create(:project) }
+    before(:each) do
+      login_user(organization)
+    end
+    after(:each) do
+      logout_user
+    end
 
     it 'responds with status code 200' do
       get :edit, params: { id: edit_project.id, organization_id: organization.id }
@@ -92,6 +110,12 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'PUT#update' do
     let!(:organization) { FactoryGirl.create(:organization) }
     let!(:update_project) { FactoryGirl.create(:project) }
+    before(:each) do
+      login_user(organization)
+    end
+    after(:each) do
+      logout_user
+    end
 
     it "updates an item with valid params" do
       patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: 'blah', time_frame:"2017-08-03" } }

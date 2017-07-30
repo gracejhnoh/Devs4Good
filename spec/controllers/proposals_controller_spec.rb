@@ -10,6 +10,9 @@ RSpec.describe ProposalsController, type: :controller do
       @user = user
       login_user(user)
     end
+    after(:each) do
+      logout_user
+    end
 
     it 'returns a status code of 302' do
       post :create, params: { project_id: test_project.id, proposal: FactoryGirl.attributes_for(:proposal) }
