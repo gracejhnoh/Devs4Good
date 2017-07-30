@@ -33,7 +33,7 @@
   <h3>D4G Project Portfolio:</h3>
   Coming soon.
 
-  <% if @user.proposals.count > 0 %>
+  <% if @user.proposals.count > 0 && current_user == @user %>
     <h3>My Project Proposals</h3>
     <ol>
       <% @user.proposals.each do |proposal| %>
