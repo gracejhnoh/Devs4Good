@@ -27,6 +27,11 @@ RSpec.describe ProposalsController, type: :controller do
         post :create,  params: { project_id: test_project.id, proposal: FactoryGirl.attributes_for(:proposal) }
         expect(response).to have_http_status 302
       end
+
+      it 'redirects to the proposals show page' do
+        post :create,  params: { project_id: test_project.id, proposal: FactoryGirl.attributes_for(:proposal) }
+        expect(response).to redirect_to project_proposal_path(project_id: test_project.id, id: Proposal.last.id)
+      end
     end
 
     context 'with invalid attributes' do
