@@ -7,11 +7,35 @@
 </div>
 <div>Time frame: <%= @project.time_frame %></div>
 
-<% if logged_in? && current_user.user_type == 'org' %>
+<% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
   <%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
   <%= link_to('Destroy', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
   <%= link_to('Add Proposal', new_project_proposal_path(@project)) %>
+<% end %>
+
+<% if @project.selected_proposal %>
+  <div>
+    Selected proposal:
+    <%= @project.selected_proposal.developer.full_name %>
+  </div>
+<% end %>
+
+<% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
+  <h3>Proposals: </h3>
+  <ul>
+    <% @project.proposals.each do |proposal| %>
+      <li>
+        <%= proposal.developer.full_name %>
+        <% if !@project.selected_proposal %>
+          <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
+            <%= f.hidden_field :selected, :value => 'true' %>
+            <%= f.submit "Select" %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

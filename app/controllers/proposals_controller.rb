@@ -18,6 +18,20 @@ class ProposalsController < ApplicationController
   end
 
   def update
+    @proposal = Proposal.find(params[:id])
+    if @proposal.update(proposal_params)
+      if proposal_params[:selected] == 'true'
+        redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
+      else
+        # redirect_to project_proposal_path(@proposal, @proposal.project)
+      end
+    else
+      if proposal_params[:selected] == 'true'
+        redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
+      else
+        render :edit
+      end
+    end
   end
 
   def destroy
@@ -27,5 +41,4 @@ private
   def proposal_params
     params.require(:proposal).permit(:description, :selected)
   end
-
 end

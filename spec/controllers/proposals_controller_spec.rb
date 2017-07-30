@@ -41,4 +41,29 @@ RSpec.describe ProposalsController, type: :controller do
     end
   end
 
+  describe 'PATCH#update' do
+
+    context 'selecting proposal' do
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
+      before(:each) do
+        patch :update, params: { project_id: project.id, id: proposal.id, proposal: { selected: true } }
+      end
+
+      it 'returns 302' do
+        expect(response).to have_http_status 302
+      end
+
+      it 'changes proposal selected to true' do
+        expect(Proposal.find(proposal.id).selected).to eq true
+      end
+
+      it 'assigns the proposal to @proposal' do
+        expect(assigns[:proposal]).to eq proposal
+      end
+    end
+  end
+
 end
