@@ -62,13 +62,13 @@ class ProposalsController < ApplicationController
   end
 
   def destroy
-    if current_user != @proposal.developer
-      redirect_to organization_path(current_user)
-    else
-      @proposal = Proposal.find(params[:id])
-      @proposal.destroy
-      redirect_to organization_project_path(@proposal.project_id, @proposal.project.organization_id)
-    end
+    @proposal = Proposal.find(params[:id])
+      if current_user != @proposal.developer
+        redirect_to organization_path(current_user)
+      else
+        @proposal.destroy
+        redirect_to organization_project_path(@proposal.project_id, @proposal.project.organization_id)
+      end
   end
 
 private
