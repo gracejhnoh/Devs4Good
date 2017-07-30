@@ -151,7 +151,7 @@ RSpec.describe ProposalsController, type: :controller do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
       before(:each) do
-        login_user(developer)
+        login_user(organization)
         patch :update, params: { project_id: project.id, id: proposal.id, proposal: { selected: true } }
       end
       after(:each) do
