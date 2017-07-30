@@ -1,4 +1,4 @@
-<h2> Proposal for <%= @proposal.project.title %></h2>
+<h2> Proposal for: <%= link_to(@proposal.project.title, organization_project_path(@proposal.project.organization_id, @proposal.project.id)) %></h2>
 <div>
   <%= @proposal.description %>
 </div>
