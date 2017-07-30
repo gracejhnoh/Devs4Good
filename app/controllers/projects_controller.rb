@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :require_login, only: [:new]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -15,48 +15,68 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    if current_user.user_type == 'dev'
-      redirect_to :root
+    if params[:organization_id].to_i != current_user.id
+      redirect_to organization_path(current_user)
+    else
+      if current_user.user_type == 'dev'
+        redirect_to :root
+      end
+      @project = Project.new
     end
-    @project = Project.new
   end
 
   def create
-    @project = Project.create(
-      organization_id: params[:organization_id],
-      description: project_params[:description],
-      title: project_params[:title],
-      time_frame: project_params[:time_frame]
-      )
-    if @project.valid?
-      redirect_to organization_project_path(@project.organization, @project)
+    if params[:organization_id].to_i != current_user.id
+      redirect_to organization_path(current_user)
     else
-      render :new
+      @project = Project.create(
+        organization_id: params[:organization_id],
+        description: project_params[:description],
+        title: project_params[:title],
+        time_frame: project_params[:time_frame]
+        )
+      if @project.valid?
+        redirect_to organization_project_path(@project.organization, @project)
+      else
+        render :new
+      end
     end
   end
 
   def edit
-    @project = Project.find(params[:id])
+    if params[:organization_id].to_i != current_user.id
+      redirect_to organization_path(current_user)
+    else
+      @project = Project.find(params[:id])
+    end
   end
 
   def update
-    @project = Project.find(params[:id])
-    if @project.update(
-      organization_id: params[:organization_id],
-      description: project_params[:description],
-      title: project_params[:title],
-      time_frame: project_params[:time_frame]
-      )
-      redirect_to organization_project_path(@project.organization, @project)
+    if params[:organization_id].to_i != current_user.id
+      redirect_to organization_path(current_user)
     else
-      render :edit
+      @project = Project.find(params[:id])
+      if @project.update(
+        organization_id: params[:organization_id],
+        description: project_params[:description],
+        title: project_params[:title],
+        time_frame: project_params[:time_frame]
+        )
+        redirect_to organization_project_path(@project.organization, @project)
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
-    redirect_to projects_path
+    if params[:organization_id].to_i != current_user.id
+      redirect_to organization_path(current_user)
+    else
+      @project = Project.find(params[:id])
+      @project.destroy
+      redirect_to projects_path
+    end
   end
 
 
