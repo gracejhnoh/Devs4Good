@@ -19,7 +19,7 @@
 <% if @project.selected_proposal %>
   <div>
     Selected proposal:
-    <%= @project.selected_proposal.developer.full_name %>
+    <%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %>
   </div>
 <% end %>
 
@@ -28,7 +28,7 @@
   <ul>
     <% @project.proposals.each do |proposal| %>
       <li>
-        <%= proposal.developer.full_name %>
+        <%= link_to(proposal.developer.full_name, developer_path(proposal.developer))  %>
         <% if !@project.selected_proposal %>
           <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
             <%= f.hidden_field :selected, :value => 'true' %>

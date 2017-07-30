@@ -10,6 +10,30 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+ @import "bourbon/bourbon";
+ @import "neat/neat";
+ @import "base/base";
+ 
+ .container {
+   margin: 0 auto;
+   width: 70%;
+ }
+
+ div {
+   font-family: sans-serif;
+ }
+
+ .logo{
+   text-align: center;
+   padding: 10px;
+   border: 7px cornflowerblue double;
+   width: 50%;
+   margin: 10% auto;
+   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+ }
+
+ .mission {
+   text-align: center;
+ }
