@@ -19,7 +19,7 @@
     <% end %>
   </ul>
 
-<% else %>
+<% else %> <!-- if user is dev   -->
   <h2>  <%= @user.full_name %> </h2>
   <div>
     Website: <%= link_to(@user.website, @user.website) %>
@@ -30,10 +30,20 @@
     <%= @user.description %>
   </div>
 
+<% if @user.proposals.count > 0 && current_user == @user %>
   <h3>D4G Project Portfolio:</h3>
-  Coming soon.
+    <ol>
 
-  <% if @user.proposals.count > 0 && current_user == @user %>
+      <% @user.proposals.each do |proposal| %>
+          <% if proposal.selected == true %>
+          <li>
+            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+          </li>
+          <% end %>
+      <% end %>
+    </ol>
+
+
     <h3>My Project Proposals</h3>
     <ol>
       <% @user.proposals.each do |proposal| %>
