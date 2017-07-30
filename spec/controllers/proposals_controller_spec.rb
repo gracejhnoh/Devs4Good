@@ -41,7 +41,82 @@ RSpec.describe ProposalsController, type: :controller do
     end
   end
 
-  describe 'PATCH#update' do
+
+    describe 'GET#show' do
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:test_project) { FactoryGirl.create(:project) }
+      let!(:new_proposal) { FactoryGirl.create(:proposal) }
+
+      it "returns a status of 200" do
+        get :show, params: { project_id: test_project.id, id: new_proposal.id }
+        expect(response).to have_http_status 200
+      end
+
+      it "renders a show page" do
+        get :show, params: { project_id: test_project.id, id: new_proposal.id }
+        expect(response).to render_template :show
+      end
+    end
+
+    describe 'Delete #destroy' do
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:test_project) { FactoryGirl.create(:project) }
+      let!(:new_proposal) { FactoryGirl.create(:proposal) }
+
+      it 'responds with a status code 302' do
+        delete :destroy, params: { project_id: test_project.id, id: new_proposal.id}
+        expect(response).to have_http_status 302
+      end
+
+      it 'destroyed the requested proposal' do
+        expect{ delete :destroy, params: { project_id: test_project.id, id: new_proposal.id } }.to change(Proposal, :count).by (-1)
+      end
+
+      it 'redirects back to the organization show page' do
+        delete :destroy, params: { project_id: test_project.id, id: new_proposal.id }
+        expect(response).to redirect_to organization_project_path( new_proposal.project_id, new_proposal.project.organization_id)
+      end
+    end
+
+    describe 'PATCH#update' do
+
+    context 'Editing proposal' do
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
+      before(:each) do
+        patch :update, params: { project_id: project.id, id: proposal.id, proposal: { description: 'New awesome description'} }
+      end
+
+      it 'returns 302' do
+        expect(response).to have_http_status 302
+      end
+
+      it 'changes description of proposal' do
+        expect(Proposal.find(proposal.id).description).to eq 'New awesome description'
+      end
+
+      it 'assigns the proposal to @proposal' do
+        expect(assigns[:proposal]).to eq proposal
+      end
+    end
+
+    context 'Editing proposal with invalid params' do
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
+      before(:each) do
+        patch :update, params: { project_id: project.id, id: proposal.id, proposal: { description: ''} }
+      end
+
+      it 'does not change proposal description' do
+        expect(Proposal.find(proposal.id).description).not_to eq('')
+      end
+    end
 
     context 'selecting proposal' do
       let!(:developer) { FactoryGirl.create(:developer) }
@@ -64,6 +139,5 @@ RSpec.describe ProposalsController, type: :controller do
         expect(assigns[:proposal]).to eq proposal
       end
     end
-  end
-
+    end
 end

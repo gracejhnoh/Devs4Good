@@ -4,6 +4,10 @@ class ProposalsController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
+  def show
+    @proposal = Proposal.find(params[:id])
+  end
+
   def create
     @proposal = Proposal.create(project_id: params[:project_id], user_id: current_user.id, description: proposal_params[:description], selected: proposal_params[:selected])
     @project = Project.find(params[:project_id])
@@ -15,6 +19,8 @@ class ProposalsController < ApplicationController
   end
 
   def edit
+    @proposal = Proposal.find(params[:id])
+    @project = Project.find(params[:project_id])
   end
 
   def update
@@ -23,11 +29,12 @@ class ProposalsController < ApplicationController
       if proposal_params[:selected] == 'true'
         redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
       else
-        # redirect_to project_proposal_path(@proposal, @proposal.project)
+        redirect_to project_proposal_path(@proposal.project, @proposal)
       end
+
     else
       if proposal_params[:selected] == 'true'
-        redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
+        redirect_to organization_project_path(@proposal.project, @proposal.project.organization)
       else
         render :edit
       end
@@ -35,6 +42,9 @@ class ProposalsController < ApplicationController
   end
 
   def destroy
+    @proposal = Proposal.find(params[:id])
+    @proposal.destroy
+    redirect_to organization_project_path(@proposal.project_id, @proposal.project.organization_id)
   end
 
 private
