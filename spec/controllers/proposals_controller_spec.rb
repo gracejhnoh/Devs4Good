@@ -39,11 +39,14 @@ RSpec.describe ProposalsController, type: :controller do
         expect(response).to render_template(:new)
       end
     end
+  end
 
 
     describe 'GET#show' do
-      let(:test_project) { FactoryGirl.create(:project) }
-      let(:new_proposal) { FactoryGirl.create(:proposal) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:test_project) { FactoryGirl.create(:project) }
+      let!(:new_proposal) { FactoryGirl.create(:proposal) }
 
       it "returns a status of 200" do
         get :show, params: { project_id: test_project.id, id: new_proposal.id }
@@ -57,6 +60,8 @@ RSpec.describe ProposalsController, type: :controller do
     end
 
     describe 'Delete #destroy' do
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:developer) { FactoryGirl.create(:developer) }
       let!(:test_project) { FactoryGirl.create(:project) }
       let!(:new_proposal) { FactoryGirl.create(:proposal) }
 
@@ -71,7 +76,7 @@ RSpec.describe ProposalsController, type: :controller do
 
       it 'redirects back to the organization show page' do
         delete :destroy, params: { project_id: test_project.id, id: new_proposal.id }
-        expect(response).to redirect_to organization_project_path( new_proposal.project.organization_id, new_proposal.project_id)
+        expect(response).to redirect_to organization_project_path( new_proposal.project_id, new_proposal.project.organization_id)
       end
     end
 
@@ -112,7 +117,27 @@ RSpec.describe ProposalsController, type: :controller do
         expect(Proposal.find(proposal.id).description).not_to eq('')
       end
     end
-  end
 
-  end
+    context 'selecting proposal' do
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
+      before(:each) do
+        patch :update, params: { project_id: project.id, id: proposal.id, proposal: { selected: true } }
+      end
+
+      it 'returns 302' do
+        expect(response).to have_http_status 302
+      end
+
+      it 'changes proposal selected to true' do
+        expect(Proposal.find(proposal.id).selected).to eq true
+      end
+
+      it 'assigns the proposal to @proposal' do
+        expect(assigns[:proposal]).to eq proposal
+      end
+    end
+    end
 end
