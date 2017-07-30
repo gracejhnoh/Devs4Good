@@ -57,12 +57,21 @@ RSpec.describe ProposalsController, type: :controller do
     end
 
     describe 'Delete #destroy' do
-      let(:test_project) { FactoryGirl.create(:project) }
-      let(:new_proposal) { FactoryGirl.create(:proposal) }
+      let!(:test_project) { FactoryGirl.create(:project) }
+      let!(:new_proposal) { FactoryGirl.create(:proposal) }
 
       it 'responds with a status code 302' do
         delete :destroy, params: { project_id: test_project.id, id: new_proposal.id}
         expect(response).to have_http_status 302
+      end
+
+      it 'destroyed the requested proposal' do
+        expect{ delete :destroy, params: { project_id: test_project.id, id: new_proposal.id } }.to change(Proposal, :count).by (-1)
+      end
+
+      it 'redirects back to the organization show page' do
+        delete :destroy, params: { project_id: test_project.id, id: new_proposal.id }
+        expect(response).to redirect_to organization_project_path( new_proposal.project.organization_id, new_proposal.project_id)
       end
     end
 

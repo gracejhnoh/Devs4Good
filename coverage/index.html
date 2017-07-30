@@ -14,7 +14,7 @@
       <img src="./assets/0.10.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-07-29T16:48:17-07:00">2017-07-29T16:48:17-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-07-29T17:42:55-07:00">2017-07-29T17:42:55-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         4.61
+         4.75
        </span>
     </span> hits/line)
   </h2>
@@ -107,7 +107,7 @@
         <td>31</td>
         <td>19</td>
         <td>12</td>
-        <td>1.4</td>
+        <td>1.6</td>
       </tr>
       
       <tr>
@@ -197,7 +197,7 @@
         <td>13</td>
         <td>12</td>
         <td>1</td>
-        <td>26.2</td>
+        <td>27.1</td>
       </tr>
       
     </tbody>
@@ -213,7 +213,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.8
+         2.86
        </span>
     </span> hits/line)
   </h2>
@@ -275,7 +275,7 @@
         <td>31</td>
         <td>19</td>
         <td>12</td>
-        <td>1.4</td>
+        <td>1.6</td>
       </tr>
       
       <tr>
@@ -310,7 +310,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         15.24
+         15.75
        </span>
     </span> hits/line)
   </h2>
@@ -372,7 +372,7 @@
         <td>13</td>
         <td>12</td>
         <td>1</td>
-        <td>26.2</td>
+        <td>27.1</td>
       </tr>
       
     </tbody>
@@ -1478,20 +1478,20 @@
           <code class="ruby">  def destroy</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="44">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="44">
+          <span class="hits">3</span>
           
           <code class="ruby">    @proposal = Proposal.find(params[:id])</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="45">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="45">
+          <span class="hits">3</span>
           
           <code class="ruby">    @proposal.destroy</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="46">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="46">
+          <span class="hits">3</span>
           
           <code class="ruby">    redirect_to organization_project_path(@proposal.project.organization_id, @proposal.project_id)</code>
         </li>
@@ -2315,8 +2315,8 @@
           <code class="ruby">  authenticates_with_sorcery!</code>
         </li>
       
-        <li class="covered" data-hits="111" data-linenumber="6">
-          <span class="hits">111</span>
+        <li class="covered" data-hits="115" data-linenumber="6">
+          <span class="hits">115</span>
           
           <code class="ruby">  validates :password, presence: true, if: -&gt; { new_record? || changes[:crypted_password] }</code>
         </li>
@@ -2333,8 +2333,8 @@
           <code class="ruby">  validates :first_name, :last_name,  presence: true,</code>
         </li>
       
-        <li class="covered" data-hits="110" data-linenumber="9">
-          <span class="hits">110</span>
+        <li class="covered" data-hits="114" data-linenumber="9">
+          <span class="hits">114</span>
           
           <code class="ruby">                          if: Proc.new { |u| u.user_type === &#39;dev&#39;}</code>
         </li>
@@ -2345,8 +2345,8 @@
           <code class="ruby">  validates :org_name, :street_address, :city, :state, :zip, presence: true,</code>
         </li>
       
-        <li class="covered" data-hits="110" data-linenumber="11">
-          <span class="hits">110</span>
+        <li class="covered" data-hits="114" data-linenumber="11">
+          <span class="hits">114</span>
           
           <code class="ruby">                          if: Proc.new { |u| u.user_type === &#39;org&#39;}</code>
         </li>
