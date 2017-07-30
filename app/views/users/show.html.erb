@@ -18,6 +18,7 @@
       </li>
     <% end %>
   </ul>
+
 <% else %>
   <h2>  <%= @user.full_name %> </h2>
   <div>
@@ -29,5 +30,17 @@
     <%= @user.description %>
   </div>
 
-  <h3>My Project</h3>
+  <h3>D4G Project Portfolio:</h3>
+  Coming soon.
+
+  <% if @user.proposals.count > 0 %>
+    <h3>My Project Proposals</h3>
+    <ol>
+      <% @user.proposals.each do |proposal| %>
+        <li>
+          <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
 <% end %>
