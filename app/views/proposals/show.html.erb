@@ -3,10 +3,10 @@
   <%= @proposal.description %>
 </div>
 <div>
-  Developer: <%= @proposal.user.full_name %>
+  Developer: <%= @proposal.developer.full_name %>
 </div>
 
-<% if logged_in? && current_user.user_type == 'dev' %>
+<% if logged_in? && current_user.user_type == 'dev' && @proposal.developer.id == current_user.id %>
   <%= link_to('Edit', edit_project_proposal_path(@proposal.project, @proposal)) %>
   <%= link_to('Delete', project_proposal_path(@proposal.project, @proposal), method: :delete, data: { confirm: 'Are you sure?'}) %>
 <% end %>
