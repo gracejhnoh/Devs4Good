@@ -7,8 +7,10 @@ RSpec.describe ProposalsController, type: :controller do
     let!(:new_organization) { FactoryGirl.create(:organization) }
     let!(:test_project) { FactoryGirl.create(:project) }
     before(:each) do
-      @user = user
       login_user(user)
+    end
+    after(:each) do
+      logout_user
     end
 
     it 'returns a status code of 302' do
@@ -52,6 +54,12 @@ RSpec.describe ProposalsController, type: :controller do
       let!(:developer) { FactoryGirl.create(:developer) }
       let!(:test_project) { FactoryGirl.create(:project) }
       let!(:new_proposal) { FactoryGirl.create(:proposal) }
+      before(:each) do
+        login_user(developer)
+      end
+      after(:each) do
+        logout_user
+      end
 
       it "returns a status of 200" do
         get :show, params: { project_id: test_project.id, id: new_proposal.id }
@@ -69,6 +77,12 @@ RSpec.describe ProposalsController, type: :controller do
       let!(:developer) { FactoryGirl.create(:developer) }
       let!(:test_project) { FactoryGirl.create(:project) }
       let!(:new_proposal) { FactoryGirl.create(:proposal) }
+      before(:each) do
+        login_user(developer)
+      end
+      after(:each) do
+        logout_user
+      end
 
       it 'responds with a status code 302' do
         delete :destroy, params: { project_id: test_project.id, id: new_proposal.id}
@@ -85,7 +99,7 @@ RSpec.describe ProposalsController, type: :controller do
       end
     end
 
-    describe 'PATCH#update' do
+  describe 'PATCH#update' do
 
     context 'Editing proposal' do
       let!(:developer) { FactoryGirl.create(:developer) }
@@ -93,7 +107,11 @@ RSpec.describe ProposalsController, type: :controller do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
       before(:each) do
+        login_user(developer)
         patch :update, params: { project_id: project.id, id: proposal.id, proposal: { description: 'New awesome description'} }
+      end
+      after(:each) do
+        logout_user
       end
 
       it 'returns 302' do
@@ -115,7 +133,11 @@ RSpec.describe ProposalsController, type: :controller do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
       before(:each) do
+        login_user(developer)
         patch :update, params: { project_id: project.id, id: proposal.id, proposal: { description: ''} }
+      end
+      after(:each) do
+        logout_user
       end
 
       it 'does not change proposal description' do
@@ -129,7 +151,11 @@ RSpec.describe ProposalsController, type: :controller do
       let!(:project) { FactoryGirl.create(:project) }
       let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
       before(:each) do
+        login_user(developer)
         patch :update, params: { project_id: project.id, id: proposal.id, proposal: { selected: true } }
+      end
+      after(:each) do
+        logout_user
       end
 
       it 'returns 302' do
