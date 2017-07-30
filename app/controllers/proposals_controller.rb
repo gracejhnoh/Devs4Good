@@ -12,7 +12,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.create(project_id: params[:project_id], user_id: current_user.id, description: proposal_params[:description], selected: proposal_params[:selected])
     @project = Project.find(params[:project_id])
     if @proposal.valid?
-      redirect_to organization_project_path(@project.organization, @project)
+      redirect_to project_proposal_path(@project, @proposal)
     else
       render :new
     end
