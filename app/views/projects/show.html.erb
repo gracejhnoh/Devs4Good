@@ -9,7 +9,7 @@
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
   <%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
-  <%= link_to('Destroy', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %>
+  <%= link_to('Delete', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
