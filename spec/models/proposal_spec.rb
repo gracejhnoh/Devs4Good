@@ -13,7 +13,7 @@ describe Proposal do
     let!(:developer) { FactoryGirl.create(:developer) }
     let!(:organization) { FactoryGirl.create(:organization) }
     let!(:project) { FactoryGirl.create(:project) }
-    let!(:proposal) { FactoryGirl.create(:proposal, project: project, developer: developer) }
+    let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
 
     it 'returns nil if no proposal selected' do
       expect(project.selected_proposal).to be_nil
