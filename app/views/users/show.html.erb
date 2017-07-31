@@ -4,7 +4,11 @@
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
     Phone: <%= @user.phone %><br />
-    Website: <%= link_to(@user.website, @user.website) %>
+    <% if @user.website != '' %>
+      Website: <%= link_to(@user.website, @user.website) %>
+    <% else %>
+      <span></span>
+    <% end %>
   </div>
   <h3>About Us</h3>
   <div>
@@ -22,7 +26,11 @@
 <% else %> <!-- if user is dev   -->
   <h2>  <%= @user.full_name %> </h2>
   <div>
-    Website: <%= link_to(@user.website, @user.website) %>
+    <% if @user.website != '' %>
+      Website: <%= link_to(@user.website, @user.website) %>
+    <% else %>
+      <span></span>
+    <% end %>
   </div>
 
   <h3>About Me</h3>
