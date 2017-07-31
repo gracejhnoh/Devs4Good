@@ -70,7 +70,7 @@ class ProposalsController < ApplicationController
         redirect_to organization_path(current_user)
       else
         @proposal.destroy
-        redirect_to organization_project_path(@proposal.project_id, @proposal.project.organization_id)
+        redirect_to organization_project_path(@proposal.project.organization_id, @proposal.project_id)
       end
   end
 
