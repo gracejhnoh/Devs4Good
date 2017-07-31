@@ -4,6 +4,16 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find(params[:id])
+
+    if request.path.include?("organizations") && @user.user_type == 'dev'
+      redirect_to developer_path(@user.id)
+    elsif request.path.include?('developers') && @user.user_type == 'org'
+      redirect_to organization_path(@user.id)
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.valid?
@@ -14,13 +24,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-
-    if request.path.include?("organizations") && @user.user_type == 'dev'
-      redirect_to developer_path(@user.id)
-    elsif request.path.include?('developers') && @user.user_type == 'org'
-      redirect_to organization_path(@user.id)
+  def edit
+    if (params[:id].to_i != current_user.id)
+      redirect_to root_path
+    else
+      @user = User.find(params[:id])
     end
   end
 

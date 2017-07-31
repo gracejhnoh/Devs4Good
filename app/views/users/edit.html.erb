@@ -1,1 +1,51 @@
+<h1>Edit your profile:</h1>
 
+<% if @user.errors.any? %>
+  <div id="error-explanation">
+    <div id="error-intro">
+      <%= "Something went wrong!" %>
+    </div>
+    <ul class='errors-list'>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <% if current_user.user_type == 'dev' %>
+    <div>
+      <h3>Developer Profile</h3>
+        <%= form_for @user, url: developers_path do |f| %>
+          First name: <%= f.text_field :first_name %><br />
+          Last name: <%= f.text_field :last_name %><br />
+          Email: <%= f.email_field :email %><br />
+          Phone: <%= f.text_field :phone %><br />
+          Website: <%= f.text_field :website %><br />
+          Description: <%= f.text_area :description %><br /><br />
+          Password: <%= f.password_field :password %><br />
+          <%= f.hidden_field :user_type, { :value => 'dev' } %>
+          <%= f.submit 'Edit account' %>
+        <% end %>
+    </div>
+  <% else %>
+    <div>
+      <h3>Organization Profile</h3>
+      <%= form_for @user, url: organizations_path do |f| %>
+        Organization name: <%= f.text_field :org_name %><br />
+        Street Address: <%= f.text_field :street_address %><br />
+        City: <%= f.text_field :city %><br />
+        State: <%= f.text_field :state %><br />
+        Zip: <%= f.text_field :zip %><br />
+        Email: <%= f.email_field :email %><br />
+        Phone: <%= f.text_field :phone %><br />
+        Website: <%= f.text_field :website %><br />
+        Description: <%= f.text_area :description %><br /><br />
+        Password: <%= f.password_field :password %><br />
+        <%= f.hidden_field :user_type, { :value => 'org' } %>
+        <%= f.submit 'Edit account' %>
+      <% end %>
+    </div>
+  <% end %>
