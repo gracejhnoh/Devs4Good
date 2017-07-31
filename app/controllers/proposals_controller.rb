@@ -41,19 +41,22 @@ class ProposalsController < ApplicationController
 
   def update
     @proposal = Proposal.find(params[:id])
-    if current_user != @proposal.developer
-      redirect_to organization_path(current_user)
-    else
-      if @proposal.update(proposal_params)
-        if proposal_params[:selected] == 'true'
+    if proposal_params[:selected] == 'true'
+      if current_user != @proposal.project.organization
+        redirect_to organization_path(@proposal.project.organization)
+      else
+        if @proposal.update(proposal_params)
           redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
         else
           redirect_to project_proposal_path(@proposal.project, @proposal)
         end
-
+      end
+    else
+      if current_user != @proposal.developer
+        redirect_to organization_path(@proposal.project.organization)
       else
-        if proposal_params[:selected] == 'true'
-          redirect_to organization_project_path(@proposal.project, @proposal.project.organization)
+        if @proposal.update(proposal_params)
+          redirect_to project_proposal_path(@proposal.project, @proposal)
         else
           render :edit
         end
