@@ -204,4 +204,15 @@ describe UsersController do
       expect(response).to render_template :show
     end
   end
+
+  describe 'GET#edit profile' do
+
+    it 'has response 200' do
+      get :edit, params
+
+
+    end
+
+  end
+
 end
