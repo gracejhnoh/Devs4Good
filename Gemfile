@@ -64,3 +64,5 @@ gem 'simplecov', :require => false, :group => :test
 gem 'bourbon'
 gem 'neat'
 gem 'bitters'
+
+gem 'ckeditor', github: 'galetahub/ckeditor'
