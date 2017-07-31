@@ -205,14 +205,57 @@ describe UsersController do
     end
   end
 
-  describe 'GET#edit profile' do
+  describe 'GET#edit ' do
+    context 'developer profile' do
+      let(:user) { FactoryGirl.create(:developer) }
+      before(:each) do
+        login_user(user)
+      end
+      after(:each) do
+        logout_user
+      end
 
-    it 'has response 200' do
-      get :edit, params
+      it 'has response 200' do
+        get :edit, params: { id: user.id }
+        expect(response).to have_http_status 200
+      end
 
-
+      it 'renders an edit view' do
+        get :edit, params: { id: user.id }
+        expect(response).to render_template('edit')
+      end
     end
+    context 'organization profile' do
+      let(:user) { FactoryGirl.create(:organization) }
+      before(:each) do
+        login_user(user)
+      end
+      after(:each) do
+        logout_user
+      end
 
+      it 'has response 200' do
+        get :edit, params: { id: user.id }
+        expect(response).to have_http_status 200
+      end
+
+      it 'renders an edit view' do
+        get :edit, params: { id: user.id }
+        expect(response).to render_template('edit')
+      end
+    end
+  end
+
+  describe 'PUT#update' do
+    context 'Developer profile' do
+      let!(:user) { FactoryGirl.create(:developer) }
+      before(:each) do
+        login_user(organization)
+      end
+      after(:each) do
+        logout_user
+      end
+    end
   end
 
 end
