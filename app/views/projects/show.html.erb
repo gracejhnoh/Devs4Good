@@ -28,7 +28,7 @@
   <ul>
     <% @project.proposals.each do |proposal| %>
       <li>
-        <%= link_to(proposal.developer.full_name, developer_path(proposal.developer))  %>
+        <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
         <% if !@project.selected_proposal %>
           <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
             <%= f.hidden_field :selected, :value => 'true' %>

@@ -3,7 +3,7 @@
   <%= raw(@proposal.description) %>
 </div>
 <div>
-  Developer: <%= @proposal.developer.full_name %>
+  Developer: <%= link_to(@proposal.developer.full_name, developer_path(@proposal.developer)) %>
 </div>
 
 <% if logged_in? && current_user.user_type == 'dev' && @proposal.developer.id == current_user.id %>
