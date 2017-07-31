@@ -34,6 +34,12 @@ RSpec.describe ProposalsController, type: :controller do
         post :create,  params: { project_id: test_project.id, proposal: FactoryGirl.attributes_for(:proposal) }
         expect(response).to redirect_to project_proposal_path(project_id: test_project.id, id: Proposal.last.id)
       end
+
+      it 'sends an ActionMailer email' do
+        expect {
+          post :create, params: { project_id: test_project.id, proposal: FactoryGirl.attributes_for(:proposal)
+        } }.to change{ ActionMailer::Base.deliveries.count }.by 1
+      end
     end
 
     context 'with invalid attributes' do
@@ -168,6 +174,11 @@ RSpec.describe ProposalsController, type: :controller do
 
       it 'assigns the proposal to @proposal' do
         expect(assigns[:proposal]).to eq proposal
+      end
+
+      it 'sends an ActionMailer email' do
+        login_user(organization)
+        expect{ patch :update, params: { project_id: project.id, id: proposal.id, proposal: { selected: true } } }.to change { ActionMailer::Base.deliveries.count }.by 1
       end
     end
     end

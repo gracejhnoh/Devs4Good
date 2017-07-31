@@ -3,7 +3,7 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def default_url_options
-    if Rails.env.development?
+    if Rails.env.development? || Rails.env.test?
       {:host => "localhost:3000"}
     else
       {}
