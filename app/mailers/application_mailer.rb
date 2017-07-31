@@ -1,4 +1,12 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'devs4good@gmail.com'
   layout 'mailer'
+
+  def default_url_options
+    if Rails.env.development? || Rails.env.test?
+      {:host => "localhost:3000"}
+    else
+      {}
+    end
+  end
 end

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Devs4Good</h1>
+    <h2> <%= @developer.full_name %>, your proposal has been selected!</h2>
+    <p><strong> Project: </strong> <%= @proposal.project.title %> </p>
+    <p><strong> Organization: </strong> <%= @proposal.project.organization.org_name %></p>
+    <h3><%= link_to('Click here for project details.', organization_project_url(@proposal.project.organization, @proposal.project)) %></h3>
+  </body>
+</html>
