@@ -24,6 +24,7 @@ class ProposalsController < ApplicationController
       @proposal = Proposal.create(project_id: params[:project_id], user_id: current_user.id, description: proposal_params[:description], selected: proposal_params[:selected])
       @project = Project.find(params[:project_id])
       if @proposal.valid?
+        UserMailer.new_proposal_email(@project.organization, @proposal).deliver_now
         redirect_to project_proposal_path(@project, @proposal)
       else
         render :new
@@ -46,6 +47,7 @@ class ProposalsController < ApplicationController
         redirect_to organization_path(@proposal.project.organization)
       else
         if @proposal.update(proposal_params)
+          UserMailer.proposal_selected_email(@proposal.developer, @proposal).deliver_now
           redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
         else
           redirect_to project_proposal_path(@proposal.project, @proposal)
