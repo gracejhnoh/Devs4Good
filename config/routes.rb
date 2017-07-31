@@ -5,10 +5,10 @@ Rails.application.routes.draw do
     resources :proposals, except: [:index]
   end
 
-  resources :users, path: :organizations, only: [:show, :new, :create, :edit], as: 'organizations' do
+  resources :users, path: :organizations, only: [:show, :new, :create, :edit, :update], as: 'organizations' do
     resources :projects
   end
-  resources :users, path: :developers, only: [:show, :new, :create, :edit], as: 'developers'
+  resources :users, path: :developers, only: [:show, :new, :create, :edit, :update], as: 'developers'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new]
