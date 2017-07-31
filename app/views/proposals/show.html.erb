@@ -1,6 +1,6 @@
 <h2> Proposal for: <%= link_to(@proposal.project.title, organization_project_path(@proposal.project.organization_id, @proposal.project.id)) %></h2>
 <div>
-  <%= @proposal.description %>
+  <%= raw(@proposal.description) %>
 </div>
 <div>
   Developer: <%= @proposal.developer.full_name %>

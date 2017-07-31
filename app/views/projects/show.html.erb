@@ -1,6 +1,6 @@
 <h2><%= @project.title %></h2>
 
-<div>Project Details: <%= @project.description %></div>
+<div>Project Details: <%= raw(@project.description) %></div>
 
 <div>
   Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %>

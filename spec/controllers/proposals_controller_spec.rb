@@ -95,7 +95,7 @@ RSpec.describe ProposalsController, type: :controller do
 
       it 'redirects back to the organization show page' do
         delete :destroy, params: { project_id: test_project.id, id: new_proposal.id }
-        expect(response).to redirect_to organization_project_path( new_proposal.project_id, new_proposal.project.organization_id)
+        expect(response).to redirect_to organization_project_path(new_proposal.project.organization_id, new_proposal.project_id)
       end
     end
 
