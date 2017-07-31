@@ -1,5 +1,6 @@
 <% if @user.user_type == 'org' %>
   <h2><%= @user.org_name %></h2>
+  <h4> <%= link_to('Edit Profile', edit_organization_path) %></h4>
   <div>
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
@@ -8,7 +9,7 @@
   </div>
   <h3>About Us</h3>
   <div>
-    <%= @user.description %>
+    <%= raw(@user.description) %>
   </div>
   <h3>Our Current Projects</h3>
   <ul>
@@ -21,13 +22,14 @@
 
 <% else %> <!-- if user is dev   -->
   <h2>  <%= @user.full_name %> </h2>
+  <h4> <%= link_to('Edit Profile', edit_developer_path) %></h4>
   <div>
     Website: <%= link_to(@user.website, @user.website) %>
   </div>
 
   <h3>About Me</h3>
   <div>
-    <%= @user.description %>
+    <%= raw(@user.description) %>
   </div>
 
 <% if @user.proposals.count > 0 && current_user == @user %>
