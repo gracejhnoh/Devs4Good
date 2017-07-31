@@ -47,6 +47,7 @@ class ProposalsController < ApplicationController
         redirect_to organization_path(@proposal.project.organization)
       else
         if @proposal.update(proposal_params)
+          UserMailer.proposal_selected_email(@proposal.developer, @proposal).deliver_now
           redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
         else
           redirect_to project_proposal_path(@proposal.project, @proposal)
