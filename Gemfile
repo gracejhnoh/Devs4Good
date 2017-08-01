@@ -67,3 +67,5 @@ gem 'neat'
 gem 'bitters'
 
 gem 'ckeditor', github: 'galetahub/ckeditor'
+
+gem 'httparty'
