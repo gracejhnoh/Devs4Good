@@ -10,6 +10,7 @@ describe Project do
     it { is_expected.to validate_presence_of :time_frame }
 
     it { is_expected.to validate_presence_of :summary }
+
   end
 
 end
