@@ -90,6 +90,10 @@ describe User do
         expect(organization.org_name).not_to be_nil
       end
 
+      it 'has an EIN number' do
+        expect(organization.ein).not_to be_nil
+      end
+
       it "has a street address" do
         expect(organization.street_address).not_to be_nil
       end
@@ -144,6 +148,11 @@ describe User do
 
       it 'is invalid without org name' do
         invalid_organization.org_name = ''
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid with wrong EIN format' do
+        invalid_organization.ein = '12-3456789'
         expect(invalid_organization).not_to be_valid
       end
 

@@ -35,7 +35,7 @@
     <h3>Organization Profile</h3>
     <%= form_for @user, url: organization_path do |f| %>
       Organization name: <%= f.text_field :org_name %><br />
-      EIN number: <%= f.text_field :ein %><br />
+      EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %><br />
       Street Address: <%= f.text_field :street_address %><br />
       City: <%= f.text_field :city %><br />
       State: <%= f.text_field :state %><br />
