@@ -79,7 +79,8 @@ class UsersController < ApplicationController
     :description,
     :user_type,
     :email,
-    :password)
+    :password,
+    :password_confirmation)
   end
 
 end

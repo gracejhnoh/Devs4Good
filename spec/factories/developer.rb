@@ -7,6 +7,7 @@ FactoryGirl.define do
     user_type { 'dev' }
     email { Faker::Internet.safe_email }
     password { 'password123' }
+    password_confirmation { 'password123'}
     website { Faker::Internet.url }
     description { Faker::StarWars.quote }
     phone { Faker::PhoneNumber.cell_phone }

@@ -29,6 +29,7 @@
     Website: <%= f.text_field :website %><br />
     Description: <%= f.text_area :description %><br /><br />
     Password: <%= f.password_field :password %><br />
+    Password Confirmation: <%= f.password_field :password_confirmation %>
     <%= f.hidden_field :user_type, { :value => 'dev' } %>
     <%= f.submit 'Create account' %>
   <% end %>
@@ -48,6 +49,7 @@
     Website: <%= f.text_field :website %><br />
     Description: <%= f.text_area :description %><br /><br />
     Password: <%= f.password_field :password %><br />
+    Password Confirmation: <%= f.password_field :password_confirmation %>
     <%= f.hidden_field :user_type, { :value => 'org' } %>
     <%= f.submit 'Create account' %>
 <% end %>
