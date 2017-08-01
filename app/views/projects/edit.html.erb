@@ -13,5 +13,9 @@
   <%= f.label :time_frame, 'Project Needed By' %>
   <%= f.date_field :time_frame %>
 
+  <%= f.label :contact_email, 'Contact e-mail for Project ' %>
+  <p>(will be shown to any logged in developer viewing the project)</p>
+  <%= f.email_field :contact_email %>
+
   <%= f.submit 'Edit Project' %>
 <% end %>
