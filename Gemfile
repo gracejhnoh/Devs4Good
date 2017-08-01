@@ -68,4 +68,6 @@ gem 'bitters'
 
 gem 'ckeditor', github: 'galetahub/ckeditor'
 
+gem 'jquery-rails'
+
 gem 'httparty'

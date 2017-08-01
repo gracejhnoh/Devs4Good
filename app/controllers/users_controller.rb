@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     elsif @user.user_type == 'org' && (@user.ein == '' || @user.ein == nil)
       @ein_name = "N/A"
     end
+
     if request.path.include?("organizations") && @user.user_type == 'dev'
       redirect_to developer_path(@user.id)
     elsif request.path.include?('developers') && @user.user_type == 'org'
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save!
+      @user = login(user_params[:email], user_params[:password])
       redirect_to :root
     else
       render :new, status: 422
