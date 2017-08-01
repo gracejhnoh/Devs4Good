@@ -21,7 +21,8 @@ describe UsersController do
         last_name: Faker::Name.last_name,
         user_type: 'dev',
         email: Faker::Internet.safe_email,
-        password: Faker::Internet.password,
+        password: '123',
+        password_confirmation: '123',
         website: Faker::Internet.url,
         description: Faker::StarWars.quote,
         phone: Faker::PhoneNumber.cell_phone
@@ -37,7 +38,8 @@ describe UsersController do
           last_name: Faker::Name.last_name,
           user_type: 'dev',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -60,7 +62,8 @@ describe UsersController do
           last_name: Faker::Name.last_name,
           user_type: 'dev',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -77,7 +80,51 @@ describe UsersController do
           last_name: Faker::Name.last_name,
           user_type: 'dev',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          }
+         }
+       }.not_to change{User.where(user_type:'dev').count}
+      end
+
+      it "assigns the unsaved developer as @user" do
+        expect(assigns[:user]).to be_a_new(User)
+      end
+
+      it "renders the new template" do
+        expect(response).to render_template :new
+      end
+    end
+
+    context 'signup with invalid password confirmation' do
+      before(:each) do
+        post :create, params: { user: {first_name: Faker::Name.first_name,
+          last_name: Faker::Name.last_name,
+          user_type: 'dev',
+          email: Faker::Internet.safe_email,
+          password: '123',
+          password_confirmation: '456',
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          }
+        }
+      end
+
+      it "responds with status 422" do
+        expect(response).to have_http_status(422)
+      end
+
+      it "does not create a new developer in database" do
+        expect{post :create, params: { user: {first_name: Faker::Name.first_name,
+          last_name: Faker::Name.last_name,
+          user_type: 'dev',
+          email: Faker::Internet.safe_email,
+          password: '123',
+          password_confirmation: '456',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -106,7 +153,8 @@ describe UsersController do
         zip: Faker::Address.zip,
         user_type: 'org',
         email: Faker::Internet.safe_email,
-        password: Faker::Internet.password,
+        password: '123',
+        password_confirmation: '123',
         website: Faker::Internet.url,
         description: Faker::StarWars.quote,
         phone: Faker::PhoneNumber.cell_phone
@@ -126,7 +174,8 @@ describe UsersController do
           zip: Faker::Address.zip,
           user_type: 'org',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -153,7 +202,8 @@ describe UsersController do
           zip: Faker::Address.zip,
           user_type: 'org',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -173,7 +223,57 @@ describe UsersController do
           zip: Faker::Address.zip,
           user_type: 'org',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          }
+         }
+       }.not_to change{User.where(user_type:'org').count}
+      end
+
+      it "assigns the unsaved organization as @user" do
+        expect(assigns[:user]).to be_a_new(User)
+      end
+
+      it "renders the new template" do
+        expect(response).to render_template :new
+      end
+    end
+
+    context "invalid with wrong password confirmation" do
+      before(:each) do
+        post :create, params: { user: {org_name: Faker::Company.name,
+          street_address: Faker::Address.street_address,
+          city: Faker::Address.city,
+          state: Faker::Address.state,
+          zip: Faker::Address.zip,
+          user_type: 'org',
+          email: Faker::Internet.safe_email,
+          password: '123',
+          password_confirmation: '456',
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          }
+        }
+      end
+
+      it "responds with status 422" do
+        expect(response).to have_http_status(422)
+      end
+
+      it "does not create a new organization in database" do
+        expect{post :create, params: { user: {org_name: Faker::Company.name,
+          street_address: Faker::Address.street_address,
+          city: Faker::Address.city,
+          state: Faker::Address.state,
+          zip: Faker::Address.zip,
+          user_type: 'org',
+          email: Faker::Internet.safe_email,
+          password: '123',
+          password_confirmation: '456',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -279,7 +379,8 @@ describe UsersController do
           last_name: Faker::Name.last_name,
           user_type: 'dev',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -293,7 +394,23 @@ describe UsersController do
           last_name: Faker::Name.last_name,
           user_type: 'dev',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          } }
+        new_user.reload
+        expect(new_user.first_name).to render_template('edit')
+      end
+
+      it 'does not update a developer with invalid password confirmation' do
+        patch :update, params: { id: new_user.id, user: { first_name: 'John',
+          last_name: Faker::Name.last_name,
+          user_type: 'dev',
+          email: Faker::Internet.safe_email,
+          password: '123',
+          password_confirmation: '456',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -320,7 +437,8 @@ describe UsersController do
           zip: Faker::Address.zip,
           user_type: 'org',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
@@ -338,7 +456,27 @@ describe UsersController do
           zip: Faker::Address.zip,
           user_type: 'org',
           email: Faker::Internet.safe_email,
-          password: Faker::Internet.password,
+          password: '123',
+          password_confirmation: '123',
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          }
+        }
+        new_org.reload
+        expect(new_org.org_name).to render_template(:edit)
+      end
+
+      it 'does not update a developer with invalid password confirmation' do
+        patch :update, params: { id: new_org.id, user: { org_name: "Google",
+          street_address: Faker::Address.street_address,
+          city: Faker::Address.city,
+          state: Faker::Address.state,
+          zip: Faker::Address.zip,
+          user_type: 'org',
+          email: Faker::Internet.safe_email,
+          password: '123',
+          password_confirmation: '456',
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
           phone: Faker::PhoneNumber.cell_phone
