@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save!
+      @user = login(user_params[:email], user_params[:password])
       redirect_to :root
     else
       render :new, status: 422
