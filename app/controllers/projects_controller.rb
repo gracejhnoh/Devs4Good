@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-
+    
     if User.find(params[:organization_id]).user_type === 'dev'
       redirect_to developer_path(params[:organization_id])
     # todo post-MVP: handle edge case for organizations that don't own the project
