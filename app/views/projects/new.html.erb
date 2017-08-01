@@ -5,7 +5,7 @@
   <%= f.text_field :title, placeholder: 'Cat Adoption Emporium' %>
 
   <%= f.label :description, 'Project Specs' %>
-  <%= f.cktext_area :description, value: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
+  <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' }, value: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
 
   <%= f.label :time_frame, 'Project Needed By' %>
   <%= f.date_field :time_frame %>

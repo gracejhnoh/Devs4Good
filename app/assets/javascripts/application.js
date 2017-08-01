@@ -12,4 +12,5 @@
 //
 //= require rails-ujs
 //= require ckeditor/init
+//= require jquery
 //= require_tree .

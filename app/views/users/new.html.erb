@@ -15,7 +15,11 @@
   </div>
 <% end %>
 
-<div>
+
+<button id='dev-button'>Register as a Developer</button>
+<button id='org-button'>Register as a Organization</button>
+
+<div id='dev-div'>
   <h3>New Developer</h3>
   <%= form_for @user, url: developers_path do |f| %>
     First name: <%= f.text_field :first_name %><br />
@@ -30,10 +34,11 @@
   <% end %>
 </div>
 
-<div>
+<div id='org-div'>
   <h3>New Organization</h3>
   <%= form_for @user, url: organizations_path do |f| %>
     Organization name: <%= f.text_field :org_name %><br />
+    EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %><br />
     Street Address: <%= f.text_field :street_address %><br />
     City: <%= f.text_field :city %><br />
     State: <%= f.text_field :state %><br />
@@ -45,5 +50,5 @@
     Password: <%= f.password_field :password %><br />
     <%= f.hidden_field :user_type, { :value => 'org' } %>
     <%= f.submit 'Create account' %>
-  <% end %>
+<% end %>
 </div>

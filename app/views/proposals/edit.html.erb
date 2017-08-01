@@ -2,7 +2,7 @@
 
 <%= form_for @proposal, url: project_proposal_path do |f| %>
   <%= f.label :description, 'Proposal description' %>
-  <%= f.cktext_area :description %>
+  <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' } %>
 
   <%= f.submit 'Edit Proposal' %>
 <% end %>
