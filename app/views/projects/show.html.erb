@@ -3,7 +3,10 @@
 <div>Project Details: <%= raw(@project.description) %></div>
 
 <div>
-  Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %>
+  Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %><br/>
+  <% if logged_in? && (current_user.user_type == 'dev' || @project.organization.id == current_user.id ) && @project.contact_email != '' %>
+  Project contact e-mail: <%= mail_to(@project.contact_email) %>
+  <% end %>
 </div>
 <div>Time frame: <%= @project.time_frame %></div>
 
