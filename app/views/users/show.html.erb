@@ -2,6 +2,16 @@
   <h2><%= @user.org_name %></h2>
   <h4> <%= link_to('Edit Profile', edit_organization_path) %></h4>
   <div>
+    <div>
+      EIN number:
+      <% if @user.ein == '' || @user.ein == nil %>
+        No EIN provided
+      <% else %>
+        <%= @user.ein %>
+      <% end %><br/>
+
+      EIN name: <%= @ein_name %>
+    </div>
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
     Phone: <%= @user.phone %><br />

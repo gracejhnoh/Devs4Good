@@ -193,7 +193,9 @@ describe UsersController do
   end
 
   context 'get #show' do
-    let(:user) { FactoryGirl.create(:organization)}
+    let(:user) { FactoryGirl.create(:organization, ein: '142007220')}
+    let(:user_no_EIN) { FactoryGirl.create(:organization, ein: '')}
+    let(:user_wrong_EIN) { FactoryGirl.create(:organization, ein: '000000000')}
     it 'responds 200' do
       get :show, params: { id: user.id }
       expect(response).to have_http_status 200
@@ -203,6 +205,22 @@ describe UsersController do
       get :show, params: { id: user.id }
       expect(response).to render_template :show
     end
+
+    it 'assigns an EIN name' do
+      get :show, params: { id: user.id }
+      expect(assigns[:ein_name]).to eq 'PRO PUBLICA INC'
+    end
+
+    it 'assigns "n/a" as EIN name when EIN empty' do
+      get :show, params: { id: user_no_EIN.id }
+      expect(assigns[:ein_name]).to eq 'N/A'
+    end
+
+    it 'assigns error message as EIN name when EIN not found' do
+      get :show, params: { id: user_wrong_EIN.id }
+      expect(assigns[:ein_name]).to eq "Could not find matching organization for EIN"
+    end
+
   end
 
   describe 'GET#edit ' do
