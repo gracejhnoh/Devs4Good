@@ -6,14 +6,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user.user_type == 'org' && @user.ein != ''
+    if @user.user_type == 'org' && (@user.ein != '' && @user.ein != nil)
       response = HTTParty.get("https://projects.propublica.org/nonprofits/api/v2/organizations/#{@user.ein}.json")
       if response["organization"] == nil
         @ein_name = "Could not find matching organization for EIN"
       else
         @ein_name = response["organization"]["name"]
       end
-    elsif @user.user_type == 'org' && @user.ein == ''
+    elsif @user.user_type == 'org' && (@user.ein == '' || @user.ein == nil)
       @ein_name = "N/A"
     end
     if request.path.include?("organizations") && @user.user_type == 'dev'
@@ -67,6 +67,7 @@ class UsersController < ApplicationController
     :first_name,
     :last_name,
     :org_name,
+    :ein,
     :street_address,
     :city,
     :state,
