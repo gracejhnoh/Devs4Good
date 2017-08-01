@@ -204,4 +204,132 @@ describe UsersController do
       expect(response).to render_template :show
     end
   end
+
+  describe 'GET#edit ' do
+    context 'developer profile' do
+      let(:user) { FactoryGirl.create(:developer) }
+      before(:each) do
+        login_user(user)
+      end
+      after(:each) do
+        logout_user
+      end
+
+      it 'has response 200' do
+        get :edit, params: { id: user.id }
+        expect(response).to have_http_status 200
+      end
+
+      it 'renders an edit view' do
+        get :edit, params: { id: user.id }
+        expect(response).to render_template('edit')
+      end
+    end
+    context 'organization profile' do
+      let(:user) { FactoryGirl.create(:organization) }
+      before(:each) do
+        login_user(user)
+      end
+      after(:each) do
+        logout_user
+      end
+
+      it 'has response 200' do
+        get :edit, params: { id: user.id }
+        expect(response).to have_http_status 200
+      end
+
+      it 'renders an edit view' do
+        get :edit, params: { id: user.id }
+        expect(response).to render_template('edit')
+      end
+    end
+  end
+
+  describe 'PUT#update' do
+    context 'Developer profile' do
+      let!(:new_user) { FactoryGirl.create(:developer) }
+      before(:each) do
+        login_user(new_user)
+      end
+      after(:each) do
+        logout_user
+      end
+
+      it 'updates a developer with valid parameters' do
+        patch :update, params: { id: new_user.id, user: { first_name: 'Jose',
+          last_name: Faker::Name.last_name,
+          user_type: 'dev',
+          email: Faker::Internet.safe_email,
+          password: Faker::Internet.password,
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          } }
+        new_user.reload
+        expect(new_user.first_name).to eq('Jose')
+      end
+
+      it 'does not update a developer with invalid parameters' do
+        patch :update, params: { id: new_user.id, user: { first_name: nil,
+          last_name: Faker::Name.last_name,
+          user_type: 'dev',
+          email: Faker::Internet.safe_email,
+          password: Faker::Internet.password,
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          } }
+        new_user.reload
+        expect(new_user.first_name).to render_template('edit')
+      end
+    end
+
+    context 'organization profile' do
+      let!(:new_org) { FactoryGirl.create(:organization) }
+      before(:each) do
+        login_user(new_org)
+      end
+      after(:each) do
+        logout_user
+      end
+
+      it 'updates a organization with valid parameters' do
+        patch :update, params: { id: new_org.id, user: { org_name: 'Awesome Co.',
+          street_address: Faker::Address.street_address,
+          city: Faker::Address.city,
+          state: Faker::Address.state,
+          zip: Faker::Address.zip,
+          user_type: 'org',
+          email: Faker::Internet.safe_email,
+          password: Faker::Internet.password,
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          }
+        }
+        new_org.reload
+        expect(new_org.org_name).to eq('Awesome Co.')
+      end
+
+      it 'does not update a developer with invalid parameters' do
+        patch :update, params: { id: new_org.id, user: { org_name: nil,
+          street_address: Faker::Address.street_address,
+          city: Faker::Address.city,
+          state: Faker::Address.state,
+          zip: Faker::Address.zip,
+          user_type: 'org',
+          email: Faker::Internet.safe_email,
+          password: Faker::Internet.password,
+          website: Faker::Internet.url,
+          description: Faker::StarWars.quote,
+          phone: Faker::PhoneNumber.cell_phone
+          }
+        }
+        new_org.reload
+        expect(new_org.org_name).to render_template(:edit)
+      end
+    end
+  end
+
 end
