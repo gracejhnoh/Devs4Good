@@ -25,6 +25,7 @@ end
 10.times do
   User.create(
     org_name: Faker::Company.name,
+    ein: Faker::Number.number(9),
     street_address: Faker::Address.street_address,
     city: Faker::Address.city,
     state: Faker::Address.state,
@@ -39,7 +40,7 @@ end
 end
 
 10.times do
-  Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote)
+  Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote, summary: Faker::Lorem.sentences(1))
 end
 
 40.times do
