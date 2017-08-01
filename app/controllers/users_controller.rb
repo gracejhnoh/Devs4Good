@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
+  respond_to :html, :js
 
   def new
     @user = User.new
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
     @user = User.find(params[:id])
-
     if request.path.include?("organizations") && @user.user_type == 'dev'
       redirect_to developer_path(@user.id)
     elsif request.path.include?('developers') && @user.user_type == 'org'

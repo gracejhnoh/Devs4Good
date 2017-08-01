@@ -15,35 +15,10 @@
   </div>
 <% end %>
 
-<div>
-  <h3>New Developer</h3>
-  <%= form_for @user, url: developers_path do |f| %>
-    First name: <%= f.text_field :first_name %><br />
-    Last name: <%= f.text_field :last_name %><br />
-    Email: <%= f.email_field :email %><br />
-    Phone: <%= f.text_field :phone %><br />
-    Website: <%= f.text_field :website %><br />
-    Description: <%= f.text_area :description %><br /><br />
-    Password: <%= f.password_field :password %><br />
-    <%= f.hidden_field :user_type, { :value => 'dev' } %>
-    <%= f.submit 'Create account' %>
-  <% end %>
+<div id='dev-form'>
+
 </div>
 
-<div>
-  <h3>New Organization</h3>
-  <%= form_for @user, url: organizations_path do |f| %>
-    Organization name: <%= f.text_field :org_name %><br />
-    Street Address: <%= f.text_field :street_address %><br />
-    City: <%= f.text_field :city %><br />
-    State: <%= f.text_field :state %><br />
-    Zip: <%= f.text_field :zip %><br />
-    Email: <%= f.email_field :email %><br />
-    Phone: <%= f.text_field :phone %><br />
-    Website: <%= f.text_field :website %><br />
-    Description: <%= f.text_area :description %><br /><br />
-    Password: <%= f.password_field :password %><br />
-    <%= f.hidden_field :user_type, { :value => 'org' } %>
-    <%= f.submit 'Create account' %>
-  <% end %>
+<div id='org-form'>
+
 </div>
