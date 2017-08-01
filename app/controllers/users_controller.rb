@@ -1,14 +1,7 @@
 class UsersController < ApplicationController
-  respond_to :html, :js
 
   def new
     @user = User.new
-    respond_to do |format|
-      if @user
-        format.html
-        format.json
-      end
-    end
   end
 
   def show
