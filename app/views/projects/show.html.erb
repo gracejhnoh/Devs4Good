@@ -39,3 +39,9 @@
     <% end %>
   </ul>
 <% end %>
+
+<% if logged_in? && current_user.user_type == 'dev' && @project.user_id == current_user.id %>
+  <h3>My Proposal:</h3>
+  <% @project %>
+  <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal)) %>
+<% end %>
