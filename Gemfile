@@ -69,3 +69,5 @@ gem 'bitters'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 
 gem 'responders'
+
+gem 'httparty'

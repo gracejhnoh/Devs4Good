@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :org_name, :street_address, :city, :state, :zip, presence: true,
                           if: Proc.new { |u| u.user_type === 'org'}
   validates :website, format: { with: /\A(http:\/\/|https:\/\/)/ , message: "must include http:// or https://" }, allow_blank: true
+  validates :ein, format: { with: /\A\d{9}\z/, message: "must be 9 digits (without hyphen)"}, allow_blank: true
 
   has_many :projects, foreign_key: :organization_id
 
