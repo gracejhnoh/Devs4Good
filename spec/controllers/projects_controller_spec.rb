@@ -118,13 +118,13 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     it "updates an item with valid params" do
-      patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: 'blah', time_frame:"2017-08-03" } }
+      patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: 'blah', summary: 'bean dolphins', time_frame:"2017-08-03" } }
       update_project.reload
       expect(update_project.title).to eq('Updated title')
     end
 
     it "does not update an item with invalid params(blanks)" do
-      patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: nil, time_frame:"2017-08-03" } }
+      patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: '', summary: 'great',  time_frame:"2017-08-03" } }
       update_project.reload
       expect(response).to render_template('edit')
     end

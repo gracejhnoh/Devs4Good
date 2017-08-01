@@ -4,6 +4,9 @@
   <%= f.label :title, 'Project Title' %>
   <%= f.text_field :title %>
 
+  <%= f.label :summary, 'Project Summary (max 255 characters)' %>
+  <%= f.text_area :summary %>
+
   <%= f.label :description, 'Project Specs' %>
   <%= f.cktext_area :description, ckeditor: {toolbar: 'mini'} %>
 

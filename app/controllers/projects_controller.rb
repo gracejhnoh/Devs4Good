@@ -33,7 +33,8 @@ class ProjectsController < ApplicationController
         organization_id: params[:organization_id],
         description: project_params[:description],
         title: project_params[:title],
-        time_frame: project_params[:time_frame]
+        time_frame: project_params[:time_frame],
+        summary: project_params[:summary]
         )
       if @project.valid?
         redirect_to organization_project_path(@project.organization, @project)
@@ -60,7 +61,8 @@ class ProjectsController < ApplicationController
         organization_id: params[:organization_id],
         description: project_params[:description],
         title: project_params[:title],
-        time_frame: project_params[:time_frame]
+        time_frame: project_params[:time_frame],
+        summary: project_params[:summary]
         )
         redirect_to organization_project_path(@project.organization, @project)
       else
@@ -82,6 +84,6 @@ class ProjectsController < ApplicationController
 
 private
   def project_params
-    params.require(:project).permit(:title, :description, :time_frame)
+    params.require(:project).permit(:title, :description, :time_frame, :summary)
   end
 end
