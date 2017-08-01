@@ -9,7 +9,7 @@
     <li>
       <div> <h3> <%= project.organization.org_name %> </h3> </div>
       <div> <%= link_to(project.title, organization_project_path(project.organization, project)) %> </div>
-      <div> <%= raw(project.description) %> </div><br/>
+      <div> <%= project.summary %> </div><br/>
     </li>
   <% end %>
 </ol>

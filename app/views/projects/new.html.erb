@@ -4,8 +4,11 @@
   <%= f.label :title, 'Project Title' %>
   <%= f.text_field :title, placeholder: 'Cat Adoption Emporium' %>
 
+  <%= f.label :summary, 'Project Summary (max 255 characters)' %>
+  <%= f.text_area :summary, placeholder: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
+
   <%= f.label :description, 'Project Specs' %>
-  <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' }, value: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
+  <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' }, value: ' Consider including technology requirements, any existing assets, specific feature requests, and as many other details as possible' %>
 
   <%= f.label :time_frame, 'Project Needed By' %>
   <%= f.date_field :time_frame %>
