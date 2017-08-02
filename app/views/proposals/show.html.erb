@@ -5,6 +5,9 @@
 <div>
   Developer: <%= link_to(@proposal.developer.full_name, developer_path(@proposal.developer)) %>
 </div>
+<div>
+  Developer Contact Info: <%= @proposal.developer.email %>
+</div>
 
 <% if logged_in? && current_user.user_type == 'dev' && @proposal.developer.id == current_user.id %>
   <%= link_to('Edit', edit_project_proposal_path(@proposal.project, @proposal)) %>
