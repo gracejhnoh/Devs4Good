@@ -19,6 +19,7 @@
   <div>
     <h3>Developer Profile</h3>
       <%= form_for @user, url: developer_path do |f| %>
+        Profile Image: <%= f.file_field :image %>
         First name: <%= f.text_field :first_name %><br />
         Last name: <%= f.text_field :last_name %><br />
         Email: <%= f.email_field :email %><br />
@@ -35,6 +36,7 @@
   <div>
     <h3>Organization Profile</h3>
     <%= form_for @user, url: organization_path do |f| %>
+      Profile Image: <%= f.file_field :image %>
       Organization name: <%= f.text_field :org_name %><br />
       EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %><br />
       Street Address: <%= f.text_field :street_address %><br />
