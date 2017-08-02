@@ -8,8 +8,9 @@
   <h2 class='interior-title'><%= @user.org_name %></h2>
   <div class='interor-links'>
     <%= link_to('Edit Profile', edit_organization_path) %>
-  </div>  <div>
-    <div>
+  </div>
+  <div>
+    <div class='focus-box'>
       EIN number:
       <% if @user.ein == '' || @user.ein == nil %>
         No EIN provided
