@@ -16,9 +16,10 @@ User.destroy_all
     user_type: 'dev',
     email: Faker::Internet.safe_email,
     password: 'password',
+    password_confirmation: 'password',
     website: Faker::Internet.url,
     description: Faker::StarWars.quote,
-    phone: Faker::PhoneNumber.cell_phone
+    phone: '111-111-1111'
     )
 end
 
@@ -28,14 +29,15 @@ end
     ein: Faker::Number.number(9),
     street_address: Faker::Address.street_address,
     city: Faker::Address.city,
-    state: Faker::Address.state,
-    zip: Faker::Address.zip,
+    state: Faker::Address.state_abbr,
+    zip: '10112',
     user_type: 'org',
     email: Faker::Internet.safe_email,
     password: 'password',
+    password_confirmation: 'password',
     website: Faker::Internet.url,
     description: Faker::StarWars.quote,
-    phone: Faker::PhoneNumber.cell_phone
+    phone: '111-111-1111'
   )
 end
 
