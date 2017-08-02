@@ -13,8 +13,12 @@
   </head>
 
   <body>
-    <div class="container">
-      <header>
+        <div class="interior-header">
+        <% unless current_page?(root_path) %>
+          <div class='interior-logo'>
+              Devs4Good
+          </div>
+        <% end %>
         <nav>
           <%= link_to('Home', root_path) %>
           <%= link_to('About') %>
@@ -32,8 +36,8 @@
             <%= link_to('Sign Up', new_user_path) %>
           <% end %>
         </nav>
-      </header>
-    </header>
+      </div>
+      <div class="container">
     <%= yield %>
     </div>
   </body>
