@@ -18,8 +18,6 @@
 
  $desktop: new-breakpoint (min-width 768px);
 
-// General Page Styles
-
  body {
    background-color: #F4F6F7;
    color: #717171!important;
@@ -29,16 +27,11 @@
    margin: 0 auto;
    width: 70%;
    padding: 20px 0;
-   @media screen and (min-width: 768px) {
-     width: 60%;
-   }
  }
 
  div {
    font-family: sans-serif;
  }
-
-// Header styles across pages
 
  .interior-header {
    text-align: center;
@@ -52,22 +45,17 @@
 
  .interior-logo {
    text-transform: uppercase;
-   font-size: 3em;
+   font-size: 2em;
    color: white;
    font-weight: bold;
-   -webkit-text-fill-color: #6DD3DF;
-   -webkit-text-stroke-width: 1.5px;
-   -webkit-text-stroke-color: white;
-   letter-spacing: 4px;
    @media screen and (min-width: 768px) {
-     font-size: 4em;
+     font-size: 3em;
    }
  }
 
  .interior-header nav {
     text-transform: uppercase;
     font-size: .75em;
-    letter-spacing: 1px;
     @media screen and (min-width: 768px) {
       font-size: 1em;
     }
@@ -77,10 +65,6 @@
    text-decoration: none;
    color: white;
  }
-
- .interior-header nav a:hover {
-      color: #717171;
-    }
 
  .logo{
    text-align: center;
@@ -95,40 +79,8 @@
    text-align: center;
  }
 
- // General Custom Classes
- .page-title {
-   margin: 20px 0;
-   text-transform: uppercase;
-   font-size: 1.5em;
-   letter-spacing: 1.5px;
-   text-shadow:1px 1px 10px #fff, 1px 1px 10px #fff;
- }
-
- .interior-title {
-   margin: 20px 0 12px;
-   border-bottom: 1px solid #717171;
- }
-
- .interor-links a {
-   text-decoration: none;
-   color: #6DD3DF;
-   padding: 5px 0;
- }
-
- .interor-links a:hover {
-   color: #FBA100;
- }
-
- .focus-box {
-   border: 1px solid #6DD3DF;
-   margin: 20px 0;
-   padding: 10px;
-   @media screen and (min-width: 768px) {
-     width: 50%;
-   }
- }
-
  // Cards
+
  .cards {
   display: flex;
   flex-wrap: wrap;
@@ -222,47 +174,4 @@
       background-color: $card-background;
     }
   }
-}
-
-.form {
-  width: 100%;
-  margin: 0 auto;
-  font-size: 14px;
-  @media screen and (min-width: 768px) {
-    width: 60%;
-    font-size: 16px;
-  }
-}
-
-.title-form {
-  text-align: center;
-}
-
-.sign-up-buttons {
-  text-align: center;
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-#dev-button, #org-button {
-  width: 200px;
-  font-size: 12px;
-  margin: 5px;
-  @media screen and (min-width: 768px) {
-    width: 250px;
-    font-size: 16px;
-  }
-}
-
-.create-account-button {
-  margin-top: 10px;
-  font-size: 12px;
-  @media screen and (min-width: 768px) {
-    font-size: 16px;
-  }
-}
-
-.form-image {
-  font-size: 12px;
 }
