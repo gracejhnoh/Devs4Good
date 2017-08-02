@@ -44,8 +44,10 @@
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
-  <h3>My Proposal: </h3>
+  <h3>My Proposals: </h3>
+<ul>
   <% @project.developer_proposal(current_user).each do |proposal| %>
-    <%= link_to(raw(proposal.developer.full_name), project_proposal_path(@project.id, proposal.id)) %>
+    <li><%= link_to(raw(proposal.developer.full_name), project_proposal_path(@project.id, proposal.id)) %></li>
   <% end %>
+</ul>
 <% end %>
