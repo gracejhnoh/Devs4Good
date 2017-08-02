@@ -1,4 +1,3 @@
-require 'dragonfly'
 require 'dragonfly/s3_data_store'
 
 # Configure
