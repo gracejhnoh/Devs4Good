@@ -175,3 +175,46 @@
     }
   }
 }
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 14px;
+  @media screen and (min-width: 768px) {
+    width: 60%;
+    font-size: 16px;
+  }
+}
+
+.title-form {
+  text-align: center;
+}
+
+.sign-up-buttons {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#dev-button, #org-button {
+  width: 200px;
+  font-size: 12px;
+  margin: 5px;
+  @media screen and (min-width: 768px) {
+    width: 250px;
+    font-size: 16px;
+  }
+}
+
+.create-account-button {
+  margin-top: 10px;
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.form-image {
+  font-size: 12px;
+}
