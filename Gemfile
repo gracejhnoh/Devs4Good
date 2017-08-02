@@ -71,3 +71,11 @@ gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'jquery-rails'
 
 gem 'httparty'
+
+gem 'dragonfly'
+
+gem 'dragonfly-s3_data_store'
+
+group :production do
+  gem 'rack-cache', require: 'rack/cache'
+end

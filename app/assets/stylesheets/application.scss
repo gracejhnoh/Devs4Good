@@ -28,6 +28,7 @@
  .container {
    margin: 0 auto;
    width: 70%;
+   padding: 20px 0;
  }
 
  div {
@@ -133,7 +134,7 @@
   border: $card-border;
   border-radius: $base-border-radius;
   box-shadow: 0 2px 4px darken($base-background-color, 10%);
-  cursor: pointer;
+  // cursor: pointer;
   flex-basis: 15em;
   flex-grow: 1;
   margin: 0 $card-margin $base-spacing $card-margin;
@@ -186,7 +187,7 @@
 
   &:focus,
   &:hover {
-    cursor: pointer;
+    // cursor: pointer;
 
     img {
       opacity: $card-image-hover-opacity;

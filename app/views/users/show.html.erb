@@ -2,11 +2,13 @@
   <h2>My Account</h2>
 </div>
 <% if @user.user_type == 'org' %>
+<div>
+  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+</div>
   <h2 class='interior-title'><%= @user.org_name %></h2>
   <div class='interor-links'>
     <%= link_to('Edit Profile', edit_organization_path) %>
-  </div>
-  <div>
+  </div>  <div>
     <div>
       EIN number:
       <% if @user.ein == '' || @user.ein == nil %>
@@ -40,6 +42,9 @@
   </ul>
 
 <% else %> <!-- if user is dev   -->
+<div>
+  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+</div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
   <h4> <%= link_to('Edit Profile', edit_developer_path) %></h4>
   <div>
