@@ -5,6 +5,10 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   validates :password, presence: true, if: -> { new_record? || changes[:crypted_password] }
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/ }
+  
+  validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+
   validates :first_name, :last_name,  presence: true,
                           if: Proc.new { |u| u.user_type === 'dev'}
   validates :org_name, :street_address, :city, presence: true,

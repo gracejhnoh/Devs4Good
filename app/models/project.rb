@@ -8,4 +8,8 @@ class Project < ApplicationRecord
   def selected_proposal
     self.proposals.find_by(selected: true)
   end
+
+  def developer_proposal(id)
+    self.proposals.where(user_id: id)
+  end
 end
