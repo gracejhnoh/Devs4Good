@@ -18,6 +18,10 @@
 
  $desktop: new-breakpoint (min-width 768px);
 
+ body {
+   background-color: #F4F6F7;
+ }
+
  .container {
    margin: 0 auto;
    width: 70%;
