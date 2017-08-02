@@ -1,6 +1,11 @@
+<div class="page-title">
+  <h2>My Account</h2>
+</div>
 <% if @user.user_type == 'org' %>
-  <h2><%= @user.org_name %></h2>
-  <h4> <%= link_to('Edit Profile', edit_organization_path) %></h4>
+  <h2 class='interior-title'><%= @user.org_name %></h2>
+  <div class='interor-links'>
+    <%= link_to('Edit Profile', edit_organization_path) %>
+  </div>
   <div>
     <div>
       EIN number:
@@ -21,11 +26,11 @@
       <span></span>
     <% end %>
   </div>
-  <h3>About Us</h3>
+  <h3 class='interior-title'>About Us</h3>
   <div>
     <%= raw(@user.description) %>
   </div>
-  <h3>Our Current Projects</h3>
+  <h3 class='interior-title'> Projects</h3>
   <ul>
     <% @user.projects.each do |project| %>
       <li>
@@ -35,7 +40,7 @@
   </ul>
 
 <% else %> <!-- if user is dev   -->
-  <h2>  <%= @user.full_name %> </h2>
+  <h2 class='interior-title'>  <%= @user.full_name %> </h2>
   <h4> <%= link_to('Edit Profile', edit_developer_path) %></h4>
   <div>
     <% if @user.website != '' %>
@@ -45,13 +50,13 @@
     <% end %>
   </div>
 
-  <h3>About Me</h3>
+  <h3 class='interior-title'>About Me</h3>
   <div>
     <%= raw(@user.description) %>
   </div>
 
 <% if @user.proposals.count > 0 && current_user == @user %>
-  <h3>D4G Project Portfolio:</h3>
+  <h3 class='interior-title'>D4G Project Portfolio:</h3>
     <ol>
 
       <% @user.proposals.each do |proposal| %>
@@ -64,7 +69,7 @@
     </ol>
 
 
-    <h3>My Project Proposals</h3>
+    <h3 class='interior-title'>My Project Proposals</h3>
     <ol>
       <% @user.proposals.each do |proposal| %>
         <li>

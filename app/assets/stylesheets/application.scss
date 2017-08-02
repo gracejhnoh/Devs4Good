@@ -18,6 +18,8 @@
 
  $desktop: new-breakpoint (min-width 768px);
 
+// General Page Styles
+
  body {
    background-color: #F4F6F7;
    color: #717171!important;
@@ -32,6 +34,8 @@
    font-family: sans-serif;
  }
 
+// Header styles across pages
+
  .interior-header {
    text-align: center;
    background-color: #6DD3DF;
@@ -44,11 +48,11 @@
 
  .interior-logo {
    text-transform: uppercase;
-   font-size: 2em;
+   font-size: 3em;
    color: white;
    font-weight: bold;
    @media screen and (min-width: 768px) {
-     font-size: 3em;
+     font-size: 4em;
    }
  }
 
@@ -78,8 +82,31 @@
    text-align: center;
  }
 
- // Cards
+ // General Custom Classes
+ .page-title {
+   margin: 20px 0;
+   text-transform: uppercase;
+   font-size: 1.5em;
+   letter-spacing: 1.5px;
+   text-shadow:1px 1px 10px #fff, 1px 1px 10px #fff;
+ }
 
+ .interior-title {
+   margin: 20px 0 12px;
+   border-bottom: 1px solid #000;
+ }
+
+ .interor-links a {
+   text-decoration: none;
+   color: #6DD3DF;
+   padding: 5px 0;
+ }
+
+ .interor-links a:hover {
+   color: #FBA100;
+ }
+
+ // Cards
  .cards {
   display: flex;
   flex-wrap: wrap;
