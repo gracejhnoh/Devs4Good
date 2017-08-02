@@ -1,9 +1,12 @@
 <h2><%= @project.title %></h2>
-
+<div>Project Summary: <%= @project.summary %></div>
 <div>Project Details: <%= raw(@project.description) %></div>
 
 <div>
-  Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %>
+  Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %><br/>
+  <% if logged_in? && (current_user.user_type == 'dev' || @project.organization.id == current_user.id ) && @project.contact_email != '' %>
+  Project contact e-mail: <%= mail_to(@project.contact_email) %>
+  <% end %>
 </div>
 <div>Time frame: <%= @project.time_frame %></div>
 
@@ -38,4 +41,19 @@
       </li>
     <% end %>
   </ul>
+<% end %>
+
+<% if logged_in? && current_user.user_type == 'dev' %>
+<h3>My Proposals: </h3>
+<div class='cards'>
+  <ul>
+      <% @project.developer_proposal(current_user).each do |proposal| %>
+      <div class='card'>
+        <div class='card-copy'>
+          <li><%= link_to(raw(proposal.developer.full_name), project_proposal_path(@project.id, proposal.id)) %></li>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</div>
 <% end %>

@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-
+    
     if User.find(params[:organization_id]).user_type === 'dev'
       redirect_to developer_path(params[:organization_id])
     # todo post-MVP: handle edge case for organizations that don't own the project
@@ -33,7 +33,9 @@ class ProjectsController < ApplicationController
         organization_id: params[:organization_id],
         description: project_params[:description],
         title: project_params[:title],
-        time_frame: project_params[:time_frame]
+        time_frame: project_params[:time_frame],
+        summary: project_params[:summary],
+        contact_email: project_params[:contact_email]
         )
       if @project.valid?
         redirect_to organization_project_path(@project.organization, @project)
@@ -60,7 +62,9 @@ class ProjectsController < ApplicationController
         organization_id: params[:organization_id],
         description: project_params[:description],
         title: project_params[:title],
-        time_frame: project_params[:time_frame]
+        time_frame: project_params[:time_frame],
+        summary: project_params[:summary],
+        contact_email: project_params[:contact_email]
         )
         redirect_to organization_project_path(@project.organization, @project)
       else
@@ -82,6 +86,6 @@ class ProjectsController < ApplicationController
 
 private
   def project_params
-    params.require(:project).permit(:title, :description, :time_frame)
+    params.require(:project).permit(:title, :description, :time_frame, :summary, :contact_email)
   end
 end

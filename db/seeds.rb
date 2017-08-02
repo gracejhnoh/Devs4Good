@@ -16,30 +16,33 @@ User.destroy_all
     user_type: 'dev',
     email: Faker::Internet.safe_email,
     password: 'password',
+    password_confirmation: 'password',
     website: Faker::Internet.url,
     description: Faker::StarWars.quote,
-    phone: Faker::PhoneNumber.cell_phone
+    phone: '111-111-1111'
     )
 end
 
 10.times do
   User.create(
     org_name: Faker::Company.name,
+    ein: Faker::Number.number(9),
     street_address: Faker::Address.street_address,
     city: Faker::Address.city,
-    state: Faker::Address.state,
-    zip: Faker::Address.zip,
+    state: Faker::Address.state_abbr,
+    zip: '10112',
     user_type: 'org',
     email: Faker::Internet.safe_email,
     password: 'password',
+    password_confirmation: 'password',
     website: Faker::Internet.url,
     description: Faker::StarWars.quote,
-    phone: Faker::PhoneNumber.cell_phone
+    phone: '111-111-1111'
   )
 end
 
 10.times do
-  Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote)
+  Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote, summary: Faker::Lorem.sentences(1), contact_email: Faker::Internet.safe_email)
 end
 
 40.times do

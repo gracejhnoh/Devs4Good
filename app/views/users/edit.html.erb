@@ -19,6 +19,7 @@
   <div>
     <h3>Developer Profile</h3>
       <%= form_for @user, url: developer_path do |f| %>
+        Profile Image: <%= f.file_field :image %>
         First name: <%= f.text_field :first_name %><br />
         Last name: <%= f.text_field :last_name %><br />
         Email: <%= f.email_field :email %><br />
@@ -26,6 +27,7 @@
         Website: <%= f.text_field :website %><br />
         Description: <%= f.text_area :description %><br /><br />
         Password: <%= f.password_field :password %><br />
+        Password Confirmation: <%= f.password_field :password_confirmation %>
         <%= f.hidden_field :user_type, { :value => 'dev' } %>
         <%= f.submit 'Edit account' %>
       <% end %>
@@ -34,6 +36,7 @@
   <div>
     <h3>Organization Profile</h3>
     <%= form_for @user, url: organization_path do |f| %>
+      Profile Image: <%= f.file_field :image %>
       Organization name: <%= f.text_field :org_name %><br />
       EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %><br />
       Street Address: <%= f.text_field :street_address %><br />
@@ -45,6 +48,7 @@
       Website: <%= f.text_field :website %><br />
       Description: <%= f.text_area :description %><br /><br />
       Password: <%= f.password_field :password %><br />
+      Password Confirmation: <%= f.password_field :password_confirmation %>
       <%= f.hidden_field :user_type, { :value => 'org' } %>
       <%= f.submit 'Edit account' %>
     <% end %>

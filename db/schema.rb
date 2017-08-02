@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801172732) do
+ActiveRecord::Schema.define(version: 20170802185016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170801172732) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "summary", null: false
+    t.string "contact_email"
   end
 
   create_table "proposals", force: :cascade do |t|
@@ -53,6 +55,8 @@ ActiveRecord::Schema.define(version: 20170801172732) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ein"
+    t.string "image_uid"
+    t.string "image_name"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
