@@ -17,7 +17,8 @@ Dragonfly.app.configure do
       bucket_name: devs4good-profile-photos,
       access_key_id: ENV['PHOTOS_S3_KEY'],
       secret_access_key: ENV['PHOTOS_S3_SECRET'],
-      url_scheme: 'https'
+      url_scheme: 'https',
+      region: 'us-west-2'
   end
 end
 
