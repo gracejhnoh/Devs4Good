@@ -1,4 +1,4 @@
-# require 'dragonfly'
+require 'dragonfly'
 require 'dragonfly/s3_data_store'
 
 # Configure
@@ -9,18 +9,18 @@ Dragonfly.app.configure do
 
   url_format "/media/:job/:name"
 
-#   if Rails.env.development? || Rails.env.test?
+  if Rails.env.development? || Rails.env.test?
     datastore :file,
       root_path: Rails.root.join('public/system/dragonfly', Rails.env),
       server_root: Rails.root.join('public')
-#   else
-#     datastore :s3,
-#       bucket_name: devs4good-profile-photos,
-#       access_key_id: ENV['PHOTOS_S3_KEY'],
-#       secret_access_key: ENV['PHOTOS_S3_SECRET'],
-#       url_scheme: 'https',
-#       region: 'us-west-2'
-#   end
+  else
+    datastore :s3,
+      bucket_name: 'devs4good-profile-photos',
+      access_key_id: ENV['PHOTOS_S3_KEY'],
+      secret_access_key: ENV['PHOTOS_S3_SECRET'],
+      url_scheme: 'https',
+      region: 'us-west-2'
+  end
 end
 
 # Logger
