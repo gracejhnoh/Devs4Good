@@ -24,7 +24,7 @@ describe UsersController do
         password: Faker::Internet.password,
         website: Faker::Internet.url,
         description: Faker::StarWars.quote,
-        phone: Faker::PhoneNumber.cell_phone
+        phone: '356-456-5555'
         }
       }
       end
@@ -40,7 +40,7 @@ describe UsersController do
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
          }
         }.to change{User.where(user_type:'dev').count}.by(1)
@@ -63,7 +63,7 @@ describe UsersController do
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
         }
       end
@@ -80,7 +80,7 @@ describe UsersController do
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
          }
        }.not_to change{User.where(user_type:'dev').count}
@@ -102,14 +102,14 @@ describe UsersController do
         post :create, params: { user: {org_name: Faker::Company.name,
         street_address: Faker::Address.street_address,
         city: Faker::Address.city,
-        state: Faker::Address.state,
-        zip: Faker::Address.zip,
+        state: Faker::Address.state_abbr,
+        zip: '98101',
         user_type: 'org',
         email: Faker::Internet.safe_email,
         password: Faker::Internet.password,
         website: Faker::Internet.url,
         description: Faker::StarWars.quote,
-        phone: Faker::PhoneNumber.cell_phone
+        phone: '356-456-5555'
         }
       }
       end
@@ -122,14 +122,14 @@ describe UsersController do
         expect{post :create, params: { user: {org_name: Faker::Company.name,
           street_address: Faker::Address.street_address,
           city: Faker::Address.city,
-          state: Faker::Address.state,
-          zip: Faker::Address.zip,
+          state: Faker::Address.state_abbr,
+          zip: '98101',
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
          }
        }.to change{User.where(user_type:'org').count}.by(1)
@@ -149,14 +149,14 @@ describe UsersController do
         post :create, params: { user: {org_name: '',
           street_address: Faker::Address.street_address,
           city: Faker::Address.city,
-          state: Faker::Address.state,
-          zip: Faker::Address.zip,
+          state: Faker::Address.state_abbr,
+          zip: '98101',
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
         }
       end
@@ -169,14 +169,14 @@ describe UsersController do
         expect{post :create, params: { user: {org_name: '',
           street_address: Faker::Address.street_address,
           city: Faker::Address.city,
-          state: Faker::Address.state,
-          zip: Faker::Address.zip,
+          state: Faker::Address.state_abbr,
+          zip: '98101',
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
          }
        }.not_to change{User.where(user_type:'org').count}
@@ -282,7 +282,7 @@ describe UsersController do
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           } }
         new_user.reload
         expect(new_user.first_name).to eq('Jose')
@@ -296,7 +296,7 @@ describe UsersController do
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           } }
         new_user.reload
         expect(new_user.first_name).to render_template('edit')
@@ -316,14 +316,14 @@ describe UsersController do
         patch :update, params: { id: new_org.id, user: { org_name: 'Awesome Co.',
           street_address: Faker::Address.street_address,
           city: Faker::Address.city,
-          state: Faker::Address.state,
-          zip: Faker::Address.zip,
+          state: Faker::Address.state_abbr,
+          zip: '98101',
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
         }
         new_org.reload
@@ -334,14 +334,14 @@ describe UsersController do
         patch :update, params: { id: new_org.id, user: { org_name: nil,
           street_address: Faker::Address.street_address,
           city: Faker::Address.city,
-          state: Faker::Address.state,
-          zip: Faker::Address.zip,
+          state: Faker::Address.state_abbr,
+          zip: '98101',
           user_type: 'org',
           email: Faker::Internet.safe_email,
           password: Faker::Internet.password,
           website: Faker::Internet.url,
           description: Faker::StarWars.quote,
-          phone: Faker::PhoneNumber.cell_phone
+          phone: '356-456-5555'
           }
         }
         new_org.reload

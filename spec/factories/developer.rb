@@ -9,6 +9,6 @@ FactoryGirl.define do
     password { 'password123' }
     website { Faker::Internet.url }
     description { Faker::StarWars.quote }
-    phone { Faker::PhoneNumber.cell_phone }
+    phone { '356-456-5555' }
   end
 end

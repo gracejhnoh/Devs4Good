@@ -6,13 +6,13 @@ FactoryGirl.define do
     ein { Faker::Number.number(9) }
     street_address { Faker::Address.street_address }
     city { Faker::Address.city }
-    state { Faker::Address.state }
-    zip { Faker::Address.zip }
+    state { Faker::Address.state_abbr }
+    zip { '98101' }
     user_type { 'org' }
     email { Faker::Internet.safe_email }
     password { 'password123' }
     website { Faker::Internet.url }
     description { Faker::StarWars.quote }
-    phone { Faker::PhoneNumber.cell_phone }
+    phone { '356-456-5555' }
   end
 end

@@ -62,6 +62,21 @@ describe User do
     describe 'validations' do
       let(:invalid_developer) { FactoryGirl.build(:developer) }
 
+      it 'is invalid with misformatted email' do
+        invalid_developer.email = 'abc@123'
+        expect(invalid_developer).not_to be_valid
+      end
+
+      it 'is invalid with misformatted phone' do
+        invalid_developer.phone = '(502)344-9899'
+        expect(invalid_developer).not_to be_valid
+      end
+
+      it 'is invalid with misformatted website' do
+          invalid_developer.website = 'www.beandolphins.com'
+          expect(invalid_developer).not_to be_valid
+      end
+
       it 'is invalid without first name' do
         invalid_developer.first_name = ''
         expect(invalid_developer).not_to be_valid
@@ -153,6 +168,26 @@ describe User do
 
       it 'is invalid with wrong EIN format' do
         invalid_organization.ein = '12-3456789'
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid with misformatted state' do
+        invalid_organization.state = "Arizona"
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid with misformatted zip' do
+        invalid_organization.zip = "989978"
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid with misformatted phone' do
+        invalid_organization.phone = "1235467897"
+        expect(invalid_organization).not_to be_valid
+      end
+
+      it 'is invalid with misformatted website' do
+        invalid_organization.website = "www.beandolphins.com"
         expect(invalid_organization).not_to be_valid
       end
 
