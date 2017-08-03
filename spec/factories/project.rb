@@ -4,7 +4,7 @@ FactoryGirl.define do
     summary Faker::Lorem.sentence(1)
     description Faker::Hipster.paragraph
     time_frame Faker::Date.forward(30)
-    title Faker::HarryPotter.quote
+    title Faker::Lorem.characters(20)
     contact_email Faker::Internet.safe_email
   end
 end
