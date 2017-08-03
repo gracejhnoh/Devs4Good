@@ -195,17 +195,14 @@ body.home {
    }
  }
 
- .interior-logo a:hover {
-  -webkit-text-stroke-color: #717171;
- }
-
  .interior-header nav {
     text-transform: uppercase;
-    font-size: .75em;
+    font-size: .9em;
     letter-spacing: 1px;
     color: #717171;
     @media screen and (min-width: 768px) {
-      font-size: 1em;
+      font-size: 1.1em;
+      letter-spacing: 9px;
     }
  }
 
