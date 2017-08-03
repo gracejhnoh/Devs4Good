@@ -227,8 +227,8 @@
 // Mobile Nav Styling
 nav#mobile-menu a {
     display: block;
-    font-size: 1.5em;
-    padding: 5px 0;
+    font-size: 1.75em;
+    padding: 10px 0;
 }
 
 nav#regular-menu {
@@ -237,10 +237,13 @@ nav#regular-menu {
 
 #mobile-menu-title {
   font-size: 1.5em;
+  color: #fff;
+  border-bottom: 2px solid #717171;
 }
 
 @media screen and (min-width: 768px) {
-  #mobile-menu-title {
+  #mobile-menu-title,
+  nav#mobile-menu {
     display: none;
   }
 
