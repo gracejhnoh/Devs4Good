@@ -4,7 +4,7 @@
 
 <%= form_for @project, url: organization_projects_path(current_user.id) do |f| %>
   <%= f.label :title, 'Project Title' %>
-  <%= f.text_field :title, placeholder: 'Cat Adoption Emporium' %>
+  <%= f.text_field :title, placeholder: 'Modern, mobile-responsive website' %>
 
   <%= f.label :summary, 'Project Summary (max 255 characters)' %>
   <%= f.text_area :summary, placeholder: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
