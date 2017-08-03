@@ -118,6 +118,12 @@
    padding: 5px 0;
  }
 
+ .interor-non-selected-links a {
+   text-decoration: none;
+   color: #717171;
+   padding: 5px 0;
+ }
+
  .interor-links a:hover {
    color: #FBA100;
  }
@@ -131,6 +137,57 @@
    }
  }
 
+ .proposal-not-selected-box {
+   border: 1px solid #717171;
+   margin: 20px 0;
+   padding: 10px;
+   @media screen and (min-width: 768px) {
+     width: 50%;
+   }
+ }
+
+.dev-proposals-container {
+  width: 90%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.status {
+  font-size: 12px;
+  width: 100%;
+  border-top: 1px solid #717171;
+  padding-top: 5px;
+  text-align: center;
+  margin-top: 5px;
+  @media screen and (min-width: 768px) {
+    text-align: right;
+    font-size: 12px;
+    display: inline-block;
+    width: 25%;
+    border: none;
+  }
+}
+
+.proposal-title {
+  width: 100%;
+  font-size: 14px;
+  display: inline-block;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    width: 70%;
+  }
+}
+
+.inline-block {
+  width: 100%;
+  margin: 4% 2%;
+  @media screen and (min-width: 768px) {
+    margin: 1% 2%;
+    font-size: 16px;
+    display: inline-block;
+    width: 45%;
+  }
+}
  // Cards
 
  .cards {
