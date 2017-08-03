@@ -24,26 +24,26 @@
 
 <% if @project.selected_proposal %>
   <div>
-    Selected proposal:
+    <h3 class='interior-title'>Selected proposal:</h3>
     <span class='interior-links'><%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %></span>
   </div>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
 <h3 class='interior-title'>Proposals: </h3>
-  <ul>
+  <div class='cards'>
     <% @project.proposals.each do |proposal| %>
-      <li>
-        <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
+    <div class='card'>
+        <div class='card-copy'> <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %> </div>
         <% if !@project.selected_proposal %>
           <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
             <%= f.hidden_field :selected, :value => 'true' %>
             <%= f.submit "Select" %>
           <% end %>
         <% end %>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>

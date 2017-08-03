@@ -6,9 +6,9 @@
   <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
 </div>
   <h2 class='interior-title'><%= @user.org_name %></h2>
-  <div class='interior-links'>
+  <span class='link-button'>
     <%= link_to('Edit Profile', edit_organization_path) %>
-  </div>
+  </span>
   <div>
     <div class='focus-box'>
       EIN number:
@@ -51,9 +51,9 @@
 </div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
   <h4>
-    <div class='interior-links'>
+    <span class='link-button'>
       <%= link_to('Edit Profile', edit_developer_path) %>
-    </div>
+    </span>
   </h4>
   <div>
     <% if @user.website != '' %>
@@ -77,7 +77,7 @@
       <% @user.proposals.each do |proposal| %>
           <% if proposal.selected == true %>
           <li>
-            <%= link_to proposal.project.title, organization_project_path(proposal.project.organization, proposal.project) %>
+            <span class='interior-links'><%= link_to proposal.project.title, organization_project_path(proposal.project.organization, proposal.project) %></span>
           </li>
           <% end %>
       <% end %>
