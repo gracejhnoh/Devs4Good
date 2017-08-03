@@ -1,8 +1,10 @@
-<h2>Edit Your Proposal</h2>
+<div class='form'>
+  <h2 class='page-title'>Edit Your Proposal</h2>
 
-<%= form_for @proposal, url: project_proposal_path do |f| %>
-  <%= f.label :description, 'Proposal description' %>
-  <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' } %>
+  <%= form_for @proposal, url: project_proposal_path do |f| %>
+    <%= f.label :description, 'Proposal Description' %>
+    <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' } %>
 
-  <%= f.submit 'Edit Proposal' %>
-<% end %>
+    <%= f.submit 'Edit Proposal', class: 'post-routes-button' %>
+  <% end %>
+</div>

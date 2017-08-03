@@ -1,16 +1,20 @@
-<div class="page-title">
-  <h2>My Account</h2>
-</div>
-<% if @user.user_type == 'org' %>
-<div>
-  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
-</div>
-  <h2 class='interior-title'><%= @user.org_name %></h2>
-  <div class='interor-links'>
-    <%= link_to('Edit Profile', edit_organization_path) %>
+<% if logged_in? && current_user == @user %>
+  <div class="page-title">
+    <h2>My Account</h2>
   </div>
-  <div>
-    <div class='focus-box'>
+<% end %>
+<% if @user.user_type == 'org' %>
+  <h2 class='interior-title'><%= @user.org_name %></h2>
+  <div class='profile-image'>
+    <%= image_tag @user.image.thumb('250x250#').url if @user.image_stored? %>
+  </div>
+
+  <% if logged_in? && current_user == @user %>
+    <span class='link-button'>
+      <%= link_to('Edit Profile', edit_organization_path) %>
+    </span>
+  <% end %>  <div>
+    <div class='focus-box ein-box'>
       EIN number:
       <% if @user.ein == '' || @user.ein == nil %>
         No EIN provided
@@ -18,12 +22,15 @@
         <%= @user.ein %>
       <% end %><br/>
       EIN name: <%= @ein_name %>
+      <div class='ein-disclaimer-icon'>
+        *
+      </div>
     </div>
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
     Phone: <%= @user.phone %><br />
     <% if @user.website != '' %>
-      <div class='interor-links'>
+      <div class='interior-links'>
         Website: <%= link_to(@user.website, @user.website) %>
       </div>
     <% else %>
@@ -38,27 +45,28 @@
   <ul>
     <% @user.projects.each do |project| %>
       <li>
-        <div class='interor-links'>
+        <div class='interior-links'>
         <%= link_to(project.title, organization_project_path(project.organization, project)) %>
         </div>
       </li>
     <% end %>
   </ul>
+  <div class="ein-disclaimer-box">
+    <strong>*</strong> If the organization provided a valid EIN, the name associated with the EIN will be displayed above to give greater confidence about the non-profit's validity.
+  </div>
 
 <% else %> <!-- if user is dev   -->
-<div>
-  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+<div class='profile-image-container'>
+  <%= image_tag @user.image.thumb('250x250#').url, class: 'profile-image' if @user.image_stored? %>
 </div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
-  <h4>
-    <div class='interor-links'>
+    <span class='link-button'>
       <%= link_to('Edit Profile', edit_developer_path) %>
-    </div>
-  </h4>
+    </span>
   <div>
     <% if @user.website != '' %>
       Website:
-      <div class='interor-links'>
+      <div class='interior-links'>
         <%= link_to(@user.website, @user.website) %>
       </div>
     <% else %>
@@ -72,16 +80,16 @@
   </div>
 
   <h3 class='interior-title'>D4G Project Portfolio:</h3>
-    <ol>
+    <ul>
 
       <% @user.proposals.each do |proposal| %>
           <% if proposal.selected == true %>
           <li>
-            <%= link_to proposal.project.title, organization_project_path(proposal.project.organization, proposal.project) %>
+            <span class='interior-links'><%= link_to proposal.project.title, organization_project_path(proposal.project.organization, proposal.project) %></span>
           </li>
           <% end %>
       <% end %>
-    </ol>
+    </ul>
 
 
     <% if @user.proposals.count > 0 && current_user == @user %>
@@ -89,7 +97,7 @@
     <div class='dev-proposals-container'>
       <% @user.proposals.each do |proposal| %>
         <% if proposal.selected == true %>
-          <div class='focus-box interor-links inline-block'>
+          <div class='focus-box interior-links inline-block'>
             <div class='proposal-title'>
             <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
             </div>
@@ -98,7 +106,7 @@
             </div>
           </div>
         <% elsif proposal.selected == false && proposal.project.selected_proposal %>
-          <div class='proposal-not-selected-box interor-non-selected-links inline-block'>
+          <div class='proposal-not-selected-box interior-non-selected-links inline-block'>
           <div class='proposal-title'>
             <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
           </div>
@@ -107,7 +115,7 @@
             </div>
           </div>
         <% else %>
-          <div class='proposal-not-selected-box interor-links inline-block'>
+          <div class='proposal-not-selected-box interior-links inline-block'>
           <div class='proposal-title'>
             <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
           </div>

@@ -17,8 +17,6 @@
  @import "base/base";
 
  $desktop: new-breakpoint (min-width 768px);
- $smallerdesktop: new-breakpoint (min-width 400px);
- $evensmaller: new-breakpoint (min-width 300px);
 
  // General Page Styles
 
@@ -57,49 +55,109 @@ body.home {
   -webkit-box-items: center;
   -ms-flex-align: center;
   align-items: center;
-  min-height: 35em;
+  min-height: 21em;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  @media screen and (min-width: 768px) {
-    min-height: 56em;
-    margin-left: 51em;
+  @media screen and (min-width: 510px) and (max-width: 709px) {
+    min-height: 21em;
+    margin-left: 4em;
   }
-  @media screen and (min-width: 400px) {
-    min-height: 37em;
+  @media screen and (min-width: 710px) and (max-width: 767px) {
+    min-height: 21em;
+    margin-left: 2em;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    min-height: 19em;
+    margin-left: 7em;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1223px) {
+    min-height: 32em;
+    margin-left: 25em;
+  }
+  @media screen and (min-width: 1224px) and (max-width: 1450px) {
+    min-height: 40em;
     margin-left: 34em;
+  }
+  @media screen and (min-width: 1451px) and (max-width: 1480px) {
+    min-height: 43em;
+    margin-left: 43em;
+  }
+  @media screen and (min-width: 1481px) and (max-width: 1580px) {
+    min-height: 45em;
+    margin-left: 43em;
+  }
+  @media screen and (min-width: 1581px) and (max-width: 1649px) {
+    min-height: 46em;
+    margin-left: 48em;
+  }
+  @media screen and (min-width: 1650px) and (max-width: 1770px){
+    min-height: 46em;
+    margin-left: 53em;
+  }
+  @media screen and (min-width: 1771px) {
+    min-height: 49em;
+    margin-left: 59em;
   }
 }
 
 .middle-bar {
   font-family: 'Montserrat Subrayada', sans-serif;
   text-align: center;
-  font-size: 3em;
+  font-size: 3.5em;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: white;
   align-content: center;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 510px) and (max-width: 709px) {
+    font-size: 4em;
+  }
+  @media screen and (min-width: 710px) and (max-width: 767px) {
+    font-size: 4.6em;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: 5.3em;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1223px) {
+    font-size: 6em;
+  }
+  @media screen and (min-width: 1224px) and (max-width: 1450px) {
+    font-size: 6.2em;
+  }
+  @media screen and (min-width: 1451px) and (max-width: 1480px) {
+    font-size: 6.5em;
+  }
+  @media screen and (min-width: 1481px) and (max-width: 1580px) {
     font-size: 7em;
   }
-  @media screen and (min-width: 400px) {
-    font-size: 5em;
+  @media screen and (min-width: 1581px) and (max-width: 1649px) {
+    font-size: 7em;
+  }
+  @media screen and (min-width: 1650px) and (max-width: 1770px){
+    font-size: 7em;
+  }
+  @media screen and (min-width: 1771px) {
+    font-size: 7em;
   }
 }
 
 .home-nav {
   text-transform: uppercase;
   font-size: 1em;
-  letter-spacing: 2px;
+  letter-spacing: 7px;
   color: white;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 510px) and (max-width: 767px) {
+    letter-spacing: 4px;
+    font-size: 1.2em;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1650px) {
     letter-spacing: 7px;
     font-size: 1.2em;
   }
-  @media screen and (min-width: 400px) {
-    letter-spacing: 4px;
-    font-size: 1.2em;
+  @media screen and (min-width: 1651px) {
+    letter-spacing: 8px;
+    font-size: 1.4em;
   }
 }
 
@@ -112,10 +170,17 @@ body.home {
     color: #FBA100;
  }
 
+ form.button_to {
+   margin: 40px 0;
+ }
+
+button, [type='button'], [type='reset'], [type='submit']{
+  background-color: #4FB6C1!important;
+}
 // Header styles across pages
  .interior-header {
    text-align: center;
-   background-color: #6DD3DF;
+   background-color: #4FB6C1;
    padding: 20px 0;
    @media screen and (min-width: 768px) {
      padding: 25px 0;
@@ -123,14 +188,15 @@ body.home {
    width: 100%;
  }
 
- .interior-logo {
+ .interior-logo a {
    text-transform: uppercase;
    font-family: 'Montserrat Subrayada', sans-serif;
    font-size: 3em;
    color: white;
-   -webkit-text-fill-color: #6DD3DF;
+   -webkit-text-fill-color: #4FB6C1;
    -webkit-text-stroke-width: 1.5px;
    -webkit-text-stroke-color: white;
+   text-decoration: none;
    @media screen and (min-width: 768px) {
      font-size: 5.5em;
    }
@@ -138,11 +204,12 @@ body.home {
 
  .interior-header nav {
     text-transform: uppercase;
-    font-size: .75em;
+    font-size: .9em;
     letter-spacing: 1px;
     color: #717171;
     @media screen and (min-width: 768px) {
-      font-size: 1em;
+      font-size: 1.1em;
+      letter-spacing: 9px;
     }
  }
 
@@ -173,19 +240,19 @@ body.home {
    border-bottom: 1px solid #717171;
  }
 
- .interor-links a {
+ .interior-links a {
    text-decoration: none;
-   color: #6DD3DF;
+   color: #4FB6C1;
    padding: 5px 0;
  }
 
- .interor-non-selected-links a {
+ .interior-non-selected-links a {
    text-decoration: none;
    color: #717171;
    padding: 5px 0;
  }
 
- .interor-links a:hover {
+ .interior-links a:hover {
    color: #FBA100;
  }
 
@@ -196,6 +263,7 @@ body.home {
    @media screen and (min-width: 768px) {
      width: 50%;
    }
+   vertical-align: top;
  }
 
  .proposal-not-selected-box {
@@ -249,12 +317,34 @@ body.home {
     width: 45%;
   }
 }
+
+
+.link-button {
+  background-color: #4FB6C1;
+  margin: 10px 0;
+  border-radius: 5px;
+  display:inline-block;
+  padding: 10px 15px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 13px 35px;
+    width: 30%;
+  }
+}
+
+.link-button a {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  display: block;
+}
  // Cards
 
  .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
 }
 
 .card {
@@ -278,20 +368,28 @@ body.home {
   border-radius: $base-border-radius;
   box-shadow: 0 2px 4px darken($base-background-color, 10%);
   // cursor: pointer;
-  flex-basis: 15em;
+  flex-basis: 16em;
   flex-grow: 1;
   margin: 0 $card-margin $base-spacing $card-margin;
   position: relative;
   transition: all 0.2s ease-in-out;
   padding: 20px;
+  min-width: 200px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    max-width: 30%;
+  }
 
   a {
     text-decoration: none;
+    color: #4FB6C1;
   }
 
   a:hover {
     color: #FBA100;
   }
+
 
   .card-image {
     background-color: $card-image-hover-color;
@@ -372,6 +470,7 @@ nav#regular-menu {
   nav#regular-menu {
       display: inline;
   }
+}
 
 .form {
   width: 100%;
@@ -404,7 +503,7 @@ nav#regular-menu {
   }
 }
 
-.create-account-button {
+.post-routes-button {
   margin-top: 10px;
   font-size: 12px;
   @media screen and (min-width: 768px) {
@@ -415,4 +514,78 @@ nav#regular-menu {
 .form-image {
   font-size: 12px;
 }
+
+.select-proposal-button {
+  font-size: 12px;
+  padding: 7px;
+}
+
+// Error message styling
+#error-explanation {
+  color: #FBA100;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+#error-intro {
+  font-weight: bold;
+}
+
+// Disclaimer styling
+
+.disclaimers {
+  font-size: 13px;
+  color: #BEC6D1;
+}
+
+.required {
+  font-size: 13px;
+  color: #BEC6D1;
+}
+
+#ein-field {
+  margin-bottom: 0;
+}
+
+#ein-disclaimer {
+  font-size: 13px;
+  color: #BEC6D1;
+  display:block;
+}
+
+.post-form-titles {
+  font-weight: bold;
+}
+
+.ein-disclaimer-box {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #BEC6D1;
+  display:block;
+}
+
+.ein-disclaimer-icon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 0.5% 1% 0% 1%;
+  border-left: 1px solid #FBA100;
+  border-bottom: 1px solid #FBA100;
+}
+
+.ein-box {
+  position: relative;
+}
+
+.profile-image {
+  border-radius: 10%;
+  box-shadow: 2px 2px 2px #717171;
+}
+
+.profile-image-container {
+  text-align: center;
 }
