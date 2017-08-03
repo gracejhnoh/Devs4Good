@@ -1,7 +1,16 @@
 <% if @user.errors.any? %>
-  <% @user.errors.full_messages.each do |error| %>
-    <%= error %>
-  <% end %>
+  <div id="error-explanation">
+    <div id="error-intro">
+      <%= "Something went wrong!" %>
+    </div>
+    <ul class='errors-list'>
+      <% @user.errors.full_messages.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <div class='form'>
