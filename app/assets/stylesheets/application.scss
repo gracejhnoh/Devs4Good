@@ -18,6 +18,8 @@
 
  $desktop: new-breakpoint (min-width 768px);
 
+ // General Page Styles
+
  body {
    background-color: #F4F6F7;
    color: #717171!important;
@@ -27,11 +29,16 @@
    margin: 0 auto;
    width: 70%;
    padding: 20px 0;
+   @media screen and (min-width: 768px) {
+     width: 60%;
+   }
  }
 
  div {
    font-family: sans-serif;
  }
+
+// Header styles across pages
 
  .interior-header {
    text-align: center;
@@ -52,7 +59,7 @@
    -webkit-text-stroke-width: 1.5px;
    -webkit-text-stroke-color: white;
    @media screen and (min-width: 768px) {
-     font-size: 3em;
+     font-size: 4em;
    }
  }
 
