@@ -38,6 +38,27 @@
    font-family: sans-serif;
  }
 
+// HOMEPAGE CSS
+
+body.home {
+ background-image: image-url('seattle_skyline.jpg');
+ background-size: cover;
+ background-attachment: fixed;
+}
+
+.middle-bar {
+  font-family: 'Montserrat Subrayada', sans-serif;
+  // background-color: hsla(0, 0%, 50%, 0.5);
+  text-align: center;
+  font-size: 3em;
+  -webkit-text-fill-color: none;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: white;
+  align-content: center;
+  @media screen and (min-width: 768px) {
+    font-size: 7em;
+  }
+}
 // Header styles across pages
 
  .interior-header {
@@ -59,7 +80,7 @@
    -webkit-text-stroke-width: 1.5px;
    -webkit-text-stroke-color: white;
    @media screen and (min-width: 768px) {
-     font-size: 4em;
+     font-size: 5.5em;
    }
  }
 
@@ -81,19 +102,6 @@
  .interior-header nav a:hover {
       color: #717171;
   }
-
- .logo{
-   text-align: center;
-   padding: 10px;
-   border: 7px cornflowerblue double;
-   width: 50%;
-   margin: 10% auto;
-   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
- }
-
- .mission {
-   text-align: center;
- }
 
  // General Custom Classes
  .page-title {
