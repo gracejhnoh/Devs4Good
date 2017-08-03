@@ -10,7 +10,7 @@
     <%= link_to('Edit Profile', edit_organization_path) %>
   </div>
   <div>
-    <div class='focus-box'>
+    <div class='focus-box ein-box'>
       EIN number:
       <% if @user.ein == '' || @user.ein == nil %>
         No EIN provided
@@ -18,6 +18,9 @@
         <%= @user.ein %>
       <% end %><br/>
       EIN name: <%= @ein_name %>
+      <div class='ein-disclaimer-icon'>
+        *
+      </div>
     </div>
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
@@ -44,6 +47,9 @@
       </li>
     <% end %>
   </ul>
+  <div class="ein-disclaimer-box">
+    <strong>*</strong> If the organization provided a valid EIN, the name associated with the EIN will be displayed above to give greater confidence about the non-profit's validity.
+  </div>
 
 <% else %> <!-- if user is dev   -->
 <div>

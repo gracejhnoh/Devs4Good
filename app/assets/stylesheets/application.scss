@@ -462,3 +462,23 @@ nav#regular-menu {
 .post-form-titles {
   font-weight: bold;
 }
+
+.ein-disclaimer-box {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #BEC6D1;
+  display:block;
+}
+
+.ein-disclaimer-icon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 0.5% 1% 0% 1%;
+  border-left: 1px solid #FBA100;
+  border-bottom: 1px solid #FBA100;
+}
+
+.ein-box {
+  position: relative;
+}
