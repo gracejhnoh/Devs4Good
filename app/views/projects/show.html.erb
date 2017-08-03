@@ -28,19 +28,23 @@
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
   <h3>Proposals: </h3>
-  <ul>
+  <div class='dev-proposals-container'>
     <% @project.proposals.each do |proposal| %>
-      <li>
-        <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
+      <div class='proposal-not-selected-box interor-links inline-block'>
+        <div class='proposal-title'>
+          <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
+        </div>
         <% if !@project.selected_proposal %>
+        <div class='status'>
           <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
             <%= f.hidden_field :selected, :value => 'true' %>
-            <%= f.submit "Select" %>
+            <%= f.submit "Select", class: 'select-proposal-button' %>
           <% end %>
+        </div>
         <% end %>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
