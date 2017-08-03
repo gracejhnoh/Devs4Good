@@ -85,13 +85,6 @@ body.home {
   letter-spacing: 3px;
   color: white;
   @media screen and (min-width: 768px) {
-    // position: absolute;
-    // width: 500px;
-    // height: 200px;
-    // z-index: 15;
-    // top: 55%;
-    // left: 50%;
-    // margin: -100px 0 0 -100px;
     letter-spacing: 7px;
     font-size: 1.2em;
   }
@@ -104,6 +97,10 @@ body.home {
 
 .home-nav nav a:hover {
     color: #FBA100;
+    // -webkit-stroke-width: 7px;
+    // -webkit-stroke-color: #FFFFFF;
+    // -webkit-fill-color: #FFFFFF;
+    // text-shadow: 5px 0px 20px white;
  }
 // Header styles across pages
 
