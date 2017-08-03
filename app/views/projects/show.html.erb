@@ -8,24 +8,24 @@
 <div>
   Requested by: <span class='interor-links'><%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %></span><br/>
   <% if logged_in? && (current_user.user_type == 'dev' || @project.organization.id == current_user.id ) && @project.contact_email != '' %>
-  Project contact e-mail: <%= mail_to(@project.contact_email) %>
+  Project contact e-mail: <span class='interor-links'><%= mail_to(@project.contact_email) %></span>
   <% end %>
 </div>
 <div>Time frame: <%= @project.time_frame %></div>
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
-  <%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
-  <%= link_to('Delete', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %>
+  <span class='interor-links'><%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
+  <%= link_to('Delete', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %></span
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
-  <%= link_to('Add Proposal', new_project_proposal_path(@project)) %>
+  <span class='link-button'><%= link_to('Add Proposal', new_project_proposal_path(@project)) %></span>
 <% end %>
 
 <% if @project.selected_proposal %>
   <div>
     Selected proposal:
-    <%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %>
+    <span class='interor-links'><%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %></span>
   </div>
 <% end %>
 
@@ -47,7 +47,7 @@
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
-<h3>My Proposals: </h3>
+<h3 class= 'interior-title'>My Proposals: </h3>
 <div class='cards'>
   <ul>
       <% @project.developer_proposal(current_user).each do |proposal| %>

@@ -112,6 +112,13 @@ body.home {
     color: #FBA100;
  }
 
+ form.button_to {
+   margin: 40px 0;
+ }
+
+button, [type='button'], [type='reset'], [type='submit']{
+  background-color: #6DD3DF!important;
+}
 // Header styles across pages
  .interior-header {
    text-align: center;
@@ -249,12 +256,30 @@ body.home {
     width: 45%;
   }
 }
+
+
+.link-button {
+  background-color: #6DD3DF;
+  padding: 13px 35px;
+  margin: 30px 0 0;
+  border-radius: 5px;
+  display:block;
+  width: 30%;
+}
+
+.link-button a {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  display: block;
+}
  // Cards
 
  .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
 }
 
 .card {
@@ -284,9 +309,12 @@ body.home {
   position: relative;
   transition: all 0.2s ease-in-out;
   padding: 20px;
+  min-width: 200px;
+  text-align: center;
 
   a {
     text-decoration: none;
+    color: #6DD3DF;
   }
 
   a:hover {
