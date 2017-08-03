@@ -52,13 +52,12 @@
 
  .interior-logo {
    text-transform: uppercase;
+   font-family: 'Montserrat Subrayada', sans-serif;
    font-size: 3em;
    color: white;
-   font-weight: bold;
    -webkit-text-fill-color: #6DD3DF;
    -webkit-text-stroke-width: 1.5px;
    -webkit-text-stroke-color: white;
-   letter-spacing: 4px;
    @media screen and (min-width: 768px) {
      font-size: 4em;
    }
@@ -68,6 +67,7 @@
     text-transform: uppercase;
     font-size: .75em;
     letter-spacing: 1px;
+    color: #717171;
     @media screen and (min-width: 768px) {
       font-size: 1em;
     }
@@ -80,7 +80,7 @@
 
  .interior-header nav a:hover {
       color: #717171;
-    }
+  }
 
  .logo{
    text-align: center;
@@ -120,7 +120,7 @@
  }
 
  .focus-box {
-   border: 1px solid #6DD3DF;
+   border: 1px solid #FBA100;
    margin: 20px 0;
    padding: 10px;
    @media screen and (min-width: 768px) {
