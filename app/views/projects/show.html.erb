@@ -49,14 +49,12 @@
 <% if logged_in? && current_user.user_type == 'dev' %>
 <h3 class= 'interior-title'>My Proposals: </h3>
 <div class='cards'>
-  <ul>
       <% @project.developer_proposal(current_user).each do |proposal| %>
       <div class='card'>
         <div class='card-copy'>
-          <li><%= link_to(raw(proposal.developer.full_name), project_proposal_path(@project.id, proposal.id)) %></li>
+          <%= link_to(raw(proposal.developer.full_name), project_proposal_path(@project.id, proposal.id)) %>
         </div>
       </div>
     <% end %>
-  </ul>
 </div>
 <% end %>

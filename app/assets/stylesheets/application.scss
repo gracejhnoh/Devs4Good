@@ -263,8 +263,8 @@ button, [type='button'], [type='reset'], [type='submit']{
   margin: 10px 0;
   border-radius: 5px;
   display:inline-block;
-  width: 40%;
   padding: 10px 15px;
+  width: 100%;
   @media screen and (min-width: 768px) {
     padding: 13px 35px;
     width: 30%;
@@ -307,7 +307,7 @@ button, [type='button'], [type='reset'], [type='submit']{
   border-radius: $base-border-radius;
   box-shadow: 0 2px 4px darken($base-background-color, 10%);
   // cursor: pointer;
-  flex-basis: 15em;
+  flex-basis: 16em;
   flex-grow: 1;
   margin: 0 $card-margin $base-spacing $card-margin;
   position: relative;
@@ -315,6 +315,10 @@ button, [type='button'], [type='reset'], [type='submit']{
   padding: 20px;
   min-width: 200px;
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    max-width: 30%;
+  }
 
   a {
     text-decoration: none;
