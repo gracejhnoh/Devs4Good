@@ -1,5 +1,3 @@
-<h1>Create new user</h1>
-
 <% if @user.errors.any? %>
   <div id="error-explanation">
     <div id="error-intro">
@@ -15,44 +13,49 @@
   </div>
 <% end %>
 
-
-<button id='dev-button'>Register as a Developer</button>
-<button id='org-button'>Register as a Organization</button>
+<div class='sign-up-buttons'>
+  <button id='dev-button'>Register as a Developer</button>
+  <button id='org-button'>Register as a Organization</button>
+</div>
 
 <div id='dev-div'>
-  <h3>New Developer</h3>
-  <%= form_for @user, url: developers_path do |f| %>
-    Profile Image: <%= f.file_field :image %>
-    First name: <%= f.text_field :first_name %><br />
-    Last name: <%= f.text_field :last_name %><br />
-    Email: <%= f.email_field :email %><br />
-    Phone: <%= f.telephone_field :phone %><br />
-    Website: <%= f.text_field :website %><br />
-    Description: <%= f.text_area :description %><br /><br />
-    Password: <%= f.password_field :password %><br />
-    Password Confirmation: <%= f.password_field :password_confirmation %>
-    <%= f.hidden_field :user_type, { :value => 'dev' } %>
-    <%= f.submit 'Create account' %>
-  <% end %>
+  <div class='form'>
+    <h3 class='interior-title'>New Developer</h3>
+    <%= form_for @user, url: developers_path do |f| %>
+      Profile Image: <%= f.file_field :image, class:'form-image' %>
+      First name: <%= f.text_field :first_name %>
+      Last name: <%= f.text_field :last_name %>
+      Email: <%= f.email_field :email %>
+      Phone: <%= f.telephone_field :phone %>
+      Website: <%= f.text_field :website %>
+      Description: <%= f.text_area :description %>
+      Password: <%= f.password_field :password %>
+      Password Confirmation: <%= f.password_field :password_confirmation %>
+      <%= f.hidden_field :user_type, { :value => 'dev' } %>
+      <%= f.submit 'Create account', class: 'create-account-button' %>
+    <% end %>
+  </div>
 </div>
 
 <div id='org-div'>
-  <h3>New Organization</h3>
-  <%= form_for @user, url: organizations_path do |f| %>
-    Profile Image: <%= f.file_field :image %>
-    Organization name: <%= f.text_field :org_name %><br />
-    EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %><br />
-    Street Address: <%= f.text_field :street_address %><br />
-    City: <%= f.text_field :city %><br />
-    State: <%= f.text_field :state %><br />
-    Zip: <%= f.text_field :zip %><br />
-    Email: <%= f.email_field :email %><br />
-    Phone: <%= f.text_field :phone %><br />
-    Website: <%= f.text_field :website %><br />
-    Description: <%= f.text_area :description %><br /><br />
-    Password: <%= f.password_field :password %><br />
-    Password Confirmation: <%= f.password_field :password_confirmation %>
-    <%= f.hidden_field :user_type, { :value => 'org' } %>
-    <%= f.submit 'Create account' %>
-<% end %>
+  <div class='form'>
+    <h3 class='interior-title'>New Organization</h3>
+    <%= form_for @user, url: organizations_path do |f| %>
+      Profile Image: <%= f.file_field :image, class:'form-image' %>
+      Organization name: <%= f.text_field :org_name %>
+      EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %>
+      Street Address: <%= f.text_field :street_address %>
+      City: <%= f.text_field :city %>
+      State: <%= f.text_field :state %>
+      Zip: <%= f.text_field :zip %>
+      Email: <%= f.email_field :email %>
+      Phone: <%= f.text_field :phone %>
+      Website: <%= f.text_field :website %>
+      Description: <%= f.text_area :description %>
+      Password: <%= f.password_field :password %>
+      Password Confirmation: <%= f.password_field :password_confirmation %>
+      <%= f.hidden_field :user_type, { :value => 'org' } %>
+      <%= f.submit 'Create account', class: 'create-account-button' %>
+    <% end %>
+  </div>
 </div>
