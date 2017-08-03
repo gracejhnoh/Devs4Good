@@ -71,28 +71,52 @@
     <%= raw(@user.description) %>
   </div>
 
-<% if @user.proposals.count > 0 && current_user == @user %>
   <h3 class='interior-title'>D4G Project Portfolio:</h3>
     <ol>
 
       <% @user.proposals.each do |proposal| %>
           <% if proposal.selected == true %>
           <li>
-
-            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+            <%= link_to proposal.project.title, organization_project_path(proposal.project.organization, proposal.project) %>
           </li>
           <% end %>
       <% end %>
     </ol>
 
 
+    <% if @user.proposals.count > 0 && current_user == @user %>
     <h3 class='interior-title'>My Project Proposals</h3>
-    <ol>
+    <div class='dev-proposals-container'>
       <% @user.proposals.each do |proposal| %>
-        <li>
-          <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
-        </li>
+        <% if proposal.selected == true %>
+          <div class='focus-box interor-links inline-block'>
+            <div class='proposal-title'>
+            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+            </div>
+            <div class='status'>
+              Selected!
+            </div>
+          </div>
+        <% elsif proposal.selected == false && proposal.project.selected_proposal %>
+          <div class='proposal-not-selected-box interor-non-selected-links inline-block'>
+          <div class='proposal-title'>
+            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+          </div>
+            <div class='status'>
+              Not selected
+            </div>
+          </div>
+        <% else %>
+          <div class='proposal-not-selected-box interor-links inline-block'>
+          <div class='proposal-title'>
+            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+          </div>
+            <div class='status'>
+              Pending
+            </div>
+          </div>
+        <% end %>
       <% end %>
-    </ol>
+    </div>
   <% end %>
 <% end %>
