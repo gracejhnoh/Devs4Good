@@ -36,7 +36,7 @@
       <% @project.proposals.each do |proposal| %>
         <div class='proposal-not-selected-box interor-links inline-block'>
           <div class='proposal-title'>
-            <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
+            <span class='interior-links'><%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %></span>
           </div>
           <% if !@project.selected_proposal %>
           <div class='status'>
