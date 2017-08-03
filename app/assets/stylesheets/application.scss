@@ -223,3 +223,29 @@
     }
   }
 }
+
+// Mobile Nav Styling
+nav#mobile-menu a {
+    display: block;
+    font-size: 1.5em;
+    padding: 5px 0;
+}
+
+nav#regular-menu {
+    display: none;
+}
+
+#mobile-menu-title {
+  font-size: 1.5em;
+}
+
+@media screen and (min-width: 768px) {
+  #mobile-menu-title {
+    display: none;
+  }
+
+  nav#regular-menu {
+      display: inline;
+  }
+
+}
