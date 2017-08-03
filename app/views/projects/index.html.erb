@@ -1,4 +1,4 @@
-<h2>All Projects</h2>
+<h2 class='page-title'>All Projects</h2>
 <div>
   <% if logged_in? && current_user.user_type == 'org' %>
     <%= link_to('Create a New Project', new_organization_project_path(current_user.id)) %><br/><br/>
