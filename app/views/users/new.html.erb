@@ -20,7 +20,7 @@
 
 <div id='dev-div'>
   <div class='form'>
-    <h3 class='title-form'>New Developer</h3>
+    <h3 class='interior-title'>New Developer</h3>
     <%= form_for @user, url: developers_path do |f| %>
       Profile Image: <%= f.file_field :image, class:'form-image' %>
       First name: <%= f.text_field :first_name %>
@@ -39,7 +39,7 @@
 
 <div id='org-div'>
   <div class='form'>
-    <h3 class='title-form'>New Organization</h3>
+    <h3 class='interior-title'>New Organization</h3>
     <%= form_for @user, url: organizations_path do |f| %>
       Profile Image: <%= f.file_field :image, class:'form-image' %>
       Organization name: <%= f.text_field :org_name %>
