@@ -11,39 +11,20 @@
     integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
     crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
-  <body>
+  <% unless current_page?(root_path) %>
+    <body>
+  <% else %>
+    <body class='home'>
+  <% end %>
+    <% unless current_page?(root_path) %>
         <div class="interior-header">
-        <% unless current_page?(root_path) %>
           <div class='interior-logo'>
               Devs4Good
           </div>
-        <% end %>
-
-        <a id='mobile-menu-title'>MENU</a>
-
-        <!-- Mobile Nav -->
-        <nav id='mobile-menu'>
-          <%= link_to('Home', root_path) %>
-          <%= link_to('About') %>
-          <%= link_to('Projects', projects_path) %>
-
-          <% if current_user %>
-            <% if current_user.user_type == 'org' %>
-              <%= link_to('My organization', organization_path(current_user.id)) %>
-            <% else %>
-              <%= link_to('My account', developer_path(current_user.id)) %>
-            <% end %>
-            <%= link_to('Log Out', :logout, method: :post) %>
-          <% else %>
-            <%= link_to('Log In', :login) %>
-            <%= link_to('Sign Up', new_user_path) %>
-          <% end %>
-        </nav>
-
-        <!-- Regular Nav -->
-        <nav id='regular-menu'>
+        <nav>
           <%= link_to('Home', root_path) %> |
           <%= link_to('About') %> |
           <%= link_to('Projects', projects_path) %> |
@@ -62,6 +43,7 @@
         </nav>
 
       </div>
+      <% end %>
       <div class="container">
     <%= yield %>
     </div>
