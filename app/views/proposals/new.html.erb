@@ -1,10 +1,26 @@
+<% if @proposal.errors.any? %>
+  <div id="error-explanation">
+    <div id="error-intro">
+      <%= "Something went wrong!" %>
+    </div>
+    <ul class='errors-list'>
+      <% @proposal.errors.full_messages.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <div class='form'>
-  <h2 class='page-title'>Submit Your Proposal Here:</h2>
+  <h2 class='page-title'>Submit Your Proposal Here:</h2><span class='required'> * required fields </span>
 
   <%= form_for [@project, @proposal] do |f| %>
-    <%= f.label :description, 'Proposal for Project' %>
+    <span class='post-form-titles'>Proposal for Project</span><span class='required'> * </span>
     <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' }, value: 'Example: We can help you fulfill your vision by ...' %>
     <%= f.hidden_field :selected, { :value => false } %>
-    <%= f.submit 'Submit Proposal', class: 'create-account-button' %>
+    <%= f.submit 'Submit Proposal', class: 'post-routes-button' %>
   <% end %>
 </div>
