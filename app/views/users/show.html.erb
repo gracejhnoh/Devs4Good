@@ -1,14 +1,18 @@
-<div class="page-title">
-  <h2>My Account</h2>
-</div>
+<% if logged_in? && current_user == @user %>
+  <div class="page-title">
+    <h2>My Account</h2>
+  </div>
+<% end %>
 <% if @user.user_type == 'org' %>
 <div>
   <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
 </div>
   <h2 class='interior-title'><%= @user.org_name %></h2>
-  <div class='interor-links'>
-    <%= link_to('Edit Profile', edit_organization_path) %>
-  </div>
+  <% if logged_in? && current_user == @user %>
+    <div class='interor-links'>
+      <%= link_to('Edit Profile', edit_organization_path) %>
+    </div>
+  <% end %>
   <div>
     <div class='focus-box ein-box'>
       EIN number:
