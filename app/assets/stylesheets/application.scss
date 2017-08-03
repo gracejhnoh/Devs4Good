@@ -17,6 +17,7 @@
  @import "base/base";
 
  $desktop: new-breakpoint (min-width 768px);
+ $smallerdesktop: new-breakpoint (min-width 500px);
 
  // General Page Styles
 
@@ -64,6 +65,10 @@ body.home {
     min-height: 56em;
     margin-left: 51em;
   }
+  @media screen and (min-width: 400px) {
+    min-height: 36em;
+    margin-left: 31em;
+  }
 }
 
 .middle-bar {
@@ -77,15 +82,23 @@ body.home {
   @media screen and (min-width: 768px) {
     font-size: 7em;
   }
+  @media screen and (min-width: 400px) {
+    font-size: 5em;
+  }
+
 }
 
 .home-nav {
   text-transform: uppercase;
   font-size: 1em;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: white;
   @media screen and (min-width: 768px) {
     letter-spacing: 7px;
+    font-size: 1.2em;
+  }
+  @media screen and (min-width: 400px) {
+    letter-spacing: 4px;
     font-size: 1.2em;
   }
 }
@@ -140,6 +153,9 @@ body.home {
  .interior-header nav a {
    text-decoration: none;
    color: white;
+    @media screen and (min-width: 768px) {
+      letter-spacing: 5px;
+    }
  }
 
 
