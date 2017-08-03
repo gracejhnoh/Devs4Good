@@ -46,12 +46,31 @@ body.home {
  background-attachment: fixed;
 }
 
+.home-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-box-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 35em;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    min-height: 56em;
+    margin-left: 51em;
+  }
+}
+
 .middle-bar {
   font-family: 'Montserrat Subrayada', sans-serif;
-  // background-color: hsla(0, 0%, 50%, 0.5);
   text-align: center;
   font-size: 3em;
-  -webkit-text-fill-color: none;
+  -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: white;
   align-content: center;
@@ -59,6 +78,33 @@ body.home {
     font-size: 7em;
   }
 }
+
+.home-nav {
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 3px;
+  color: white;
+  @media screen and (min-width: 768px) {
+    // position: absolute;
+    // width: 500px;
+    // height: 200px;
+    // z-index: 15;
+    // top: 55%;
+    // left: 50%;
+    // margin: -100px 0 0 -100px;
+    letter-spacing: 7px;
+    font-size: 1.2em;
+  }
+}
+
+.home-nav nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.home-nav nav a:hover {
+    color: #FBA100;
+ }
 // Header styles across pages
 
  .interior-header {
