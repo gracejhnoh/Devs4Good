@@ -170,6 +170,13 @@ body.home {
     color: #FBA100;
  }
 
+ form.button_to {
+   margin: 40px 0;
+ }
+
+button, [type='button'], [type='reset'], [type='submit']{
+  background-color: #6DD3DF!important;
+}
 // Header styles across pages
  .interior-header {
    text-align: center;
@@ -236,19 +243,19 @@ body.home {
    border-bottom: 1px solid #717171;
  }
 
- .interor-links a {
+ .interior-links a {
    text-decoration: none;
    color: #6DD3DF;
    padding: 5px 0;
  }
 
- .interor-non-selected-links a {
+ .interior-non-selected-links a {
    text-decoration: none;
    color: #717171;
    padding: 5px 0;
  }
 
- .interor-links a:hover {
+ .interior-links a:hover {
    color: #FBA100;
  }
 
@@ -312,12 +319,34 @@ body.home {
     width: 45%;
   }
 }
+
+
+.link-button {
+  background-color: #6DD3DF;
+  margin: 10px 0;
+  border-radius: 5px;
+  display:inline-block;
+  padding: 10px 15px;
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    padding: 13px 35px;
+    width: 30%;
+  }
+}
+
+.link-button a {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  display: block;
+}
  // Cards
 
  .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
 }
 
 .card {
@@ -341,20 +370,28 @@ body.home {
   border-radius: $base-border-radius;
   box-shadow: 0 2px 4px darken($base-background-color, 10%);
   // cursor: pointer;
-  flex-basis: 15em;
+  flex-basis: 16em;
   flex-grow: 1;
   margin: 0 $card-margin $base-spacing $card-margin;
   position: relative;
   transition: all 0.2s ease-in-out;
   padding: 20px;
+  min-width: 200px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    max-width: 30%;
+  }
 
   a {
     text-decoration: none;
+    color: #6DD3DF;
   }
 
   a:hover {
     color: #FBA100;
   }
+
 
   .card-image {
     background-color: $card-image-hover-color;
