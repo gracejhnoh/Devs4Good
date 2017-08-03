@@ -21,26 +21,55 @@
 
 <% if @project.selected_proposal %>
   <div>
-    Selected proposal:
+    Selected developer:
     <%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %>
   </div>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
   <h3>Proposals: </h3>
-  <ul>
-    <% @project.proposals.each do |proposal| %>
-      <li>
-        <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
-        <% if !@project.selected_proposal %>
-          <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
-            <%= f.hidden_field :selected, :value => 'true' %>
-            <%= f.submit "Select" %>
+  <div class='dev-proposals-container'>
+    <% if !@project.selected_proposal %>
+      <% @project.proposals.each do |proposal| %>
+        <div class='proposal-not-selected-box interor-links inline-block'>
+          <div class='proposal-title'>
+            <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
+          </div>
+          <% if !@project.selected_proposal %>
+          <div class='status'>
+            <%= form_for proposal, url: project_proposal_path(@project.id, proposal.id) do |f| %>
+              <%= f.hidden_field :selected, :value => 'true' %>
+              <%= f.submit "Select", class: 'select-proposal-button' %>
+            <% end %>
+          </div>
           <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <% @project.proposals.each do |proposal| %>
+        <% if proposal.selected == true %>
+          <div class='focus-box interor-links inline-block'>
+            <div class='proposal-title'>
+            <%= link_to proposal.developer.full_name, project_proposal_path(proposal.project, proposal) %>
+            </div>
+            <div class='status'>
+              Selected!
+            </div>
+          </div>
+        <% else %>
+          <div class='proposal-not-selected-box interor-non-selected-links inline-block'>
+          <div class='proposal-title'>
+            <%= link_to proposal.developer.full_name, project_proposal_path(proposal.project, proposal) %>
+          </div>
+            <div class='status'>
+              Not selected
+            </div>
+          </div>
         <% end %>
-      </li>
+      <% end %>
     <% end %>
-  </ul>
+
+  </div>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
