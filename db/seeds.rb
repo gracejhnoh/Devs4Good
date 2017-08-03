@@ -42,7 +42,7 @@ end
 end
 
 10.times do
-  Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote, summary: Faker::Lorem.sentences(1), contact_email: Faker::Internet.safe_email)
+  Project.create(organization_id: User.where(user_type: 'org').sample.id, description: Faker::Hipster.paragraph, time_frame: Faker::Date.forward(30), title: Faker::HarryPotter.quote, summary: Faker::Lorem.sentences(1)[0], contact_email: Faker::Internet.safe_email)
 end
 
 40.times do
