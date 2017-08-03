@@ -20,17 +20,17 @@
 
 <div id='dev-div'>
   <div class='form'>
-    <h3 class='interior-title'>New Developer</h3>
+    <h3 class='interior-title'>New Developer  <span class='required'> * required fields </span></h3>
     <%= form_for @user, url: developers_path do |f| %>
       Profile Image: <%= f.file_field :image, class:'form-image' %>
-      First name: <%= f.text_field :first_name %>
-      Last name: <%= f.text_field :last_name %>
-      Email: <%= f.email_field :email %>
-      Phone: <%= f.telephone_field :phone %>
-      Website: <%= f.text_field :website %>
+      First name:  <span class='required'> * </span> <%= f.text_field :first_name %>
+      Last name:   <span class='required'> * </span><%= f.text_field :last_name %>
+      Email:<span class='required'> * </span> <%= f.email_field :email %>
+      Phone: <span class='disclaimers'> (Please enter phone in xxx-xxx-xxxx format)</span> <%= f.telephone_field :phone %>
+      Website: <span class='disclaimers'> (Must include http:// or https://)</span><%= f.text_field :website %>
       Description: <%= f.text_area :description %>
-      Password: <%= f.password_field :password %>
-      Password Confirmation: <%= f.password_field :password_confirmation %>
+      Password:  <span class='required'> * </span> <%= f.password_field :password %>
+      Password Confirmation:  <span class='required'> * </span> <%= f.password_field :password_confirmation %>
       <%= f.hidden_field :user_type, { :value => 'dev' } %>
       <%= f.submit 'Create account', class: 'post-routes-button' %>
     <% end %>
@@ -39,21 +39,21 @@
 
 <div id='org-div'>
   <div class='form'>
-    <h3 class='interior-title'>New Organization</h3>
+    <h3 class='interior-title'>New Organization  <span class='required'> * required fields </span></h3>
     <%= form_for @user, url: organizations_path do |f| %>
       Profile Image: <%= f.file_field :image, class:'form-image' %>
-      Organization name: <%= f.text_field :org_name %>
-      EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %>
-      Street Address: <%= f.text_field :street_address %>
-      City: <%= f.text_field :city %>
-      State: <%= f.text_field :state %>
-      Zip: <%= f.text_field :zip %>
-      Email: <%= f.email_field :email %>
-      Phone: <%= f.text_field :phone %>
-      Website: <%= f.text_field :website %>
+      Organization name:  <span class='required'> * </span>  <%= f.text_field :org_name %>
+      EIN number: <span class='disclaimers'>(must be 9 digits, no hyphen) </span> <%= f.text_field :ein, id:'ein-field' %> <span id='ein-disclaimer'>When you provide an EIN we search for the name associated with the given EIN and display on your profile to give developers condifence that you are a valid non-profit</span><br/>
+      Street Address:  <span class='required'> * </span> <%= f.text_field :street_address %>
+      City:  <span class='required'> * </span> <%= f.text_field :city %>
+      State:  <span class='required'> * </span> <%= f.text_field :state %>
+      Zip:  <span class='required'> * </span> <%= f.text_field :zip %>
+      Email:   <span class='required'> * </span><%= f.email_field :email %>
+      Phone: <span class='disclaimers'> (Please enter phone in xxx-xxx-xxxx format)</span><%= f.text_field :phone %>
+      Website: <span class='disclaimers'> (Must include http:// or https://)</span><%= f.text_field :website %>
       Description: <%= f.text_area :description %>
-      Password: <%= f.password_field :password %>
-      Password Confirmation: <%= f.password_field :password_confirmation %>
+      Password:  <span class='required'> * </span> <%= f.password_field :password %>
+      Password Confirmation:  <span class='required'> * </span> <%= f.password_field :password_confirmation %>
       <%= f.hidden_field :user_type, { :value => 'org' } %>
       <%= f.submit 'Create account', class: 'post-routes-button' %>
     <% end %>

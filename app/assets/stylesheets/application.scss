@@ -417,7 +417,7 @@ nav#regular-menu {
   font-size: 12px;
 }
 
-
+// Error message styling
 #error-explanation {
   color: #FBA100;
   text-align: center;
@@ -430,4 +430,26 @@ nav#regular-menu {
 
 #error-intro {
   font-weight: bold;
+}
+
+// Disclaimer styling
+
+.disclaimers {
+  font-size: 13px;
+  color: #BEC6D1;
+}
+
+.required {
+  font-size: 13px;
+  color: #BEC6D1;
+}
+
+#ein-field {
+  margin-bottom: 0;
+}
+
+#ein-disclaimer {
+  font-size: 13px;
+  color: #BEC6D1;
+  display:block;
 }
