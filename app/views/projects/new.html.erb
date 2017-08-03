@@ -1,4 +1,6 @@
-<h2>Submit Your Project Here:</h2>
+<div class='form'>
+<h2 class='page-title'>Submit Your Project Here</h2>
+
 
 <%= form_for @project, url: organization_projects_path(current_user.id) do |f| %>
   <%= f.label :title, 'Project Title' %>
@@ -17,5 +19,6 @@
   <p>(will be shown to any logged in developer viewing the project)</p>
   <%= f.email_field :contact_email %>
 
-  <%= f.submit 'Submit Project' %>
+  <%= f.submit 'Submit Project', class: 'create-account-button' %>
 <% end %>
+</div>

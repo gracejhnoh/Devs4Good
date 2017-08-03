@@ -17,6 +17,10 @@
  @import "base/base";
 
  $desktop: new-breakpoint (min-width 768px);
+ $smallerdesktop: new-breakpoint (min-width 400px);
+ $evensmaller: new-breakpoint (min-width 300px);
+
+ // General Page Styles
 
  body {
    background-color: #F4F6F7;
@@ -27,12 +31,88 @@
    margin: 0 auto;
    width: 70%;
    padding: 20px 0;
+   @media screen and (min-width: 768px) {
+     width: 60%;
+   }
  }
 
  div {
    font-family: sans-serif;
  }
 
+// HOMEPAGE CSS
+
+body.home {
+ background-image: image-url('seattle_skyline.jpg');
+ background-size: cover;
+ background-attachment: fixed;
+}
+
+.home-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-box-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 35em;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    min-height: 56em;
+    margin-left: 51em;
+  }
+  @media screen and (min-width: 400px) {
+    min-height: 37em;
+    margin-left: 34em;
+  }
+}
+
+.middle-bar {
+  font-family: 'Montserrat Subrayada', sans-serif;
+  text-align: center;
+  font-size: 3em;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: white;
+  align-content: center;
+  @media screen and (min-width: 768px) {
+    font-size: 7em;
+  }
+  @media screen and (min-width: 400px) {
+    font-size: 5em;
+  }
+}
+
+.home-nav {
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 2px;
+  color: white;
+  @media screen and (min-width: 768px) {
+    letter-spacing: 7px;
+    font-size: 1.2em;
+  }
+  @media screen and (min-width: 400px) {
+    letter-spacing: 4px;
+    font-size: 1.2em;
+  }
+}
+
+.home-nav nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.home-nav nav a:hover {
+    color: #FBA100;
+ }
+
+// Header styles across pages
  .interior-header {
    text-align: center;
    background-color: #6DD3DF;
@@ -45,17 +125,22 @@
 
  .interior-logo {
    text-transform: uppercase;
-   font-size: 2em;
+   font-family: 'Montserrat Subrayada', sans-serif;
+   font-size: 3em;
    color: white;
-   font-weight: bold;
+   -webkit-text-fill-color: #6DD3DF;
+   -webkit-text-stroke-width: 1.5px;
+   -webkit-text-stroke-color: white;
    @media screen and (min-width: 768px) {
-     font-size: 3em;
+     font-size: 5.5em;
    }
  }
 
  .interior-header nav {
     text-transform: uppercase;
     font-size: .75em;
+    letter-spacing: 1px;
+    color: #717171;
     @media screen and (min-width: 768px) {
       font-size: 1em;
     }
@@ -64,21 +149,106 @@
  .interior-header nav a {
    text-decoration: none;
    color: white;
+    @media screen and (min-width: 768px) {
+      letter-spacing: 5px;
+    }
  }
 
- .logo{
-   text-align: center;
+
+ .interior-header nav a:hover {
+      color: #717171;
+  }
+
+ // General Custom Classes
+ .page-title {
+   margin: 20px 0;
+   text-transform: uppercase;
+   font-size: 1.5em;
+   letter-spacing: 1.5px;
+   text-shadow:1px 1px 10px #fff, 1px 1px 10px #fff;
+ }
+
+ .interior-title {
+   margin: 20px 0 12px;
+   border-bottom: 1px solid #717171;
+ }
+
+ .interor-links a {
+   text-decoration: none;
+   color: #6DD3DF;
+   padding: 5px 0;
+ }
+
+ .interor-non-selected-links a {
+   text-decoration: none;
+   color: #717171;
+   padding: 5px 0;
+ }
+
+ .interor-links a:hover {
+   color: #FBA100;
+ }
+
+ .focus-box {
+   border: 1px solid #FBA100;
+   margin: 20px 0;
    padding: 10px;
-   border: 7px cornflowerblue double;
-   width: 50%;
-   margin: 10% auto;
-   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+   @media screen and (min-width: 768px) {
+     width: 50%;
+   }
  }
 
- .mission {
-   text-align: center;
+ .proposal-not-selected-box {
+   border: 1px solid #717171;
+   margin: 20px 0;
+   padding: 10px;
+   @media screen and (min-width: 768px) {
+     width: 50%;
+   }
  }
 
+.dev-proposals-container {
+  width: 90%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.status {
+  font-size: 12px;
+  width: 100%;
+  border-top: 1px solid #717171;
+  padding-top: 5px;
+  text-align: center;
+  margin-top: 5px;
+  @media screen and (min-width: 768px) {
+    text-align: right;
+    font-size: 12px;
+    display: inline-block;
+    width: 25%;
+    border: none;
+  }
+}
+
+.proposal-title {
+  width: 100%;
+  font-size: 14px;
+  display: inline-block;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    width: 70%;
+  }
+}
+
+.inline-block {
+  width: 100%;
+  margin: 4% 2%;
+  @media screen and (min-width: 768px) {
+    margin: 1% 2%;
+    font-size: 16px;
+    display: inline-block;
+    width: 45%;
+  }
+}
  // Cards
 
  .cards {
@@ -174,4 +344,75 @@
       background-color: $card-background;
     }
   }
+}
+
+// Mobile Nav Styling
+nav#mobile-menu a {
+    display: block;
+    font-size: 1.75em;
+    padding: 10px 0;
+}
+
+nav#regular-menu {
+    display: none;
+}
+
+#mobile-menu-title {
+  font-size: 1.5em;
+  color: #fff;
+  border-bottom: 2px solid #717171;
+}
+
+@media screen and (min-width: 768px) {
+  #mobile-menu-title,
+  nav#mobile-menu {
+    display: none;
+  }
+
+  nav#regular-menu {
+      display: inline;
+  }
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 14px;
+  @media screen and (min-width: 768px) {
+    width: 60%;
+    font-size: 16px;
+  }
+}
+
+.title-form {
+  text-align: center;
+}
+
+.sign-up-buttons {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#dev-button, #org-button {
+  width: 200px;
+  font-size: 12px;
+  margin: 5px;
+  @media screen and (min-width: 768px) {
+    width: 250px;
+    font-size: 16px;
+  }
+}
+
+.create-account-button {
+  margin-top: 10px;
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.form-image {
+  font-size: 12px;
+}
 }

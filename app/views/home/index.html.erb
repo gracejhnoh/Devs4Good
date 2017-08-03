@@ -1,4 +1,28 @@
-<div class='logo'><h1>Devs 4 Good</h1></div>
-<div class="mission">
-  Devs4Good is a platform where developers can give back to the community by bringing non-profit visions to life.
+<div class='home-box'>
+  <div class='interior-center'>
+
+    <div class='middle-bar'>
+      DEVS4GOOD
+    </div>
+
+    <div class='home-nav'>
+      <nav>
+        <%= link_to('About') %> |
+        <%= link_to('Projects', projects_path) %> |
+        <% if current_user %>
+          <% if current_user.user_type == 'org' %>
+            <%= link_to('My organization', organization_path(current_user.id)) %> |
+          <% else %>
+            <%= link_to('My account', developer_path(current_user.id)) %> |
+          <% end %>
+          <%= link_to('Log Out', :logout, method: :post) %>
+        <% else %>
+          <%= link_to('Log In', :login) %> |
+          <%= link_to('Sign Up', new_user_path) %>
+        <% end %>
+      </nav>
+    </div>
+
+  </div>
+
 </div>

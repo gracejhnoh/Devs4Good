@@ -1,82 +1,122 @@
+<div class="page-title">
+  <h2>My Account</h2>
+</div>
 <% if @user.user_type == 'org' %>
-  <div>
-    <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+<div>
+  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+</div>
+  <h2 class='interior-title'><%= @user.org_name %></h2>
+  <div class='interor-links'>
+    <%= link_to('Edit Profile', edit_organization_path) %>
   </div>
-  <h2><%= @user.org_name %></h2>
-  <h4> <%= link_to('Edit Profile', edit_organization_path) %></h4>
   <div>
-    <div>
+    <div class='focus-box'>
       EIN number:
       <% if @user.ein == '' || @user.ein == nil %>
         No EIN provided
       <% else %>
         <%= @user.ein %>
       <% end %><br/>
-
       EIN name: <%= @ein_name %>
     </div>
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
     Phone: <%= @user.phone %><br />
     <% if @user.website != '' %>
-      Website: <%= link_to(@user.website, @user.website) %>
+      <div class='interor-links'>
+        Website: <%= link_to(@user.website, @user.website) %>
+      </div>
     <% else %>
       <span></span>
     <% end %>
   </div>
-  <h3>About Us</h3>
+  <h3 class='interior-title'>About Us</h3>
   <div>
     <%= raw(@user.description) %>
   </div>
-  <h3>Our Current Projects</h3>
+  <h3 class='interior-title'> Projects</h3>
   <ul>
     <% @user.projects.each do |project| %>
       <li>
+        <div class='interor-links'>
         <%= link_to(project.title, organization_project_path(project.organization, project)) %>
+        </div>
       </li>
     <% end %>
   </ul>
 
 <% else %> <!-- if user is dev   -->
-  <div>
-    <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
-  </div>
-  <h2>  <%= @user.full_name %> </h2>
-  <h4> <%= link_to('Edit Profile', edit_developer_path) %></h4>
+<div>
+  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+</div>
+  <h2 class='interior-title'>  <%= @user.full_name %> </h2>
+  <h4>
+    <div class='interor-links'>
+      <%= link_to('Edit Profile', edit_developer_path) %>
+    </div>
+  </h4>
   <div>
     <% if @user.website != '' %>
-      Website: <%= link_to(@user.website, @user.website) %>
+      Website:
+      <div class='interor-links'>
+        <%= link_to(@user.website, @user.website) %>
+      </div>
     <% else %>
       <span></span>
     <% end %>
   </div>
 
-  <h3>About Me</h3>
+  <h3 class='interior-title'>About Me</h3>
   <div>
     <%= raw(@user.description) %>
   </div>
 
-<% if @user.proposals.count > 0 && current_user == @user %>
-  <h3>D4G Project Portfolio:</h3>
+  <h3 class='interior-title'>D4G Project Portfolio:</h3>
     <ol>
 
       <% @user.proposals.each do |proposal| %>
           <% if proposal.selected == true %>
           <li>
-            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+            <%= link_to proposal.project.title, organization_project_path(proposal.project.organization, proposal.project) %>
           </li>
           <% end %>
       <% end %>
     </ol>
 
 
-    <h3>My Project Proposals</h3>
-    <ol>
+    <% if @user.proposals.count > 0 && current_user == @user %>
+    <h3 class='interior-title'>My Project Proposals</h3>
+    <div class='dev-proposals-container'>
       <% @user.proposals.each do |proposal| %>
-        <li>
-          <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
-        </li>
+        <% if proposal.selected == true %>
+          <div class='focus-box interor-links inline-block'>
+            <div class='proposal-title'>
+            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+            </div>
+            <div class='status'>
+              Selected!
+            </div>
+          </div>
+        <% elsif proposal.selected == false && proposal.project.selected_proposal %>
+          <div class='proposal-not-selected-box interor-non-selected-links inline-block'>
+          <div class='proposal-title'>
+            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+          </div>
+            <div class='status'>
+              Not selected
+            </div>
+          </div>
+        <% else %>
+          <div class='proposal-not-selected-box interor-links inline-block'>
+          <div class='proposal-title'>
+            <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
+          </div>
+            <div class='status'>
+              Pending
+            </div>
+          </div>
+        <% end %>
       <% end %>
-    </ol>
+    </div>
   <% end %>
 <% end %>
