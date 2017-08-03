@@ -260,11 +260,15 @@ button, [type='button'], [type='reset'], [type='submit']{
 
 .link-button {
   background-color: #6DD3DF;
-  padding: 13px 35px;
-  margin: 30px 0 0;
+  margin: 10px 0;
   border-radius: 5px;
   display:inline-block;
-  width: 30%;
+  width: 40%;
+  padding: 10px 15px;
+  @media screen and (min-width: 768px) {
+    padding: 13px 35px;
+    width: 30%;
+  }
 }
 
 .link-button a {
@@ -320,6 +324,7 @@ button, [type='button'], [type='reset'], [type='submit']{
   a:hover {
     color: #FBA100;
   }
+
 
   .card-image {
     background-color: $card-image-hover-color;

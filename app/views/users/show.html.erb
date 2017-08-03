@@ -50,11 +50,9 @@
   <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
 </div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
-  <h4>
     <span class='link-button'>
       <%= link_to('Edit Profile', edit_developer_path) %>
     </span>
-  </h4>
   <div>
     <% if @user.website != '' %>
       Website:
