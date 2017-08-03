@@ -175,12 +175,12 @@ body.home {
  }
 
 button, [type='button'], [type='reset'], [type='submit']{
-  background-color: #6DD3DF!important;
+  background-color: #4FB6C1!important;
 }
 // Header styles across pages
  .interior-header {
    text-align: center;
-   background-color: #6DD3DF;
+   background-color: #4FB6C1;
    padding: 20px 0;
    @media screen and (min-width: 768px) {
      padding: 25px 0;
@@ -193,7 +193,7 @@ button, [type='button'], [type='reset'], [type='submit']{
    font-family: 'Montserrat Subrayada', sans-serif;
    font-size: 3em;
    color: white;
-   -webkit-text-fill-color: #6DD3DF;
+   -webkit-text-fill-color: #4FB6C1;
    -webkit-text-stroke-width: 1.5px;
    -webkit-text-stroke-color: white;
    text-decoration: none;
@@ -202,17 +202,14 @@ button, [type='button'], [type='reset'], [type='submit']{
    }
  }
 
- .interior-logo a:hover {
-  -webkit-text-stroke-color: #717171;
- }
-
  .interior-header nav {
     text-transform: uppercase;
-    font-size: .75em;
+    font-size: .9em;
     letter-spacing: 1px;
     color: #717171;
     @media screen and (min-width: 768px) {
-      font-size: 1em;
+      font-size: 1.1em;
+      letter-spacing: 9px;
     }
  }
 
@@ -245,7 +242,7 @@ button, [type='button'], [type='reset'], [type='submit']{
 
  .interior-links a {
    text-decoration: none;
-   color: #6DD3DF;
+   color: #4FB6C1;
    padding: 5px 0;
  }
 
@@ -323,7 +320,7 @@ button, [type='button'], [type='reset'], [type='submit']{
 
 
 .link-button {
-  background-color: #6DD3DF;
+  background-color: #4FB6C1;
   margin: 10px 0;
   border-radius: 5px;
   display:inline-block;
@@ -386,7 +383,7 @@ button, [type='button'], [type='reset'], [type='submit']{
 
   a {
     text-decoration: none;
-    color: #6DD3DF;
+    color: #4FB6C1;
   }
 
   a:hover {
