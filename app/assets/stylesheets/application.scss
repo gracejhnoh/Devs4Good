@@ -17,7 +17,8 @@
  @import "base/base";
 
  $desktop: new-breakpoint (min-width 768px);
- $smallerdesktop: new-breakpoint (min-width 500px);
+ $smallerdesktop: new-breakpoint (min-width 400px);
+ $evensmaller: new-breakpoint (min-width 300px);
 
  // General Page Styles
 
@@ -85,7 +86,6 @@ body.home {
   @media screen and (min-width: 400px) {
     font-size: 5em;
   }
-
 }
 
 .home-nav {
