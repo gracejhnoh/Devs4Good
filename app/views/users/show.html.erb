@@ -1,16 +1,20 @@
-<div class="page-title">
-  <h2>My Account</h2>
-</div>
+<% if logged_in? && current_user == @user %>
+  <div class="page-title">
+    <h2>My Account</h2>
+  </div>
+<% end %>
 <% if @user.user_type == 'org' %>
-<div>
-  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
-</div>
   <h2 class='interior-title'><%= @user.org_name %></h2>
-  <span class='link-button'>
-    <%= link_to('Edit Profile', edit_organization_path) %>
-  </span>
-  <div>
-    <div class='focus-box'>
+  <div class='profile-image'>
+    <%= image_tag @user.image.thumb('250x250#').url if @user.image_stored? %>
+  </div>
+
+  <% if logged_in? && current_user == @user %>
+    <span class='link-button'>
+      <%= link_to('Edit Profile', edit_organization_path) %>
+    </span>
+  <% end %>  <div>
+    <div class='focus-box ein-box'>
       EIN number:
       <% if @user.ein == '' || @user.ein == nil %>
         No EIN provided
@@ -18,6 +22,9 @@
         <%= @user.ein %>
       <% end %><br/>
       EIN name: <%= @ein_name %>
+      <div class='ein-disclaimer-icon'>
+        *
+      </div>
     </div>
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
@@ -44,10 +51,13 @@
       </li>
     <% end %>
   </ul>
+  <div class="ein-disclaimer-box">
+    <strong>*</strong> If the organization provided a valid EIN, the name associated with the EIN will be displayed above to give greater confidence about the non-profit's validity.
+  </div>
 
 <% else %> <!-- if user is dev   -->
-<div>
-  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+<div class='profile-image-container'>
+  <%= image_tag @user.image.thumb('250x250#').url, class: 'profile-image' if @user.image_stored? %>
 </div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
     <span class='link-button'>
@@ -70,7 +80,7 @@
   </div>
 
   <h3 class='interior-title'>D4G Project Portfolio:</h3>
-    <ol>
+    <ul>
 
       <% @user.proposals.each do |proposal| %>
           <% if proposal.selected == true %>
@@ -79,7 +89,7 @@
           </li>
           <% end %>
       <% end %>
-    </ol>
+    </ul>
 
 
     <% if @user.proposals.count > 0 && current_user == @user %>
