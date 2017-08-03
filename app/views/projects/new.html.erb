@@ -1,24 +1,40 @@
+<% if @project.errors.any? %>
+  <div id="error-explanation">
+    <div id="error-intro">
+      <%= "Something went wrong!" %>
+    </div>
+    <ul class='errors-list'>
+      <% @project.errors.full_messages.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class='form'>
-<h2 class='page-title'>Submit Your Project Here</h2>
+<h2 class='page-title'>Submit Your Project Here</h2><span class='required'> * required fields </span>
 
 
 <%= form_for @project, url: organization_projects_path(current_user.id) do |f| %>
-  <%= f.label :title, 'Project Title' %>
+
+  <span class='post-form-titles'>Project Title</span> <span class='disclaimers'>(max 50 characters)</span><span class='required'> * </span>
   <%= f.text_field :title, placeholder: 'Modern, mobile-responsive website' %>
 
-  <%= f.label :summary, 'Project Summary (max 255 characters)' %>
+  <span class='post-form-titles'>Project Summary</span> <span class='disclaimers'>(max 255 characters)</span><span class='required'> * </span>
   <%= f.text_area :summary, placeholder: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
 
-  <%= f.label :description, 'Project Specs' %>
+  <span class='post-form-titles'>Project Specs</span><span class='required'> * </span>
   <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' }, value: ' Consider including technology requirements, any existing assets, specific feature requests, and as many other details as possible' %>
 
-  <%= f.label :time_frame, 'Project Needed By' %>
+  <span class='post-form-titles'>Project Needed By</span><span class='required'> * </span>
   <%= f.date_field :time_frame %>
 
-  <%= f.label :contact_email, 'Contact e-mail for Project ' %>
-  <p>(will be shown to any logged in developer viewing the project)</p>
+  <span class='post-form-titles'>Contact e-mail for Project</span>
+  <span id='ein-disclaimer' >(will be shown to any logged in developer viewing the project)</span>
   <%= f.email_field :contact_email %>
 
-  <%= f.submit 'Submit Project', class: 'create-account-button' %>
+  <%= f.submit 'Submit Project', class: 'post-routes-button' %>
 <% end %>
 </div>

@@ -405,7 +405,7 @@ nav#regular-menu {
   }
 }
 
-.create-account-button {
+.post-routes-button {
   margin-top: 10px;
   font-size: 12px;
   @media screen and (min-width: 768px) {
@@ -420,4 +420,45 @@ nav#regular-menu {
 .select-proposal-button {
   font-size: 12px;
   padding: 7px;
+}
+
+// Error message styling
+#error-explanation {
+  color: #FBA100;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+#error-intro {
+  font-weight: bold;
+}
+
+// Disclaimer styling
+
+.disclaimers {
+  font-size: 13px;
+  color: #BEC6D1;
+}
+
+.required {
+  font-size: 13px;
+  color: #BEC6D1;
+}
+
+#ein-field {
+  margin-bottom: 0;
+}
+
+#ein-disclaimer {
+  font-size: 13px;
+  color: #BEC6D1;
+  display:block;
+}
+
+.post-form-titles {
+  font-weight: bold;
 }
