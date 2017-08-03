@@ -263,6 +263,7 @@ button, [type='button'], [type='reset'], [type='submit']{
    @media screen and (min-width: 768px) {
      width: 50%;
    }
+   vertical-align: top;
  }
 
  .proposal-not-selected-box {
@@ -558,4 +559,33 @@ nav#regular-menu {
 
 .post-form-titles {
   font-weight: bold;
+}
+
+.ein-disclaimer-box {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #BEC6D1;
+  display:block;
+}
+
+.ein-disclaimer-icon {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 0.5% 1% 0% 1%;
+  border-left: 1px solid #FBA100;
+  border-bottom: 1px solid #FBA100;
+}
+
+.ein-box {
+  position: relative;
+}
+
+.profile-image {
+  border-radius: 10%;
+  box-shadow: 2px 2px 2px #717171;
+}
+
+.profile-image-container {
+  text-align: center;
 }
