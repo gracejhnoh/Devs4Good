@@ -15,24 +15,42 @@ describe SessionsController do
     end
   end
 
-  context 'post #create with valid credenitals' do
-    before(:each) do
-      post :create, params: { user: { email: user.email, password: 'password123' } }
-    end
-    after(:each) do
-      delete :destroy
+  describe 'post #create with valid credentials' do
+    context 'developer login' do
+      before(:each) do
+        post :create, params: { user: { email: user.email, password: 'password123', user_type: 'dev' } }
+      end
+
+      it 'redirects to developer account if valid login' do
+        expect(response).to redirect_to developer_path(id: user.id)
+      end
     end
 
-    it 'responds with 302 if valid login' do
-      expect(response).to have_http_status 302
+    context 'Organization login' do
+      before(:each) do
+        post :create, params: { user: { email: user.email, password: 'password123', user_type: 'org' } }
+      end
+
+      it 'redirects to organization account if valid login' do
+        expect(response).to redirect_to developer_path(id: user.id)
+      end
     end
 
-    it 'redirects to home if valid login' do
-      expect(response).to redirect_to root_path
-    end
+    context 'Developer or organization login' do
+      before(:each) do
+        post :create, params: { user: { email: user.email, password: 'password123'} }
+      end
+      after(:each) do
+        delete :destroy
+      end
 
-    it 'create current_user if valid login' do
-      expect(controller.current_user).to be_present
+      it 'responds with 302 if valid login' do
+        expect(response).to have_http_status 302
+      end
+
+      it 'create current_user if valid login' do
+        expect(controller.current_user).to be_present
+      end
     end
   end
 
@@ -71,4 +89,5 @@ describe SessionsController do
       expect(controller.current_user).to_not be_present
     end
   end
+
 end

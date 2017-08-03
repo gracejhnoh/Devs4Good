@@ -11,7 +11,11 @@ class SessionsController < ApplicationController
       @user.errors.add(:base, :email_or_password_incorrect, message: "Email or password incorrect.")
       render :new, status: 401
     elsif @user = login(user_params[:email], user_params[:password])
-      redirect_back_or_to(:root)
+      if @user.user_type == 'dev'
+        redirect_back_or_to developer_path(@user)
+      else
+        redirect_back_or_to organization_path(@user)
+      end
     else
       @user = User.new
       @user.errors.add(:password, :password_incorrect, message: "is incorrect.")
