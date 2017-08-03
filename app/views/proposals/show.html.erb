@@ -1,15 +1,17 @@
-<h2> Proposal for: <%= link_to(@proposal.project.title, organization_project_path(@proposal.project.organization_id, @proposal.project.id)) %></h2>
+<h2 class='interior-title'> Proposal for: <span class='interior-links'><%= link_to(@proposal.project.title, organization_project_path(@proposal.project.organization_id, @proposal.project.id)) %></span></h2>
 <div>
   <%= raw(@proposal.description) %>
 </div>
+
+<h2 class='interior-title'>Developer Info</h2>
 <div>
-  Developer: <%= link_to(@proposal.developer.full_name, developer_path(@proposal.developer)) %>
+  Name: <span class='interior-links'><%= link_to(@proposal.developer.full_name, developer_path(@proposal.developer)) %></span>
 </div>
 <div>
-  Developer Contact Info: <%= @proposal.developer.email %>
+  Contact Info: <span class='interior-links'><%= @proposal.developer.email %></span>
 </div>
 
 <% if logged_in? && current_user.user_type == 'dev' && @proposal.developer.id == current_user.id %>
-  <%= link_to('Edit', edit_project_proposal_path(@proposal.project, @proposal)) %>
-  <%= link_to('Delete', project_proposal_path(@proposal.project, @proposal), method: :delete, data: { confirm: 'Are you sure?'}) %>
+  <span class='link-button'><%= link_to('Edit', edit_project_proposal_path(@proposal.project, @proposal)) %></span>
+<span class='link-button'>  <%= link_to('Delete', project_proposal_path(@proposal.project, @proposal), method: :delete, data: { confirm: 'Are you sure?'}) %></span>
 <% end %>
