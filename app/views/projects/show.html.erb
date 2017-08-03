@@ -1,39 +1,42 @@
-<h2><%= @project.title %></h2>
-<div>Project Summary: <%= @project.summary %></div>
-<div>Project Details: <%= raw(@project.description) %></div>
+<h2 class="page-title"><%= @project.title %></h2>
 
+<h2 class='interior-title'>Project Details</h2>
+<div>Summary: <%= @project.summary %></div>
+<div>Description: <%= raw(@project.description) %></div>
+
+<h2 class='interior-title'>Contact Details</h2>
 <div>
-  Requested by: <%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %><br/>
+  Requested by: <span class='interior-links'><%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %></span><br/>
   <% if logged_in? && (current_user.user_type == 'dev' || @project.organization.id == current_user.id ) && @project.contact_email != '' %>
-  Project contact e-mail: <%= mail_to(@project.contact_email) %>
+  Project contact e-mail: <span class='interior-links'><%= mail_to(@project.contact_email) %></span>
   <% end %>
 </div>
 <div>Time frame: <%= @project.time_frame %></div>
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
-  <%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
-  <%= link_to('Delete', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %>
+  <span class='link-button'><%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %></span>
+  <span class='link-button'><%= link_to('Delete', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %></span>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
-  <%= link_to('Add Proposal', new_project_proposal_path(@project)) %>
+  <span class='link-button'><%= link_to('Add Proposal', new_project_proposal_path(@project)) %></span>
 <% end %>
 
 <% if @project.selected_proposal %>
   <div>
-    Selected developer:
-    <%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %>
+    <h3 class='interior-title'>Selected Developer:</h3>
+    Developer: <span class='interior-links'><%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %></span>
   </div>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
-  <h3>Proposals: </h3>
+<h3 class='interior-title'>Proposals: </h3>
   <div class='dev-proposals-container'>
     <% if !@project.selected_proposal %>
       <% @project.proposals.each do |proposal| %>
         <div class='proposal-not-selected-box interor-links inline-block'>
           <div class='proposal-title'>
-            <%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %>
+            <span class='interior-links'><%= link_to(proposal.developer.full_name, project_proposal_path(proposal.project, proposal))  %></span>
           </div>
           <% if !@project.selected_proposal %>
           <div class='status'>
@@ -73,10 +76,10 @@
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
-<h3>My Proposals: </h3>
+<h3 class= 'interior-title'>My Proposals: </h3>
 <div class='cards'>
   <ul>
-      <% @project.developer_proposal(current_user).each_with_index do |proposal,index| %>
+    <% @project.developer_proposal(current_user).each_with_index do |proposal,index| %>
       <div class='card'>
         <div class='card-copy'>
           <li><%= link_to(("Proposal #{index + 1}"), project_proposal_path(@project.id, proposal.id)) %></li>
