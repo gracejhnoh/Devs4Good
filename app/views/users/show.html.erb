@@ -4,10 +4,11 @@
   </div>
 <% end %>
 <% if @user.user_type == 'org' %>
-<div>
-  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
-</div>
   <h2 class='interior-title'><%= @user.org_name %></h2>
+  <div class='profile-image'>
+    <%= image_tag @user.image.thumb('250x250#').url if @user.image_stored? %>
+  </div>
+
   <% if logged_in? && current_user == @user %>
     <div class='interor-links'>
       <%= link_to('Edit Profile', edit_organization_path) %>
@@ -56,10 +57,10 @@
   </div>
 
 <% else %> <!-- if user is dev   -->
-<div>
-  <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
+<div class='profile-image-container'>
+  <%= image_tag @user.image.thumb('250x250#').url, class: 'profile-image' if @user.image_stored? %>
 </div>
-  <h2 class='interior-title'>  <%= @user.full_name %> </h2>
+<h2 class='interior-title'>  <%= @user.full_name %> </h2>
   <h4>
     <div class='interor-links'>
       <%= link_to('Edit Profile', edit_developer_path) %>
