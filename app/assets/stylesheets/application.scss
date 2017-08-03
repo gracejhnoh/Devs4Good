@@ -17,8 +17,6 @@
  @import "base/base";
 
  $desktop: new-breakpoint (min-width 768px);
- $smallerdesktop: new-breakpoint (min-width 400px);
- $evensmaller: new-breakpoint (min-width 300px);
 
  // General Page Styles
 
@@ -57,48 +55,94 @@ body.home {
   -webkit-box-items: center;
   -ms-flex-align: center;
   align-items: center;
-  min-height: 35em;
+  min-height: 21em;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  @media screen and (min-width: 768px) {
-    min-height: 56em;
-    margin-left: 51em;
+  @media screen and (min-width: 510px) and (max-width: 709px) {
+    min-height: 21em;
+    margin-left: 4em;
   }
-  @media screen and (min-width: 400px) {
-    min-height: 37em;
-    margin-left: 34em;
+  @media screen and (min-width: 710px) and (max-width: 767px) {
+    min-height: 21em;
+    margin-left: 2em;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    min-height: 21em;
+    margin-left: 7em;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1223px) {
+    min-height: 32em;
+    margin-left: 25em;
+  }
+  @media screen and (min-width: 1224px) and (max-width: 1450px) {
+    min-height: 40em;
+    margin-left: 41em;
+  }
+  @media screen and (min-width: 1451px) and (max-width: 1480px) {
+    min-height: 45em;
+    margin-left: 43em;
+  }
+  @media screen and (min-width: 1481px) and (max-width: 1580px) {
+    min-height: 45em;
+    margin-left: 43em;
+  }
+  @media screen and (min-width: 1581px) and (max-width: 1770px){
+    min-height: 54em;
+    margin-left: 58em;
+  }
+  @media screen and (min-width: 1771px) {
+    min-height: 54em;
+    margin-left: 59em;
   }
 }
 
 .middle-bar {
   font-family: 'Montserrat Subrayada', sans-serif;
   text-align: center;
-  font-size: 3em;
+  font-size: 3.5em;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: white;
   align-content: center;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 510px) and (max-width: 709px) {
+    font-size: 4em;
+  }
+  @media screen and (min-width: 710px) and (max-width: 767px) {
+    font-size: 4.6em;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: 5.3em;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1223px) {
+    font-size: 6em;
+  }
+  @media screen and (min-width: 1224px) and (max-width: 1450px) {
+    font-size: 6.5em;
+  }
+  @media screen and (min-width: 1451px) and (max-width: 1480px) {
+    font-size: 6.5em;
+  }
+  @media screen and (min-width: 1481px) and (max-width: 1580px) {
     font-size: 7em;
   }
-  // @media screen and (min-width: 400px) {
-  //   font-size: 5em;
-  // }
+  @media screen and (min-width: 1581px) {
+    font-size: 7em;
+  }
 }
 
 .home-nav {
   text-transform: uppercase;
   font-size: 1em;
-  letter-spacing: 2px;
+  letter-spacing: 7px;
   color: white;
-  @media screen and (min-width: 768px) {
-    letter-spacing: 7px;
+  @media screen and (min-width: 510px) and (max-width: 767px) {
+    letter-spacing: 4px;
     font-size: 1.2em;
   }
-  @media screen and (min-width: 400px) {
-    letter-spacing: 4px;
+  @media screen and (min-width: 768px) {
+    letter-spacing: 7px;
     font-size: 1.2em;
   }
 }
@@ -123,19 +167,6 @@ body.home {
    width: 100%;
  }
 
- // .interior-logo {
- //   text-transform: uppercase;
- //   font-family: 'Montserrat Subrayada', sans-serif;
- //   font-size: 3em;
- //   color: white;
- //   -webkit-text-fill-color: #6DD3DF;
- //   -webkit-text-stroke-width: 1.5px;
- //   -webkit-text-stroke-color: white;
- //   @media screen and (min-width: 768px) {
- //     font-size: 5.5em;
- //   }
- // }
-
  .interior-logo a {
    text-transform: uppercase;
    font-family: 'Montserrat Subrayada', sans-serif;
@@ -153,7 +184,6 @@ body.home {
  .interior-logo a:hover {
   -webkit-text-stroke-color: #717171;
  }
-
 
  .interior-header nav {
     text-transform: uppercase;
