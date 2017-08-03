@@ -20,7 +20,30 @@
               Devs4Good
           </div>
         <% end %>
-        <nav>
+
+        <a id='mobile-menu-title'>MENU</a>
+
+        <!-- Mobile Nav -->
+        <nav id='mobile-menu'>
+          <%= link_to('Home', root_path) %>
+          <%= link_to('About') %>
+          <%= link_to('Projects', projects_path) %>
+
+          <% if current_user %>
+            <% if current_user.user_type == 'org' %>
+              <%= link_to('My organization', organization_path(current_user.id)) %>
+            <% else %>
+              <%= link_to('My account', developer_path(current_user.id)) %>
+            <% end %>
+            <%= link_to('Log Out', :logout, method: :post) %>
+          <% else %>
+            <%= link_to('Log In', :login) %>
+            <%= link_to('Sign Up', new_user_path) %>
+          <% end %>
+        </nav>
+
+        <!-- Regular Nav -->
+        <nav id='regular-menu'>
           <%= link_to('Home', root_path) %> |
           <%= link_to('About') %> |
           <%= link_to('Projects', projects_path) %> |
@@ -37,6 +60,7 @@
             <%= link_to('Sign Up', new_user_path) %>
           <% end %>
         </nav>
+
       </div>
       <div class="container">
     <%= yield %>

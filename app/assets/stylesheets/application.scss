@@ -228,6 +228,33 @@
   }
 }
 
+// Mobile Nav Styling
+nav#mobile-menu a {
+    display: block;
+    font-size: 1.75em;
+    padding: 10px 0;
+}
+
+nav#regular-menu {
+    display: none;
+}
+
+#mobile-menu-title {
+  font-size: 1.5em;
+  color: #fff;
+  border-bottom: 2px solid #717171;
+}
+
+@media screen and (min-width: 768px) {
+  #mobile-menu-title,
+  nav#mobile-menu {
+    display: none;
+  }
+
+  nav#regular-menu {
+      display: inline;
+  }
+
 .form {
   width: 100%;
   margin: 0 auto;
@@ -269,4 +296,5 @@
 
 .form-image {
   font-size: 12px;
+}
 }
