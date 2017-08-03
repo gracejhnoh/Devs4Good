@@ -22,7 +22,11 @@
     <% unless current_page?(root_path) %>
         <div class="interior-header">
           <div class='interior-logo'>
-              Devs4Good
+            <% if logged_in? %>
+              <%= link_to('Devs4Good', projects_path) %>
+            <% else %>
+              <%= link_to('Devs4Good', root_path) %>
+            <% end %>
           </div>
         <nav>
           <%= link_to('Home', root_path) %> |
