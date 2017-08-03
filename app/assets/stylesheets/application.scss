@@ -18,7 +18,7 @@
 
  $desktop: new-breakpoint (min-width 768px);
 
-// General Page Styles
+ // General Page Styles
 
  body {
    background-color: #F4F6F7;
@@ -99,9 +99,23 @@ body.home {
    color: white;
  }
 
+
  .interior-header nav a:hover {
       color: #717171;
   }
+
+ .logo{
+   text-align: center;
+   padding: 10px;
+   border: 7px cornflowerblue double;
+   width: 50%;
+   margin: 10% auto;
+   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+ }
+
+ .mission {
+   text-align: center;
+ }
 
  // General Custom Classes
  .page-title {
@@ -137,6 +151,7 @@ body.home {
  }
 
  // Cards
+
  .cards {
   display: flex;
   flex-wrap: wrap;
@@ -230,4 +245,47 @@ body.home {
       background-color: $card-background;
     }
   }
+}
+
+.form {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 14px;
+  @media screen and (min-width: 768px) {
+    width: 60%;
+    font-size: 16px;
+  }
+}
+
+.title-form {
+  text-align: center;
+}
+
+.sign-up-buttons {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#dev-button, #org-button {
+  width: 200px;
+  font-size: 12px;
+  margin: 5px;
+  @media screen and (min-width: 768px) {
+    width: 250px;
+    font-size: 16px;
+  }
+}
+
+.create-account-button {
+  margin-top: 10px;
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.form-image {
+  font-size: 12px;
 }

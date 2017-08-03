@@ -1,4 +1,5 @@
 require 'dragonfly'
+require 'dragonfly/s3_data_store'
 
 # Configure
 Dragonfly.app.configure do
@@ -14,7 +15,7 @@ Dragonfly.app.configure do
       server_root: Rails.root.join('public')
   else
     datastore :s3,
-      bucket_name: devs4good-profile-photos,
+      bucket_name: 'devs4good-profile-photos',
       access_key_id: ENV['PHOTOS_S3_KEY'],
       secret_access_key: ENV['PHOTOS_S3_SECRET'],
       url_scheme: 'https',
