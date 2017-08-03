@@ -17,14 +17,15 @@
       <% else %>
         <%= @user.ein %>
       <% end %><br/>
-
       EIN name: <%= @ein_name %>
     </div>
     <%= @user.street_address %><br/>
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
     Phone: <%= @user.phone %><br />
     <% if @user.website != '' %>
-      Website: <%= link_to(@user.website, @user.website) %>
+      <div class='interor-links'>
+        Website: <%= link_to(@user.website, @user.website) %>
+      </div>
     <% else %>
       <span></span>
     <% end %>
@@ -37,7 +38,9 @@
   <ul>
     <% @user.projects.each do |project| %>
       <li>
+        <div class='interor-links'>
         <%= link_to(project.title, organization_project_path(project.organization, project)) %>
+        </div>
       </li>
     <% end %>
   </ul>
@@ -47,10 +50,17 @@
   <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
 </div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
-  <h4> <%= link_to('Edit Profile', edit_developer_path) %></h4>
+  <h4>
+    <div class='interor-links'>
+      <%= link_to('Edit Profile', edit_developer_path) %>
+    </div>
+  </h4>
   <div>
     <% if @user.website != '' %>
-      Website: <%= link_to(@user.website, @user.website) %>
+      Website:
+      <div class='interor-links'>
+        <%= link_to(@user.website, @user.website) %>
+      </div>
     <% else %>
       <span></span>
     <% end %>
@@ -68,6 +78,7 @@
       <% @user.proposals.each do |proposal| %>
           <% if proposal.selected == true %>
           <li>
+
             <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
           </li>
           <% end %>
