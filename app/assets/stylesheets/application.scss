@@ -180,19 +180,19 @@ button, [type='button'], [type='reset'], [type='submit']{
    border-bottom: 1px solid #717171;
  }
 
- .interor-links a {
+ .interior-links a {
    text-decoration: none;
    color: #6DD3DF;
    padding: 5px 0;
  }
 
- .interor-non-selected-links a {
+ .interior-non-selected-links a {
    text-decoration: none;
    color: #717171;
    padding: 5px 0;
  }
 
- .interor-links a:hover {
+ .interior-links a:hover {
    color: #FBA100;
  }
 
@@ -263,7 +263,7 @@ button, [type='button'], [type='reset'], [type='submit']{
   padding: 13px 35px;
   margin: 30px 0 0;
   border-radius: 5px;
-  display:block;
+  display:inline-block;
   width: 30%;
 }
 

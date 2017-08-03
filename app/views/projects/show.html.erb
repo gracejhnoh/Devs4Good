@@ -6,16 +6,16 @@
 
 <h2 class='interior-title'>Contact Details</h2>
 <div>
-  Requested by: <span class='interor-links'><%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %></span><br/>
+  Requested by: <span class='interior-links'><%= link_to(@project.organization.org_name, organization_path(@project.organization.id)) %></span><br/>
   <% if logged_in? && (current_user.user_type == 'dev' || @project.organization.id == current_user.id ) && @project.contact_email != '' %>
-  Project contact e-mail: <span class='interor-links'><%= mail_to(@project.contact_email) %></span>
+  Project contact e-mail: <span class='interior-links'><%= mail_to(@project.contact_email) %></span>
   <% end %>
 </div>
 <div>Time frame: <%= @project.time_frame %></div>
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
-  <span class='interor-links'><%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %>
-  <%= link_to('Delete', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %></span
+  <span class='link-button'><%= link_to('Edit', edit_organization_project_path(@project.organization, @project)) %></span>
+  <span class='link-button'><%= link_to('Delete', organization_project_path, method: :delete, data: { confirm: 'Are you sure?' }) %></span>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'dev' %>
@@ -25,12 +25,12 @@
 <% if @project.selected_proposal %>
   <div>
     Selected proposal:
-    <span class='interor-links'><%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %></span>
+    <span class='interior-links'><%= link_to(@project.selected_proposal.developer.full_name, developer_path(@project.selected_proposal.developer)) %></span>
   </div>
 <% end %>
 
 <% if logged_in? && current_user.user_type == 'org' && @project.organization.id == current_user.id %>
-  <h3>Proposals: </h3>
+<h3 class='interior-title'>Proposals: </h3>
   <ul>
     <% @project.proposals.each do |proposal| %>
       <li>

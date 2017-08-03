@@ -6,7 +6,7 @@
   <%= image_tag @user.image.thumb('400x400#').url if @user.image_stored? %>
 </div>
   <h2 class='interior-title'><%= @user.org_name %></h2>
-  <div class='interor-links'>
+  <div class='interior-links'>
     <%= link_to('Edit Profile', edit_organization_path) %>
   </div>
   <div>
@@ -23,7 +23,7 @@
     <%= @user.city %>, <%= @user.state %> <%= @user.zip %><br />
     Phone: <%= @user.phone %><br />
     <% if @user.website != '' %>
-      <div class='interor-links'>
+      <div class='interior-links'>
         Website: <%= link_to(@user.website, @user.website) %>
       </div>
     <% else %>
@@ -38,7 +38,7 @@
   <ul>
     <% @user.projects.each do |project| %>
       <li>
-        <div class='interor-links'>
+        <div class='interior-links'>
         <%= link_to(project.title, organization_project_path(project.organization, project)) %>
         </div>
       </li>
@@ -51,14 +51,14 @@
 </div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
   <h4>
-    <div class='interor-links'>
+    <div class='interior-links'>
       <%= link_to('Edit Profile', edit_developer_path) %>
     </div>
   </h4>
   <div>
     <% if @user.website != '' %>
       Website:
-      <div class='interor-links'>
+      <div class='interior-links'>
         <%= link_to(@user.website, @user.website) %>
       </div>
     <% else %>
@@ -89,7 +89,7 @@
     <div class='dev-proposals-container'>
       <% @user.proposals.each do |proposal| %>
         <% if proposal.selected == true %>
-          <div class='focus-box interor-links inline-block'>
+          <div class='focus-box interior-links inline-block'>
             <div class='proposal-title'>
             <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
             </div>
@@ -98,7 +98,7 @@
             </div>
           </div>
         <% elsif proposal.selected == false && proposal.project.selected_proposal %>
-          <div class='proposal-not-selected-box interor-non-selected-links inline-block'>
+          <div class='proposal-not-selected-box interior-non-selected-links inline-block'>
           <div class='proposal-title'>
             <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
           </div>
@@ -107,7 +107,7 @@
             </div>
           </div>
         <% else %>
-          <div class='proposal-not-selected-box interor-links inline-block'>
+          <div class='proposal-not-selected-box interior-links inline-block'>
           <div class='proposal-title'>
             <%= link_to proposal.project.title, project_proposal_path(proposal.project, proposal) %>
           </div>
