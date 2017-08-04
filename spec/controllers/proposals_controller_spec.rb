@@ -2,6 +2,23 @@ require 'rails_helper'
 
 RSpec.describe ProposalsController, type: :controller do
 
+  describe 'GET #new' do
+    let!(:dev) { FactoryGirl.create(:developer) }
+    let!(:org) { FactoryGirl.create(:organization) }
+    let!(:test_project) { FactoryGirl.create(:project) }
+
+    it 'redirects an organization' do
+      login_user(org)
+      get :new, params: { project_id: test_project.id }
+      expect(response.status).to eq 302
+    end
+
+    it 'creates a new Proposal' do
+      login_user(dev)
+      get :new, params: { project_id: test_project.id }
+    end
+  end
+
   describe 'POST #create' do
     let!(:user) { FactoryGirl.create(:developer) }
     let!(:new_organization) { FactoryGirl.create(:organization) }
