@@ -1,3 +1,18 @@
+<% if @proposal.errors.any? %>
+  <div id="error-explanation">
+    <div id="error-intro">
+      <%= "Something went wrong!" %>
+    </div>
+    <ul class='errors-list'>
+      <% @proposal.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class='form'>
   <h2 class='page-title'>Edit Your Proposal</h2>
 
