@@ -12,7 +12,6 @@ RSpec.describe ProposalsController, type: :controller do
       get :new, params: { project_id: test_project.id }
       expect(response.status).to eq 302
     end
-
   end
 
   describe 'POST #create' do
@@ -90,7 +89,7 @@ RSpec.describe ProposalsController, type: :controller do
         expect(response).to render_template :show
       end
 
-      it 'redirectes to project page if the user is not the ' 
+      it 'redirectes to project page if the user is not the '
 
     end
 
