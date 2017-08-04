@@ -559,13 +559,18 @@ nav#regular-menu {
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
+
 }
+
+.errors-list li {
+    list-style: none;
+ }
 
 #error-intro {
   font-weight: bold;
 }
 
-// Disclaimer styling
+// Disclaimer and required fields styling
 
 .disclaimers {
   font-size: 13px;

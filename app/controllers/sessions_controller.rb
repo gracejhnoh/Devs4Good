@@ -13,8 +13,9 @@ class SessionsController < ApplicationController
     elsif @user = login(user_params[:email], user_params[:password])
       if @user.user_type == 'dev'
         redirect_back_or_to developer_path(@user)
-      else
+      elsif @user.user_type == 'org'
         redirect_back_or_to organization_path(@user)
+      else
       end
     else
       @user = User.new

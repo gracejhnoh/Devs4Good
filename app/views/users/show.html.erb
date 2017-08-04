@@ -5,8 +5,8 @@
 <% end %>
 <% if @user.user_type == 'org' %>
   <h2 class='interior-title'><%= @user.org_name %></h2>
-  <div class='profile-image'>
-    <%= image_tag @user.image.thumb('250x250#').url if @user.image_stored? %>
+  <div class='profile-image-container'>
+    <%= image_tag @user.image.thumb('250x250#').url, class: 'profile-image' if @user.image_stored? %>
   </div>
 
   <% if logged_in? && current_user == @user %>
@@ -60,9 +60,11 @@
   <%= image_tag @user.image.thumb('250x250#').url, class: 'profile-image' if @user.image_stored? %>
 </div>
   <h2 class='interior-title'>  <%= @user.full_name %> </h2>
+  <% if logged_in? && current_user == @user %>
     <span class='link-button'>
       <%= link_to('Edit Profile', edit_developer_path) %>
     </span>
+    <% end %>
   <div>
     <% if @user.website != '' %>
       Website:
