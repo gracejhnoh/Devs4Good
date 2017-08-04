@@ -164,6 +164,13 @@ body.home {
 .home-nav nav a {
   text-decoration: none;
   color: white;
+  display:block;
+  font-size: 1.5em;
+  @media screen and (min-width: 510px) {
+    display: inline;
+    font-size: 1.2em;
+
+  }
 }
 
 .home-nav nav a:hover {
@@ -343,7 +350,6 @@ button, [type='button'], [type='reset'], [type='submit']{
  .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 
 }
 
@@ -378,7 +384,7 @@ button, [type='button'], [type='reset'], [type='submit']{
   text-align: center;
 
   @media screen and (min-width: 768px) {
-    max-width: 30%;
+    width: 30%;
   }
 
   a {
@@ -529,13 +535,18 @@ nav#regular-menu {
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
+
 }
+
+.errors-list li {
+    list-style: none;
+ }
 
 #error-intro {
   font-weight: bold;
 }
 
-// Disclaimer styling
+// Disclaimer and required fields styling
 
 .disclaimers {
   font-size: 13px;
