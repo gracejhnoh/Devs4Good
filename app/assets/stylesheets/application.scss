@@ -144,7 +144,7 @@ body.home {
 
 .home-nav {
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 1.2em;
   letter-spacing: 7px;
   color: white;
   @media screen and (min-width: 510px) and (max-width: 767px) {
@@ -157,7 +157,7 @@ body.home {
   }
   @media screen and (min-width: 1651px) {
     letter-spacing: 8px;
-    font-size: 1.4em;
+    font-size: 1.5em;
   }
 }
 
@@ -165,11 +165,8 @@ body.home {
   text-decoration: none;
   color: white;
   display:block;
-  font-size: 1.5em;
   @media screen and (min-width: 510px) {
     display: inline;
-    font-size: 1.2em;
-
   }
 }
 
@@ -215,7 +212,7 @@ button, [type='button'], [type='reset'], [type='submit']{
     letter-spacing: 1px;
     color: #717171;
     @media screen and (min-width: 768px) {
-      font-size: 1.1em;
+      font-size: 1.3em;
       letter-spacing: 9px;
     }
  }
@@ -237,9 +234,12 @@ button, [type='button'], [type='reset'], [type='submit']{
  .page-title {
    margin: 20px 0;
    text-transform: uppercase;
-   font-size: 1.5em;
+   font-size: 1.6em;
    letter-spacing: 1.5px;
    text-shadow:1px 1px 10px #fff, 1px 1px 10px #fff;
+   @media screen and (min-width: 768px) {
+     font-size: 2em;
+   }
  }
 
  .interior-title {
@@ -261,6 +261,30 @@ button, [type='button'], [type='reset'], [type='submit']{
 
  .interior-links a:hover {
    color: #FBA100;
+ }
+
+ .mission {
+   font-weight: bold;
+   font-size: 1.3em;
+   text-align: center;
+   border: 5px double #FBA100;
+   margin: 30px 0;
+   padding: 15px;
+ }
+
+ .mission-expand {
+   font-size: 1.1em;
+   text-align: justify;
+   line-height: 1.7em;
+ }
+
+ .mission-end {
+   margin: 30px 0;
+   padding: 15px;
+   font-size: 1.2em;
+   text-align: center;
+   font-weight: bold;
+   color: #4FB6C1;
  }
 
  .focus-box {
