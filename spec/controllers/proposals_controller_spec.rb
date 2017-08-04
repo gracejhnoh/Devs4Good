@@ -89,8 +89,6 @@ RSpec.describe ProposalsController, type: :controller do
         expect(response).to render_template :show
       end
 
-      it 'redirectes to project page if the user is not the '
-
     end
 
     describe 'Delete #destroy' do
@@ -118,6 +116,37 @@ RSpec.describe ProposalsController, type: :controller do
         delete :destroy, params: { project_id: test_project.id, id: new_proposal.id }
         expect(response).to redirect_to organization_project_path(new_proposal.project.organization_id, new_proposal.project_id)
       end
+
+      it 'redirects if the user is an organization' do
+        logout_user
+        login_user(organization)
+        delete :destroy, params: { project_id: test_project.id, id: new_proposal.id }
+        expect(response).to redirect_to organization_path(organization)
+      end
+    end
+
+    describe 'GET#edit' do
+      let!(:developer) { FactoryGirl.create(:developer) }
+      let!(:organization) { FactoryGirl.create(:organization) }
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:edit_proposal) { FactoryGirl.create(:proposal) }
+      before(:each) do
+        login_user(developer)
+      end
+      after(:each) do
+        logout_user
+      end
+
+      it 'responds with status code 200' do
+        get :edit, params: { project_id: project.id, id: edit_proposal.id }
+        expect(response).to have_http_status 200
+      end
+
+      it 'renders an edit view' do
+      get :edit, params: { project_id: project.id, id: edit_proposal.id  }
+        expect(response).to render_template('edit')
+      end
+
     end
 
   describe 'PATCH#update' do
