@@ -78,14 +78,14 @@
 <% if logged_in? && current_user.user_type == 'dev' %>
 <h3 class= 'interior-title'>My Proposals: </h3>
 <div class='cards'>
-  <ul>
+  <ol>
     <% @project.developer_proposal(current_user).each_with_index do |proposal,index| %>
       <div class='card'>
         <div class='card-copy'>
-          <li><%= link_to(("Proposal #{index + 1}"), project_proposal_path(@project.id, proposal.id)) %></li>
+          <%= link_to(("Proposal #{index + 1}"), project_proposal_path(@project.id, proposal.id)) %>
         </div>
       </div>
     <% end %>
-  </ul>
+  </ol>
 </div>
 <% end %>

@@ -23,6 +23,8 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe 'POST #create' do
     let!(:organization) { FactoryGirl.create(:organization) }
+    let!(:organization2) { FactoryGirl.create(:organization)}
+    let!(:developer) { FactoryGirl.create(:developer) }
     before(:each) do
       login_user(organization)
     end
@@ -59,11 +61,27 @@ RSpec.describe ProjectsController, type: :controller do
       end
     end
 
+    it 'redirects if user is not the right organization' do
+      logout_user
+      login_user(organization2)
+      post :create, params: { organization_id: organization.id, project: FactoryGirl.attributes_for(:project)}
+      expect(response).to redirect_to organization_path(organization2)
+    end
+
+    it 'redirects if user is a developer' do
+      logout_user
+      login_user(developer)
+      post :create, params: { organization_id: organization.id, project: FactoryGirl.attributes_for(:project)}
+      expect(response).to redirect_to organization_path(developer)
+    end
+
   end
 
   describe 'DELETE#destroy' do
     let!(:organization) { FactoryGirl.create(:organization) }
     let!(:test_project) { FactoryGirl.create(:project) }
+    let!(:organization2) { FactoryGirl.create(:organization)}
+    let!(:developer) { FactoryGirl.create(:developer) }
     before(:each) do
       login_user(organization)
     end
@@ -84,11 +102,27 @@ RSpec.describe ProjectsController, type: :controller do
       delete :destroy, params: { id: test_project.id, organization_id: organization.id }
       expect(response).to redirect_to projects_path
     end
+
+    it 'redirects if user is not the right organization' do
+      logout_user
+      login_user(organization2)
+      delete :destroy, params: { id: test_project.id, organization_id: organization.id }
+      expect(response).to redirect_to organization_path(organization2)
+    end
+
+    it 'redirects if user is a developer' do
+      logout_user
+      login_user(developer)
+      delete :destroy, params: { id: test_project.id, organization_id: organization.id }
+      expect(response).to redirect_to organization_path(developer)
+    end
   end
 
   describe 'GET#edit' do
     let!(:organization) { FactoryGirl.create(:organization) }
     let!(:edit_project) { FactoryGirl.create(:project) }
+    let!(:organization2) { FactoryGirl.create(:organization)}
+    let!(:developer) { FactoryGirl.create(:developer) }
     before(:each) do
       login_user(organization)
     end
@@ -105,11 +139,27 @@ RSpec.describe ProjectsController, type: :controller do
       get :edit, params: { id: edit_project.id, organization_id: organization.id }
       expect(response).to render_template('edit')
     end
+
+    it 'redirects if user is not the right organization' do
+      logout_user
+      login_user(organization2)
+      get :edit, params: { id: edit_project.id, organization_id: organization.id }
+      expect(response).to redirect_to organization_path(organization2)
+    end
+
+    it 'redirects if user is a developer' do
+      logout_user
+      login_user(developer)
+      get :edit, params: { id: edit_project.id, organization_id: organization.id }
+      expect(response).to redirect_to organization_path(developer)
+    end
   end
 
   describe 'PUT#update' do
     let!(:organization) { FactoryGirl.create(:organization) }
     let!(:update_project) { FactoryGirl.create(:project) }
+    let!(:organization2) { FactoryGirl.create(:organization)}
+    let!(:developer) { FactoryGirl.create(:developer) }
     before(:each) do
       login_user(organization)
     end
@@ -127,6 +177,83 @@ RSpec.describe ProjectsController, type: :controller do
       patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: '', summary: 'great',  time_frame:"2017-08-03", contact_email: 'a@a.com'} }
       update_project.reload
       expect(response).to render_template('edit')
+    end
+
+    it 'redirects if user is not the right organization' do
+      logout_user
+      login_user(organization2)
+      patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: '', summary: 'great',  time_frame:"2017-08-03", contact_email: 'a@a.com'} }
+      expect(response).to redirect_to organization_path(organization2)
+    end
+
+    it 'redirects if user is a developer' do
+      logout_user
+      login_user(developer)
+      patch :update, params: { id: update_project.id, organization_id: organization.id, project: {title: 'Updated title', description: '', summary: 'great',  time_frame:"2017-08-03", contact_email: 'a@a.com'} }
+      expect(response).to redirect_to organization_path(developer)
+    end
+  end
+
+  describe 'GET#show' do
+    let!(:organization) { FactoryGirl.create(:organization) }
+    let!(:project) { FactoryGirl.create(:project) }
+    let!(:developer) { FactoryGirl.create(:developer) }
+    before(:each) do
+      login_user(organization)
+    end
+    after(:each) do
+      logout_user
+    end
+
+    it 'responds with status code 200' do
+      get :show, params: { id: project.id, organization_id: organization.id }
+      expect(response).to have_http_status 200
+    end
+
+    it 'renders a show view' do
+      get :show, params: { id: project.id, organization_id: organization.id }
+      expect(response).to render_template('show')
+    end
+
+    it 'redirects if specified user is not the same as path type' do
+      get :show, params: { id: project.id, organization_id: developer.id }
+      expect(response).to have_http_status 302
+    end
+  end
+
+  describe 'GET#new' do
+    let!(:organization) { FactoryGirl.create(:organization) }
+    let!(:organization2) { FactoryGirl.create(:organization)}
+    let!(:developer) { FactoryGirl.create(:developer) }
+    before(:each) do
+      login_user(organization)
+    end
+    after(:each) do
+      logout_user
+    end
+
+    it 'responds with status code 200' do
+      get :new, params: { organization_id: organization.id }
+      expect(response).to have_http_status 200
+    end
+
+    it 'renders a new view' do
+      get :new, params: { organization_id: organization.id }
+      expect(response).to render_template('new')
+    end
+
+    it 'redirects if user is not the right organization' do
+      logout_user
+      login_user(organization2)
+      get :new, params: { organization_id: organization.id }
+      expect(response).to have_http_status 302
+    end
+
+    it 'redirects if user is a developer' do
+      logout_user
+      login_user(developer)
+      get :new, params: { organization_id: organization.id }
+      expect(response).to have_http_status 302
     end
   end
 
