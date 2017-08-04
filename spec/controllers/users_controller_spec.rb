@@ -321,6 +321,10 @@ describe UsersController do
       expect(assigns[:ein_name]).to eq "Could not find matching organization for EIN"
     end
 
+    it 'redirects to organization path if request path url includes developer but user is organization' do
+      login_user(user)
+      expect({:get=>"developers/1"}).to route_to({:controller=>"users", :action=>"show", :id=>"1"})
+    end
   end
 
   describe 'GET#edit ' do
