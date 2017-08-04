@@ -7,7 +7,7 @@
 
     <div class='home-nav'>
       <nav>
-        <%= link_to('About') %> |
+        <%= link_to('About', pages_about_path) %> |
         <%= link_to('Projects', projects_path) %> |
         <% if current_user %>
           <% if current_user.user_type == 'org' %>

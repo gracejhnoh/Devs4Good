@@ -11,6 +11,7 @@
     integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
     crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
@@ -31,7 +32,7 @@
         <a href="#"id="mobile-menu-title">Menu</a>
         <nav id='mobile-menu'>
           <%= link_to('Home', root_path) %>
-          <%= link_to('About') %>
+          <%= link_to('About', pages_about_path) %>
           <%= link_to('Projects', projects_path) %>
 
           <% if current_user %>
@@ -42,14 +43,14 @@
             <% end %>
             <%= link_to('Log Out', :logout, method: :post) %>
           <% else %>
-            <%= link_to('Log In', :login) %> 
+            <%= link_to('Log In', :login) %>
             <%= link_to('Sign Up', new_user_path) %>
           <% end %>
         </nav>
 
         <nav id='regular-menu'>
           <%= link_to('Home', root_path) %> |
-          <%= link_to('About') %> |
+          <%= link_to('About', pages_about_path) %> |
           <%= link_to('Projects', projects_path) %> |
 
           <% if current_user %>
