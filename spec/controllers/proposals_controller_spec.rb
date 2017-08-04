@@ -16,7 +16,7 @@ RSpec.describe ProposalsController, type: :controller do
     it 'creates a new Proposal' do
       login_user(dev)
       get :new, params: { project_id: test_project.id }
-      expect()
+      eckxpect()
     end
   end
 
