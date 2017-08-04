@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new]
 
+  get 'pages/about' => 'pages#about'
+
   get 'login' => 'sessions#new', :as => :login
   post 'logout' => 'sessions#destroy', :as => :logout
   get "home/index"
