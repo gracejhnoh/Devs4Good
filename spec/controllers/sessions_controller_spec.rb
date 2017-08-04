@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe SessionsController do
   let!(:user) { FactoryGirl.create(:developer) }
+  let!(:organization) { FactoryGirl.create(:organization) }
 
   context 'get #new' do
     it 'responds with 200' do
@@ -16,7 +17,7 @@ describe SessionsController do
   end
 
   describe 'post #create with valid credentials' do
-    context 'developer login' do
+    context 'Developer login' do
       before(:each) do
         post :create, params: { user: { email: user.email, password: 'password123', user_type: 'dev' } }
       end
@@ -28,11 +29,11 @@ describe SessionsController do
 
     context 'Organization login' do
       before(:each) do
-        post :create, params: { user: { email: user.email, password: 'password123', user_type: 'org' } }
+        post :create, params: { user: { email: organization.email, password: 'password123', user_type: 'org' } }
       end
 
       it 'redirects to organization account if valid login' do
-        expect(response).to redirect_to developer_path(id: user.id)
+        expect(response).to redirect_to organization_path(id: organization.id)
       end
     end
 
@@ -57,6 +58,27 @@ describe SessionsController do
   context 'post #create with invalid credenitals' do
     before(:each) do
       post :create, params: { user: { email: user.email, password: 'wrong_password' } }
+    end
+    after(:each) do
+      delete :destroy
+    end
+
+    it 'responds with 401 if invalid login' do
+      expect(response).to have_http_status 401
+    end
+
+    it 'redirects to new template if invalid login' do
+      expect(response).to render_template :new
+    end
+
+    it 'does not create current_user if invalid login' do
+      expect(controller.current_user).to_not be_present
+    end
+  end
+
+  context 'post #create with blank password' do
+    before(:each) do
+      post :create, params: { user: { email: user.email, password: '' } }
     end
     after(:each) do
       delete :destroy
