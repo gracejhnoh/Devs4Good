@@ -2,7 +2,8 @@
 
 Devs4Good is a platform where developers can give back to the community by bringing non-profit visions to life.
 
-Devs4Good was built in 8 days by the following members of the 2017 "Rock Doves" cohort at DevBootcamp Seattle:
+Devs4Good was built in 7 days by the following members of the 2017 "Rock Doves" cohort at DevBootcamp Seattle:
+(in alphabetical order)
 * [Cassi Gallagher-Shearer](http://linkedin.com/in/cassigallagher)
 * [Grace Noh](http://linkedin.com/in/gracejhnoh)
 * [Jorge Contreras-Loreto](http://linkedin.com/in/jorgeacl)
