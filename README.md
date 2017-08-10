@@ -6,8 +6,8 @@ Devs4Good was built in 7 days by the following members of the 2017 "Rock Doves" 
 (in alphabetical order)
 * [Cassi Gallagher-Shearer](http://linkedin.com/in/cassigallagher)
 * [Grace Noh](http://linkedin.com/in/gracejhnoh)
-* [Jorge Contreras-Loreto](http://linkedin.com/in/jorgeacl)
 * [Jarred Taylor](http://linkedin.com/in/jarredtaylor)
+* [Jorge Contreras-Loreto](http://linkedin.com/in/jorgeacl)
 
 ## Functionality
 
