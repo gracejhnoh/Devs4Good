@@ -19,7 +19,7 @@ You can browse the site as a logged-out visitor or, if you're a non-profit organ
 
 ### As a non-profit, you can...
 * fill out a profile
-* provide your tax ID (know as an "EIN"). If provided, we display the name associated with that EIN to provide extra confidence as to your non-profit status
+* provide your tax ID (known as an "EIN"). If provided, we display the name associated with that EIN to provide extra confidence as to your non-profit status
 * post a technical project you need help with
 * receive notifications about new proposals from developers who want to help with your project
 * select a developer proposal for your project
