@@ -1,27 +1,16 @@
 <% if @user.errors.any? %>
-  <div id="error-explanation">
-    <div id="error-intro">
-      <%= "Something went wrong!" %>
-    </div>
-    <ul class='errors-list'>
-      <% @user.errors.full_messages.each do |error| %>
-        <li>
-          <%= error %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render '/errors/user_errors' %>
 <% end %>
 
 <div class='form'>
   <h3 class='page-title'>Login</h3>
-<%= form_for @user, url: sessions_path do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %><br />
+    <%= form_for @user, url: sessions_path do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email %><br />
 
-  <%= f.label :password %>
-  <%= f.password_field :password %><br />
+      <%= f.label :password %>
+      <%= f.password_field :password %><br />
 
-  <%= f.submit 'Login', class: 'post-routes-button' %>
-<% end %>
+      <%= f.submit 'Login', class: 'post-routes-button' %>
+    <% end %>
 </div>

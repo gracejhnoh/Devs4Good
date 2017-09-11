@@ -1,0 +1,12 @@
+<div id="error-explanation">
+  <div id="error-intro">
+    <%= "Something went wrong!" %>
+  </div>
+  <ul class='errors-list'>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <% end %>
+  </ul>
+</div>
