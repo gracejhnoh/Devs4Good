@@ -7,6 +7,10 @@ module ApplicationHelper
     @project.organization.id == current_user.id
   end
 
+  def is_proposal_dev?
+    @proposal.developer.id == current_user.id
+  end
+
   def has_contact_email?
     @project.contact_email != ''
   end

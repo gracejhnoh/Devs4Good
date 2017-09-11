@@ -1,17 +1,35 @@
-<h2 class='interior-title'> Proposal for: <span class='interior-links'><%= link_to(@proposal.project.title, organization_project_path(@proposal.project.organization_id, @proposal.project.id)) %></span></h2>
+<h2 class='interior-title'>
+  Proposal for:
+  <span class='interior-links'>
+    <%= link_to(@proposal.project.title, organization_project_path(@proposal.project.organization_id, @proposal.project.id)) %>
+  </span>
+</h2>
+
 <div>
   <%= raw(@proposal.description) %>
 </div>
 
 <h2 class='interior-title'>Developer Info</h2>
 <div>
-  Name: <span class='interior-links'><%= link_to(@proposal.developer.full_name, developer_path(@proposal.developer)) %></span>
-</div>
-<div>
-  Contact Info: <span class='interior-links'><%= @proposal.developer.email %></span>
+  Name:
+  <span class='interior-links'>
+    <%= link_to(@proposal.developer.full_name, developer_path(@proposal.developer)) %>
+  </span>
 </div>
 
-<% if logged_in? && current_user.user_type == 'dev' && @proposal.developer.id == current_user.id %>
-  <span class='link-button'><%= link_to('Edit', edit_project_proposal_path(@proposal.project, @proposal)) %></span>
-<span class='link-button'>  <%= link_to('Delete', project_proposal_path(@proposal.project, @proposal), method: :delete, data: { confirm: 'Are you sure?'}) %></span>
+<div>
+  Contact Info:
+  <span class='interior-links'>
+    <%= @proposal.developer.email %>
+  </span>
+</div>
+
+<% if logged_in? && is_proposal_dev? %>
+  <span class='link-button'>
+    <%= link_to('Edit', edit_project_proposal_path(@proposal.project, @proposal)) %>
+  </span>
+
+  <span class='link-button'>
+    <%= link_to('Delete', project_proposal_path(@proposal.project, @proposal), method: :delete, data: { confirm: 'Are you sure?'}) %>
+  </span>
 <% end %>
