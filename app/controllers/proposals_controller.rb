@@ -68,7 +68,7 @@ class ProposalsController < ApplicationController
     end
   end
 
-private
+  private
   def proposal_params
     params.require(:proposal).permit(:description, :selected)
   end
