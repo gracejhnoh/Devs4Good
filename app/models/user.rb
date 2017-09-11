@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def full_name
     self.first_name + ' ' + self.last_name
   end
+
+  def selected_proposals
+    self.proposals.where(selected: true)
+  end
 end

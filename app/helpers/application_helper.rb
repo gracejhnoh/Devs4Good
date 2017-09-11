@@ -14,4 +14,8 @@ module ApplicationHelper
   def has_contact_email?
     @project.contact_email != ''
   end
+
+  def missing_ein?
+    @user.ein == '' || @user.ein == nil
+  end
 end
