@@ -1,13 +1,11 @@
 class ProposalsController < ApplicationController
   before_action :require_login
+  before_action :redirect_if_org, only: [:new, :create]
+  before_action :get_project, only: [:new, :create, :edit]
 
   def new
-    if current_user.user_type == 'org'
-      redirect_to organization_path(current_user)
-    else
-      @proposal = Proposal.new
-      @project = Project.find(params[:project_id])
-    end
+    @proposal = Proposal.new
+    # @project = Project.find(params[:project_id])
   end
 
   def show
@@ -18,23 +16,23 @@ class ProposalsController < ApplicationController
   end
 
   def create
-    if current_user.user_type == 'org'
-      redirect_to organization_path(current_user)
+    @proposal = Proposal.create(project_id: params[:project_id],
+                                user_id: current_user.id,
+                                description: proposal_params[:description],
+                                selected: proposal_params[:selected]
+                                )
+    # @project = Project.find(params[:project_id])
+    if @proposal.valid?
+      UserMailer.new_proposal_email(@project.organization, @proposal).deliver_now
+      redirect_to project_proposal_path(@project, @proposal)
     else
-      @proposal = Proposal.create(project_id: params[:project_id], user_id: current_user.id, description: proposal_params[:description], selected: proposal_params[:selected])
-      @project = Project.find(params[:project_id])
-      if @proposal.valid?
-        UserMailer.new_proposal_email(@project.organization, @proposal).deliver_now
-        redirect_to project_proposal_path(@project, @proposal)
-      else
-        render :new
-      end
+      render :new
     end
   end
 
   def edit
     @proposal = Proposal.find(params[:id])
-    @project = Project.find(params[:project_id])
+    # @project = Project.find(params[:project_id])
     if current_user != @proposal.developer
       redirect_to organization_path(current_user)
     end
@@ -80,4 +78,15 @@ private
   def proposal_params
     params.require(:proposal).permit(:description, :selected)
   end
+
+  def redirect_if_org
+    if current_user.user_type == 'org'
+      return redirect_to organization_path(current_user)
+    end
+  end
+
+  def get_project
+    @project = Project.find(params[:project_id])
+  end
+
 end
