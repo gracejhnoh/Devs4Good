@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
-  before_action :check_user_org_match, only: [:new, :create, :edit, :update, :destroy]
+  before_action :redirect_if_incorrect_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :get_project, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -62,7 +62,7 @@ private
     params.require(:project).permit(:title, :description, :time_frame, :summary, :contact_email)
   end
 
-  def check_user_org_match
+  def redirect_if_incorrect_user
     if params[:organization_id].to_i != current_user.id
       return redirect_to organization_path(current_user)
     end
