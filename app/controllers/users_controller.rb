@@ -1,19 +1,20 @@
 class UsersController < ApplicationController
+  before_action :redirect_if_incorrect_user, only: [:edit, :update]
+  before_action :get_user, only: [:show, :edit, :update]
 
   def new
     @user = User.new
   end
 
   def show
-    @user = User.find(params[:id])
-    if @user.user_type == 'org' && (@user.ein != '' && @user.ein != nil)
+    if @user.user_type == 'org' && has_ein?
       response = HTTParty.get("https://projects.propublica.org/nonprofits/api/v2/organizations/#{@user.ein}.json")
       if response["organization"] == nil
         @ein_name = "Could not find matching organization for EIN"
       else
         @ein_name = response["organization"]["name"]
       end
-    elsif @user.user_type == 'org' && (@user.ein == '' || @user.ein == nil)
+    elsif @user.user_type == 'org' && !has_ein?
       @ein_name = "N/A"
     end
 
@@ -25,10 +26,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.create(user_params)
     if @user.valid?
-      @user.save!
-      @user = login(user_params[:email], user_params[:password])
+      login(user_params[:email], user_params[:password])
       redirect_to :root
     else
       render :new, status: 422
@@ -36,29 +36,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if (params[:id].to_i != current_user.id)
-      redirect_to root_path
-    else
-      @user = User.find(params[:id])
-    end
   end
 
   def update
-    if (params[:id].to_i != current_user.id)
-      redirect_to root_path
-    else
-      @user = User.find(params[:id])
-      if @user.update(
-        user_params
-        )
-        if @user.user_type == 'dev'
-          redirect_to developer_path
-        else
-          redirect_to organization_path
-        end
+    if @user.update(user_params)
+      if @user.user_type == 'dev'
+        redirect_to developer_path
       else
-        render :edit
+        redirect_to organization_path
       end
+    else
+      render :edit
     end
   end
 
@@ -82,6 +70,20 @@ class UsersController < ApplicationController
     :email,
     :password,
     :password_confirmation)
+  end
+
+  def redirect_if_incorrect_user
+    if (params[:id].to_i != current_user.id)
+      return redirect_to root_path
+    end
+  end
+
+  def get_user
+    @user = User.find(params[:id])
+  end
+
+  def has_ein?
+    @user.ein != '' && @user.ein != nil
   end
 
 end
