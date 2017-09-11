@@ -9,7 +9,7 @@ class ProposalsController < ApplicationController
   end
 
   def show
-    if current_user != @proposal.developer && current_user != @proposal.project.organization
+    if user_not_proposal_dev && user_not_project_org
       redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
     end
   end
@@ -29,14 +29,14 @@ class ProposalsController < ApplicationController
   end
 
   def edit
-    if current_user != @proposal.developer
+    if user_not_proposal_dev
       redirect_to organization_path(current_user)
     end
   end
 
   def update
     if proposal_params[:selected] == 'true'
-      if current_user != @proposal.project.organization
+      if user_not_project_org
         redirect_to organization_path(@proposal.project.organization)
       else
         if @proposal.update(proposal_params)
@@ -47,7 +47,7 @@ class ProposalsController < ApplicationController
         end
       end
     else
-      if current_user != @proposal.developer
+      if user_not_proposal_dev
         redirect_to organization_path(@proposal.project.organization)
       else
         if @proposal.update(proposal_params)
@@ -60,7 +60,7 @@ class ProposalsController < ApplicationController
   end
 
   def destroy
-    if current_user != @proposal.developer
+    if user_not_proposal_dev
       redirect_to organization_path(current_user)
     else
       @proposal.destroy
@@ -85,6 +85,14 @@ private
 
   def get_proposal
     @proposal = Proposal.find(params[:id])
+  end
+
+  def user_not_proposal_dev
+    current_user != @proposal.developer
+  end
+
+  def user_not_project_org
+    current_user != @proposal.project.organization
   end
 
 end
