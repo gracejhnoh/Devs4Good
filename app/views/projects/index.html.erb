@@ -1,6 +1,6 @@
 <h2 class='page-title'>All Projects</h2>
 <div>
-  <% if logged_in? && current_user.user_type == 'org' %>
+  <% if logged_in? && !is_dev? %>
     <span class='link-button'>
       <%= link_to('Create a New Project', new_organization_project_path(current_user.id)) %>
     </span>
