@@ -1,19 +1,8 @@
 <% if @user.errors.any? %>
-  <div id="error-explanation">
-    <div id="error-intro">
-      <%= "Something went wrong!" %>
-    </div>
-    <ul class='errors-list'>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render 'errors/user_errors' %>
 <% end %>
 
-<% if current_user.user_type == 'dev' %>
+<% if is_dev? %>
   <div class='form'>
     <h3 class='title-form'>Edit Your Profile</h3>
       <%= form_for @user, url: developer_path do |f| %>

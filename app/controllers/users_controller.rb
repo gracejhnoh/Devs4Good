@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:edit, :update]
   before_action :redirect_if_incorrect_user, only: [:edit, :update]
   before_action :get_user, only: [:show, :edit, :update]
 
