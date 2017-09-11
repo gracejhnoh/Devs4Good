@@ -2,14 +2,13 @@ class ProposalsController < ApplicationController
   before_action :require_login
   before_action :redirect_if_org, only: [:new, :create]
   before_action :get_project, only: [:new, :create, :edit]
+  before_action :get_proposal, only: [:show, :edit, :update, :destroy]
 
   def new
     @proposal = Proposal.new
-    # @project = Project.find(params[:project_id])
   end
 
   def show
-    @proposal = Proposal.find(params[:id])
     if current_user != @proposal.developer && current_user != @proposal.project.organization
       redirect_to organization_project_path(@proposal.project.organization, @proposal.project)
     end
@@ -21,7 +20,6 @@ class ProposalsController < ApplicationController
                                 description: proposal_params[:description],
                                 selected: proposal_params[:selected]
                                 )
-    # @project = Project.find(params[:project_id])
     if @proposal.valid?
       UserMailer.new_proposal_email(@project.organization, @proposal).deliver_now
       redirect_to project_proposal_path(@project, @proposal)
@@ -31,15 +29,12 @@ class ProposalsController < ApplicationController
   end
 
   def edit
-    @proposal = Proposal.find(params[:id])
-    # @project = Project.find(params[:project_id])
     if current_user != @proposal.developer
       redirect_to organization_path(current_user)
     end
   end
 
   def update
-    @proposal = Proposal.find(params[:id])
     if proposal_params[:selected] == 'true'
       if current_user != @proposal.project.organization
         redirect_to organization_path(@proposal.project.organization)
@@ -65,13 +60,12 @@ class ProposalsController < ApplicationController
   end
 
   def destroy
-    @proposal = Proposal.find(params[:id])
-      if current_user != @proposal.developer
-        redirect_to organization_path(current_user)
-      else
-        @proposal.destroy
-        redirect_to organization_project_path(@proposal.project.organization_id, @proposal.project_id)
-      end
+    if current_user != @proposal.developer
+      redirect_to organization_path(current_user)
+    else
+      @proposal.destroy
+      redirect_to organization_project_path(@proposal.project.organization_id, @proposal.project_id)
+    end
   end
 
 private
@@ -87,6 +81,10 @@ private
 
   def get_project
     @project = Project.find(params[:project_id])
+  end
+
+  def get_proposal
+    @proposal = Proposal.find(params[:id])
   end
 
 end
