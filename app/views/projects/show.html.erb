@@ -79,7 +79,7 @@
 <h3 class= 'interior-title'>My Proposals: </h3>
 <div class='cards'>
   <ol>
-    <% @project.developer_proposal(current_user).each_with_index do |proposal,index| %>
+    <% @project.developer_proposals(current_user).each_with_index do |proposal,index| %>
       <div class='card'>
         <div class='card-copy'>
           <%= link_to(("Proposal #{index + 1}"), project_proposal_path(@project.id, proposal.id)) %>

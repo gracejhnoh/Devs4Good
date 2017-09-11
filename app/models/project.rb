@@ -10,7 +10,7 @@ class Project < ApplicationRecord
     self.proposals.find_by(selected: true)
   end
 
-  def developer_proposal(id)
+  def developer_proposals(id)
     self.proposals.where(user_id: id)
   end
 end
