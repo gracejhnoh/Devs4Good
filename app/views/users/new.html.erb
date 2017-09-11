@@ -25,7 +25,7 @@
       Profile Image: <%= f.file_field :image, class:'form-image' %>
       First name:  <span class='required'> * </span> <%= f.text_field :first_name %>
       Last name:   <span class='required'> * </span><%= f.text_field :last_name %>
-      Email:<span class='required'> * </span> <%= f.email_field :email %>
+      Email:<span class='required'> * </span> <span class='disclaimers'>(<i>Note:</i> When you submit a proposal for a project, your email address will be visible to the organization that listed the project.)</span> <%= f.email_field :email %>
       Phone: <span class='disclaimers'> (Please enter phone in xxx-xxx-xxxx format)</span> <%= f.telephone_field :phone %>
       Website: <span class='disclaimers'> (Must include http:// or https://)</span><%= f.text_field :website %>
       Description: <%= f.text_area :description %>
