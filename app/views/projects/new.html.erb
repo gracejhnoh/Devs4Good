@@ -1,40 +1,28 @@
 <% if @project.errors.any? %>
-  <div id="error-explanation">
-    <div id="error-intro">
-      <%= "Something went wrong!" %>
-    </div>
-    <ul class='errors-list'>
-      <% @project.errors.full_messages.each do |error| %>
-        <li>
-          <%= error %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render 'errors/project_errors' %>
 <% end %>
 
 <div class='form'>
-<h2 class='page-title'>Submit Your Project Here</h2><span class='required'> * required fields </span>
+  <h2 class='page-title'>Submit Your Project Here</h2>
+  <span class='required'> * required fields </span>
 
+  <%= form_for @project, url: organization_projects_path(current_user.id) do |f| %>
+    <span class='post-form-titles'>Project Title</span> <span class='disclaimers'>(max 50 characters)</span><span class='required'> * </span>
+    <%= f.text_field :title, placeholder: 'Modern, mobile-responsive website' %>
 
-<%= form_for @project, url: organization_projects_path(current_user.id) do |f| %>
+    <span class='post-form-titles'>Project Summary</span> <span class='disclaimers'>(max 255 characters)</span><span class='required'> * </span>
+    <%= f.text_area :summary, placeholder: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
 
-  <span class='post-form-titles'>Project Title</span> <span class='disclaimers'>(max 50 characters)</span><span class='required'> * </span>
-  <%= f.text_field :title, placeholder: 'Modern, mobile-responsive website' %>
+    <span class='post-form-titles'>Project Specs</span><span class='required'> * </span>
+    <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' }, value: ' Consider including technology requirements, any existing assets, specific feature requests, and as many other details as possible' %>
 
-  <span class='post-form-titles'>Project Summary</span> <span class='disclaimers'>(max 255 characters)</span><span class='required'> * </span>
-  <%= f.text_area :summary, placeholder: 'Example: A website needed for introducing our organization to the public and introducing our staff. We hope to eventually post news about ongoings.' %>
+    <span class='post-form-titles'>Project Needed By</span><span class='required'> * </span>
+    <%= f.date_field :time_frame %>
 
-  <span class='post-form-titles'>Project Specs</span><span class='required'> * </span>
-  <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' }, value: ' Consider including technology requirements, any existing assets, specific feature requests, and as many other details as possible' %>
+    <span class='post-form-titles'>Contact e-mail for Project</span>
+    <span id='ein-disclaimer' >(will be shown to any logged in developer viewing the project)</span>
+    <%= f.email_field :contact_email %>
 
-  <span class='post-form-titles'>Project Needed By</span><span class='required'> * </span>
-  <%= f.date_field :time_frame %>
-
-  <span class='post-form-titles'>Contact e-mail for Project</span>
-  <span id='ein-disclaimer' >(will be shown to any logged in developer viewing the project)</span>
-  <%= f.email_field :contact_email %>
-
-  <%= f.submit 'Submit Project', class: 'post-routes-button' %>
-<% end %>
+    <%= f.submit 'Submit Project', class: 'post-routes-button' %>
+  <% end %>
 </div>
