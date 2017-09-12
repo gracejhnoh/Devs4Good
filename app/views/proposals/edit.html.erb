@@ -1,25 +1,16 @@
 <% if @proposal.errors.any? %>
-  <div id="error-explanation">
-    <div id="error-intro">
-      <%= "Something went wrong!" %>
-    </div>
-    <ul class='errors-list'>
-      <% @proposal.errors.full_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render 'errors/proposal_errors' %>
 <% end %>
 
 <div class='form'>
   <h2 class='page-title'>Edit Your Proposal</h2>
+  <span class='required'> * required field </span>
 
   <%= form_for @proposal, url: project_proposal_path do |f| %>
-    <%= f.label :description, 'Proposal Description' %>
+    <span class='post-form-titles'>Proposal Description</span>
+    <span class='required'> * </span>
+    
     <%= f.cktext_area :description, ckeditor: { toolbar: 'mini' } %>
-
     <%= f.submit 'Edit Proposal', class: 'post-routes-button' %>
   <% end %>
 </div>

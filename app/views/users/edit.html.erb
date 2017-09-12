@@ -1,52 +1,96 @@
 <% if @user.errors.any? %>
-  <div id="error-explanation">
-    <div id="error-intro">
-      <%= "Something went wrong!" %>
-    </div>
-    <ul class='errors-list'>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render 'errors/user_errors' %>
 <% end %>
 
-<% if current_user.user_type == 'dev' %>
+<% if is_dev? %>
   <div class='form'>
     <h3 class='title-form'>Edit Your Profile</h3>
-      <%= form_for @user, url: developer_path do |f| %>
-        Profile Image: <%= f.file_field :image, class:'form-image' %>
-        First name: <%= f.text_field :first_name %><br />
-        Last name: <%= f.text_field :last_name %><br />
-        Email: <%= f.email_field :email %><br />
-        Phone: <%= f.text_field :phone %><br />
-        Website: <%= f.text_field :website %><br />
-        Description: <%= f.text_area :description %><br /><br />
-        Password: <%= f.password_field :password %><br />
-        Password Confirmation: <%= f.password_field :password_confirmation %>
-        <%= f.hidden_field :user_type, { :value => 'dev' } %>
-        <%= f.submit 'Edit account', class: 'post-routes-button' %>
-      <% end %>
+    <span class='required'> * required fields </span>
+
+    <%= form_for @user, url: developer_path do |f| %>
+      Profile Image: <%= f.file_field :image, class:'form-image' %>
+      First name:
+        <span class='required'> * </span>
+        <%= f.text_field :first_name %>
+      Last name:
+        <span class='required'> * </span>
+        <%= f.text_field :last_name %>
+      Email:
+        <span class='required'> * </span>
+        <span class='disclaimers'>
+          (<i>Note:</i> When you submit a proposal for a project, your email address will be visible to the organization that listed the project.)
+        </span>
+        <%= f.email_field :email %>
+      Phone:
+        <span class='disclaimers'>
+          (Please enter phone in xxx-xxx-xxxx format)
+        </span>
+        <%= f.telephone_field :phone %>
+      Website:
+        <span class='disclaimers'>
+          (Must include http:// or https://)
+        </span>
+        <%= f.text_field :website %>
+      Description: <%= f.text_area :description %>
+      Password:
+        <span class='required'> * </span>
+        <%= f.password_field :password %>
+      Password Confirmation:
+        <span class='required'> * </span>
+        <%= f.password_field :password_confirmation %>
+      <%= f.hidden_field :user_type, { :value => 'dev' } %>
+      <%= f.submit 'Edit account', class: 'post-routes-button' %>
+    <% end %>
   </div>
 <% else %>
   <div class='form'>
     <h3 class='title-form'>Edit Your Profile</h3>
+    <span class='required'> * required fields </span>
+
     <%= form_for @user, url: organization_path do |f| %>
       Profile Image: <%= f.file_field :image, class:'form-image' %>
-      Organization name: <%= f.text_field :org_name %><br />
-      EIN number (must be 9 digits, no hyphen): <%= f.text_field :ein %><br />
-      Street Address: <%= f.text_field :street_address %><br />
-      City: <%= f.text_field :city %><br />
-      State: <%= f.text_field :state %><br />
-      Zip: <%= f.text_field :zip %><br />
-      Email: <%= f.email_field :email %><br />
-      Phone: <%= f.text_field :phone %><br />
-      Website: <%= f.text_field :website %><br />
-      Description: <%= f.text_area :description %><br /><br />
-      Password: <%= f.password_field :password %><br />
-      Password Confirmation: <%= f.password_field :password_confirmation %>
+      Organization name:
+        <span class='required'> * </span>
+        <%= f.text_field :org_name %>
+      EIN number:
+        <span class='disclaimers'>
+          (must be 9 digits, no hyphen)
+        </span> <%= f.text_field :ein, id:'ein-field' %>
+        <span id='ein-disclaimer'>
+          When you provide an EIN we search for the name associated with the given EIN and display on your profile to give developers condifence that you are a valid non-profit
+        </span><br/>
+      Street Address:
+        <span class='required'> * </span>
+        <%= f.text_field :street_address %>
+      City:
+        <span class='required'> * </span>
+        <%= f.text_field :city %>
+      State:
+        <span class='required'> * </span>
+        <%= f.text_field :state %>
+      Zip:
+        <span class='required'> * </span>
+        <%= f.text_field :zip %>
+      Email:
+        <span class='required'> * </span>
+        <%= f.email_field :email %>
+      Phone:
+        <span class='disclaimers'>
+          (Please enter phone in xxx-xxx-xxxx format)
+        </span>
+        <%= f.text_field :phone %>
+      Website:
+        <span class='disclaimers'>
+          (Must include http:// or https://)
+        </span>
+        <%= f.text_field :website %>
+      Description: <%= f.text_area :description %>
+      Password:
+        <span class='required'> * </span>
+        <%= f.password_field :password %>
+      Password Confirmation:
+        <span class='required'> * </span>
+        <%= f.password_field :password_confirmation %>
       <%= f.hidden_field :user_type, { :value => 'org' } %>
       <%= f.submit 'Edit account', class: 'post-routes-button'%>
     <% end %>
