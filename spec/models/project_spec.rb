@@ -33,7 +33,7 @@ describe Project do
     let!(:proposal) { FactoryGirl.create(:proposal, project_id: project.id, user_id: developer.id) }
 
     it 'returns a developer\'s proposal' do
-      expect(project.developer_proposal(developer.id)).to eq [proposal]
+      expect(project.developer_proposals(developer.id)).to eq [proposal]
     end
   end
 

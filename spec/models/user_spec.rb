@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 describe User do
-  let(:developer) { FactoryGirl.create(:developer) }
-  let(:organization) { FactoryGirl.create(:organization) }
+  let!(:developer) { FactoryGirl.create(:developer) }
+  let!(:organization) { FactoryGirl.create(:organization)}
+  let!(:project_one) { FactoryGirl.create(:project) }
+  let!(:selected_proposal) { FactoryGirl.create(:proposal, project_id: project_one.id, user_id: developer.id, selected: true) }
+  let!(:unselected_proposal) { FactoryGirl.create(:proposal, project_id: project_one.id, user_id: developer.id) }
+  let!(:organization) { FactoryGirl.create(:organization) }
 
   context "developer" do
     describe "attributes" do
@@ -95,6 +99,16 @@ describe User do
       it 'is invalid without password' do
         invalid_developer.password = ''
         expect(invalid_developer).not_to be_valid
+      end
+    end
+
+    describe '#selected_proposals' do
+      it 'returns selected proposals' do
+        expect(developer.selected_proposals).to eq ([selected_proposal])
+      end
+
+      it 'does not returned unselected proposals' do
+        expect(developer.selected_proposals).not_to include(unselected_proposal)
       end
     end
   end

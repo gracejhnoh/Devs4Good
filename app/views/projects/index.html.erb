@@ -1,15 +1,25 @@
 <h2 class='page-title'>All Projects</h2>
 <div>
-  <% if logged_in? && current_user.user_type == 'org' %>
-    <span class='link-button'> <%= link_to('Create a New Project', new_organization_project_path(current_user.id)) %></span><br/><br/>
+  <% if logged_in? && !is_dev? %>
+    <span class='link-button'>
+      <%= link_to('Create a New Project', new_organization_project_path(current_user.id)) %>
+    </span>
+    <br/><br/>
   <% end %>
 </div>
 <div class='cards'>
   <% @projects.each do |project| %>
     <div class='card'>
-      <div class='card-header'><%= project.organization.org_name %></div>
-      <div class='card-copy'> <%= link_to(project.title, organization_project_path(project.organization, project)) %> </div>
-      <div class='card-copy'> <%= project.summary %> </div><br/>
+      <div class='card-header'>
+        <%= project.organization.org_name %>
+      </div>
+      <div class='card-copy'>
+        <%= link_to(project.title, organization_project_path(project.organization, project)) %>
+      </div>
+      <div class='card-copy'>
+        <%= project.summary %>
+      </div>
+      <br/>
     </div>
   <% end %>
 </div>

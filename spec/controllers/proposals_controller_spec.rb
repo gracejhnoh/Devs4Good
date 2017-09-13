@@ -12,6 +12,12 @@ RSpec.describe ProposalsController, type: :controller do
       get :new, params: { project_id: test_project.id }
       expect(response.status).to eq 302
     end
+
+    it 'assigns an empty proposal to @proposal' do
+      login_user(dev)
+      get :new, params: { project_id: test_project.id }
+      expect(assigns[:proposal]).to be_a Proposal
+    end
   end
 
   describe 'POST #create' do
